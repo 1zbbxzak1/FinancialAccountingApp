@@ -3,9 +3,16 @@
 
 ## Содержание
 
-1. <a href = "#start">Как запустить проект?</a>
-2. <a href = "#stack">Stack-технологий</a>
-6. <a href = "#technical_assignment">Отчётность по реализации ТЗ</a>
+1. <a href = "#people">Разработчики</a>
+2. <a href = "#start">Как запустить проект?</a>
+3. <a href = "#stack">Stack-технологий</a>
+4. <a href = "#technical_assignment">Отчётность по реализации ТЗ</a>
+
+<a name = people></a>
+## Разработчики
+  1. [Зверев Александр Владимирович](https://github.com/wefspy)
+  2. [Катаева Арина Андреевна](https://github.com/arinakataeva007)
+  3. [Полякова Юлия Андреевна](https://github.com/1zbbxzak1)
   
 <a name = start></a>
 ## Как запустить проект?
