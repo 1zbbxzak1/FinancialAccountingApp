@@ -1,0 +1,53 @@
+// Навигация ссылки
+a {
+    text-decoration: none;
+    color: black;
+}
+
+.menu-list {
+    list-style: none;
+    padding: 0;
+}
+
+.menu-list-item {
+    display: inline-block;
+    margin-left: 40px;
+}
+
+.navigation {
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    margin-top: 60px;
+    margin-bottom: 112px;
+}
+
+.active {
+    text-decoration: underline;
+}
+
+// Навигация кнопки
+.navigation-container{
+    padding: 0px;
+    margin-top: -10px;
+    margin-left: 315px;
+}
+
+.avtorithation-btn{
+    margin-right: 10px;
+    padding: 10px;
+    box-sizing: border-box;
+    border: 1px solid rgb(30, 145, 111);
+    border-radius: 10px;   
+    background: transparent;   
+    font-size: 14px;
+}
+
+.registration-btn{
+    padding: 10px;
+    border-radius: 10px; 
+    background: rgb(30, 145, 111);   
+    border: 1px solid rgb(30, 145, 111); 
+    color: white;
+    font-size: 14px;
+}
