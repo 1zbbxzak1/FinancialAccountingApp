@@ -1,0 +1,31 @@
+<svg width="290.000000" height="124.000000" viewBox="0 0 290 124" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<desc>
+			Created with Pixso.
+	</desc>
+	<defs>
+		<clipPath id="clip53_261">
+			<rect id="photo 1" width="290.000000" height="124.000000" fill="white" fill-opacity="0"/>
+		</clipPath>
+		<linearGradient id="paint_linear_53_270_0" x1="-5.873673" y1="55.995178" x2="281.636810" y2="57.501526" gradientUnits="userSpaceOnUse">
+			<stop stop-color="#6ACFCA"/>
+			<stop offset="1.000000" stop-color="#84E884"/>
+		</linearGradient>
+	</defs>
+	<rect id="photo 1" width="290.000000" height="124.000000" fill="#FFFFFF" fill-opacity="0"/>
+	<g clip-path="url(#clip53_261)">
+		<mask id="mask53_263" mask-type="alpha" maskUnits="userSpaceOnUse" x="1.739014" y="0.864990" width="286.348450" height="120.232178">
+			<path id="Vector" d="M284.6 4.33L284.6 117.63L5.21 117.63L5.21 4.33L284.6 4.33Z" stroke="#39D801" stroke-opacity="0.330000" stroke-width="8.334990"/>
+			<path id="Vector" d="M288.08 0.86L279.97 0.86L279.97 8.95L288.08 8.95L288.08 0.86Z" fill="#FFFFFF" fill-opacity="1.000000" fill-rule="nonzero"/>
+			<path id="Vector" d="M288.08 0.86L288.08 8.95L279.97 8.95L279.97 0.86L288.08 0.86Z" stroke="#39D801" stroke-opacity="1.000000" stroke-width="8.334990"/>
+			<path id="Vector" d="M288.08 113L279.97 113L279.97 121.09L288.08 121.09L288.08 113Z" fill="#FFFFFF" fill-opacity="1.000000" fill-rule="nonzero"/>
+			<path id="Vector" d="M288.08 113L288.08 121.09L279.97 121.09L279.97 113L288.08 113Z" stroke="#39D801" stroke-opacity="1.000000" stroke-width="8.334990"/>
+			<path id="Vector" d="M9.85 0.86L1.73 0.86L1.73 8.95L9.85 8.95L9.85 0.86Z" fill="#FFFFFF" fill-opacity="1.000000" fill-rule="nonzero"/>
+			<path id="Vector" d="M9.85 0.86L9.85 8.95L1.73 8.95L1.73 0.86L9.85 0.86Z" stroke="#39D801" stroke-opacity="1.000000" stroke-width="8.334990"/>
+			<path id="Vector" d="M9.85 113L1.73 113L1.73 121.09L9.85 121.09L9.85 113Z" fill="#FFFFFF" fill-opacity="1.000000" fill-rule="nonzero"/>
+			<path id="Vector" d="M9.85 113L9.85 121.09L1.73 121.09L1.73 113L9.85 113Z" stroke="#39D801" stroke-opacity="1.000000" stroke-width="8.334990"/>
+		</mask>
+		<g mask="url(#mask53_263)">
+			<path id="Vector" d="M-8.41 -7.17L289.72 -7.17L289.72 129.33L-8.41 129.33L-8.41 -7.17Z" fill="url(#paint_linear_53_270_0)" fill-opacity="1.000000" fill-rule="evenodd"/>
+		</g>
+	</g>
+</svg>

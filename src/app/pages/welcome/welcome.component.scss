@@ -2,6 +2,86 @@
   background-color: #FFFFFF;
 }
 
+// первая секция приветственной страницы
+
+.main-container{
+  margin: 0 auto;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 565px 1fr;
+  grid-template-areas: 
+  "title statistic"
+  "descreption-list statistic"
+  "button statistic";
+  margin-left: 10%;
+  margin-bottom: 130px;
+  position: relative;
+}
+
+.main-title{
+  grid-area: title;
+  font-family: Montserrat;
+  font-size: 80px;
+  font-weight: 700;
+  line-height: 98px;
+  letter-spacing: 0%;
+  text-align: left; 
+  margin-bottom: 70px;
+}
+
+.main-title span{
+  color: rgb(106, 207, 200);
+  padding-left: 25px;
+}
+
+.descreption-list{
+  list-style: none;
+  padding: 0;
+  grid-area: descreption-list;
+  margin-bottom: 50px;
+}
+
+.descreption-list-item{
+  margin-bottom: 20px;
+  color: rgb(85, 85, 85);
+  font-family: Montserrat;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 22px;
+  letter-spacing: 0%;
+  text-align: left;  
+}
+
+.start-btn{
+  grid-area: button;
+  color: rgb(30, 145, 110);
+  font-family: Montserrat;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 22px;
+  letter-spacing: 0%;
+  text-align: center;
+  text-transform: uppercase;
+  box-sizing: border-box;
+  border: 3px solid rgb(106, 207, 200);
+  border-radius: 10px;   
+  padding: 10px;
+  background: transparent;
+}
+
+.statistic-photo{
+  grid-area: statistic;
+  align-self: center;
+  justify-self: center;
+}
+
+.frame{
+  position: absolute;
+  top: 93px;
+  left: 275px;
+}
+
+
 // третья секция приветственной страницы
 
 .third-section h1 {
