@@ -1,85 +1,163 @@
 .main {
   background-color: #FFFFFF;
+
+  display: flex;
+  flex-direction: column;
+  gap: 130px;
 }
 
 // первая секция приветственной страницы
 
-.main-container{
+.first-section {
   margin: 0 auto;
   padding: 0;
   display: grid;
   grid-template-columns: 565px 1fr;
-  grid-template-areas: 
+  grid-template-areas:
   "title statistic"
   "descreption-list statistic"
   "button statistic";
-  margin-left: 10%;
-  margin-bottom: 130px;
   position: relative;
 }
 
-.main-title{
+.first-section-main-title {
   grid-area: title;
-  font-family: Montserrat;
   font-size: 80px;
   font-weight: 700;
   line-height: 98px;
-  letter-spacing: 0%;
-  text-align: left; 
+  text-align: left;
   margin-bottom: 70px;
 }
 
-.main-title span{
+.first-section-main-title span {
   color: rgb(106, 207, 200);
   padding-left: 25px;
 }
 
-.descreption-list{
+.first-section-description-list {
   list-style: none;
   padding: 0;
   grid-area: descreption-list;
   margin-bottom: 50px;
 }
 
-.descreption-list-item{
+.first-section-description-list-item {
   margin-bottom: 20px;
   color: rgb(85, 85, 85);
-  font-family: Montserrat;
   font-size: 18px;
   font-weight: 500;
   line-height: 22px;
-  letter-spacing: 0%;
-  text-align: left;  
+  text-align: left;
 }
 
-.start-btn{
+.first-section-start-btn {
   grid-area: button;
   color: rgb(30, 145, 110);
-  font-family: Montserrat;
   font-size: 18px;
   font-weight: 600;
   line-height: 22px;
-  letter-spacing: 0%;
   text-align: center;
   text-transform: uppercase;
   box-sizing: border-box;
   border: 3px solid rgb(106, 207, 200);
-  border-radius: 10px;   
+  border-radius: 10px;
   padding: 10px;
   background: transparent;
 }
 
-.statistic-photo{
+.first-section-statistic-photo {
   grid-area: statistic;
   align-self: center;
   justify-self: center;
 }
 
-.frame{
+.first-section-frame {
   position: absolute;
   top: 93px;
   left: 275px;
 }
+
+
+
+// вторая секция приветственной страницы
+
+.second-section-title {
+  margin-bottom: 70px;
+
+  color: #555555;
+  font-size: 64px;
+  font-weight: 700;
+  line-height: 78px;
+
+  text-align: center;
+}
+
+.second-section-cards {
+  list-style: none;
+  margin: 0;
+
+  display: flex;
+  gap: 60px;
+  flex-wrap: wrap;
+
+  justify-content: center;
+}
+
+
+.second-section-card {
+  border-radius: 20px;
+  background: rgb(234, 248, 244);
+  max-width: 381px;
+
+  padding: 30px 40px;
+}
+
+.second-section-card-title-container {
+  margin-bottom: 25px;
+
+  display: flex;
+
+  gap: 13px;
+  justify-content: center;
+}
+
+.second-section-card-title {
+  box-sizing: border-box;
+  border: 1px solid rgb(106, 207, 200);
+  border-radius: 30px;
+  width: 100vw;
+
+  color: rgb(106, 207, 200);
+  font-size: 22px;
+  font-weight: 700;
+  text-transform: uppercase;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.second-section-card-img {
+  border: 1px solid rgb(106, 207, 200);
+  border-radius: 30px;
+  padding: 7px 19.5px;
+}
+
+.second-section-card-desc {
+  color: rgb(0, 0, 0);
+  font-size: 16px;
+  font-weight: 400;
+  text-align: left;
+}
+
+.second-section-card-desc {
+  margin-top: 20px;
+}
+
+.second-section-card-desc-bold {
+  margin-top: 30px;
+}
+
 
 
 // третья секция приветственной страницы
@@ -136,4 +214,44 @@
   justify-content: center;
   align-items: center;
   text-align: center;
+}
+
+
+
+// Адаптация под устройства шириной экрана до 480px
+@media(max-width: 480px) {
+
+
+  // вторая секция приветственной страницы
+
+  .second-section-title {
+    font-size: 40px;
+    line-height: 49px;
+
+    text-align: center;
+  }
+
+
+  .second-section-card {
+    max-width: 260px;
+
+    padding: 30px 20px;
+  }
+
+  .second-section-card-title-container {
+    gap: 8px;
+  }
+
+  .second-section-card-title {
+    font-size: 15px;
+  }
+
+  .second-section-card-img {
+    width: 32px;
+    padding: 7px 15px;
+  }
+
+  .second-section-card-desc {
+    font-size: 14px;
+  }
 }
