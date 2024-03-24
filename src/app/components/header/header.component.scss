@@ -1,53 +1,108 @@
-// Навигация ссылки
-a {
-    text-decoration: none;
-    color: black;
+.pop-up {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
 }
 
-.menu-list {
-    list-style: none;
-    padding: 0;
+.registration-title {
+  color: rgb(30, 145, 111);
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 24px;
+  text-align: center;
+  margin-bottom: 30px;
 }
 
-.menu-list-item {
-    display: inline-block;
-    margin-left: 40px;
+.error-message {
+  color: red;
+  font-size: 12px;
 }
 
 .navigation {
-    display: flex;
-    text-align: center;
-    justify-content: center;
-    margin-top: 60px;
-    margin-bottom: 112px;
+  display: flex;
+  text-align: center;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 auto;
+  padding: 30px 6vw 30px 18vw;
+  flex-wrap: wrap;
+  position: fixed;
+  width: 77%;
+  background-color: #FFFFFF;
+  z-index: 1000;
 }
 
-.active {
-    text-decoration: underline;
+.menu-list {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0;
+  margin: 0 auto;
+  list-style: none;
+}
+
+.menu-list-item {
+  margin-right: 40px;
+}
+
+.menu-list-item:last-child {
+  margin-right: 0;
+}
+
+// Навигация ссылки
+
+a {
+  text-decoration: none;
+  color: #555555;
+}
+
+.link {
+  position: relative;
+}
+
+.link::after {
+  position: absolute;
+  content: '';
+  bottom: 0;
+  display: block;
+  height: 1px;
+  background: #555555;
+  width: 0;
+  transition: 0.3s;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.link:hover:after {
+  width: 100%;
 }
 
 // Навигация кнопки
-.navigation-container{
-    padding: 0px;
-    margin-top: -10px;
-    margin-left: 315px;
+
+.navigation-container {
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  flex-wrap: wrap;
+  width: auto; /* или нужная вам ширина */
+  max-width: 50%; /* пример максимальной ширины */
+  margin: 0 auto;
 }
 
-.avtorithation-btn{
-    margin-right: 10px;
-    padding: 10px;
-    box-sizing: border-box;
-    border: 1px solid rgb(30, 145, 111);
-    border-radius: 10px;   
-    background: transparent;   
-    font-size: 14px;
+.authorization-btn,
+.registration-btn {
+  padding: 10px;
+  border-radius: 10px;
+  font-size: 14px;
 }
 
-.registration-btn{
-    padding: 10px;
-    border-radius: 10px; 
-    background: rgb(30, 145, 111);   
-    border: 1px solid rgb(30, 145, 111); 
-    color: white;
-    font-size: 14px;
+.authorization-btn {
+  margin-right: 10px;
+  border: 1px solid rgb(30, 145, 111);
+  background: transparent;
+}
+
+.registration-btn {
+  background: rgb(30, 145, 111);
+  border: 1px solid rgb(30, 145, 111);
+  color: white;
 }

@@ -1,5 +1,11 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule, provideClientHydration } from '@angular/platform-browser';
+import { NgDompurifySanitizer } from "@tinkoff/ng-dompurify";
+import { TuiRootModule, TuiDialogModule, TuiAlertModule, TUI_SANITIZER, TuiButtonModule, TuiTextfieldControllerModule } from "@taiga-ui/core";
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {TuiInputModule, TuiInputPasswordModule} from "@taiga-ui/kit";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 
 import { AngularFireModule } from "@angular/fire/compat";
 import { AngularFireAuthModule } from "@angular/fire/compat/auth";
@@ -24,11 +30,23 @@ import { environment } from "../environments/environment";
     AngularFireAuthModule,
     BrowserModule,
     AppRoutingModule,
-    NgOptimizedImage
+    NgOptimizedImage,
+    BrowserAnimationsModule,
+    TuiRootModule,
+    TuiDialogModule,
+    TuiAlertModule,
+    TuiInputModule,
+    FormsModule,
+    TuiButtonModule,
+    ReactiveFormsModule,
+    TuiInputPasswordModule,
+    TuiTextfieldControllerModule,
   ],
   providers: [
-    provideClientHydration()
-  ],
+    provideClientHydration(),
+    provideAnimationsAsync(),
+    { provide: TUI_SANITIZER, useClass: NgDompurifySanitizer }
+],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
