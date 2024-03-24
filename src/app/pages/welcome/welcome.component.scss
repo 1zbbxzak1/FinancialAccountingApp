@@ -12,6 +12,7 @@
   margin: 0 auto;
   padding: 0;
   display: grid;
+  column-gap: 100px;
   grid-template-columns: 565px 1fr;
   grid-template-areas:
   "title statistic"
@@ -24,6 +25,7 @@
   grid-area: title;
   font-size: 80px;
   font-weight: 700;
+  line-height: normal;
   text-align: left;
   margin-bottom: 70px;
 }
@@ -36,6 +38,7 @@
 .first-section-description-list {
   list-style: none;
   padding: 0;
+
   grid-area: description-list;
   margin-bottom: 50px;
 }
@@ -45,21 +48,27 @@
   color: rgb(85, 85, 85);
   font-size: 18px;
   font-weight: 500;
+  line-height: normal;
   text-align: left;
 }
 
 .first-section-start-btn {
   grid-area: button;
+
   color: rgb(30, 145, 110);
   font-size: 18px;
   font-weight: 600;
+  line-height: normal;
   text-align: center;
   text-transform: uppercase;
+
   box-sizing: border-box;
   border: 3px solid rgb(106, 207, 200);
   border-radius: 10px;
   padding: 10px;
   background: transparent;
+
+  width: 100%;
 }
 
 .first-section-statistic-photo {
@@ -77,13 +86,17 @@
 
 // вторая секция приветственной страницы
 
+.second-section {
+  margin: 0 auto;
+}
+
 .second-section-title {
   margin-bottom: 70px;
 
   color: #555555;
   font-size: 64px;
   font-weight: 700;
-  line-height: 78px;
+  line-height: normal;
 
   text-align: center;
 }
@@ -158,14 +171,14 @@
 
 // третья секция приветственной страницы
 
-.third-section h1 {
+.third-section-title {
   display: flex;
   justify-content: center;
   align-items: center;
   color: #555555;
   font-size: 62px;
   font-weight: 700;
-  line-height: 76px;
+  line-height: normal;
   text-align: center;
   margin-bottom: 70px;
 }
@@ -190,22 +203,27 @@
 .third-section-card-img {
   display: block;
   margin: -50px auto 21px;
+
+  border: 1px solid rgb(110, 211, 193);
+  background: rgb(255, 255, 255);
+  padding: 20px;
+  border-radius: 30px;
+
 }
 
 .third-section-card-title {
   margin: 0 0 23px;
+
   font-size: 23px;
-  line-height: 28px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  text-align: center;
+
   color: #555555;
 }
 
 .third-section-card-desc {
   margin: 0 0 15px;
   font-size: 16px;
-  line-height: 24px;
+  line-height: normal;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -213,22 +231,71 @@
 }
 
 
+
+// Адаптация под устройства шириной экрана до 1300px
 @media (max-width: 1300px ){
+
+  // первая секция приветственной страницы
   .first-section{
-    gap: 0;
+    display: block;
+    width: 720px;
+  }
+
+  .first-section-main-title {
+    font-size: 96px;
+  }
+
+  .first-section-description-list-item {
+    font-size: 22px;
   }
 
   .first-section-statistic-photo{
     display: none;
   }
+
+  .first-section-frame {
+    top: 120px;
+    left: 345px;
+  }
 }
 
-@media (max-width: 580px) {
 
+// Адаптация под устройства шириной экрана до 760px
+@media (max-width: 760px) {
+
+  // первая секция приветственной страницы
   .first-section {
-    display: block;
-    width: 280px;
+    width: 440px;
     align-items: center;
+
+    padding: 0 20px;
+  }
+
+  .first-section-description-list-item {
+    font-size: 18px;
+    margin-bottom: 15px;
+  }
+
+  .first-section-frame {
+    top: 240px;
+    left: 15px;
+  }
+
+
+  // третья секция приветственной страницы
+  .third-section-title {
+    font-size: 46px;
+  }
+}
+
+
+
+// Адаптация под устройства шириной экрана до 480px
+@media(max-width: 480px) {
+
+  // первая секция приветственной страницы
+  .first-section {
+    width: 280px;
 
     padding: 0 20px;
   }
@@ -237,7 +304,6 @@
     font-size: 60px;
     align-items: center;
     margin-bottom: 40px;
-
   }
 
   .first-section-description-list-item {
@@ -246,27 +312,15 @@
   }
 
   .first-section-frame {
-    position: absolute;
     top: 128px;
     left: 23px;
     width: 190px;
   }
 
-  .first-section-start-btn {
-    width: 100%;
-  }
-}
-
-// Адаптация под устройства шириной экрана до 480px
-
-@media(max-width: 480px) {
-
 
   // вторая секция приветственной страницы
-
   .second-section-title {
     font-size: 40px;
-    line-height: 49px;
 
     text-align: center;
   }
@@ -293,5 +347,17 @@
 
   .second-section-card-desc {
     font-size: 14px;
+  }
+
+
+  // третья секция приветственной страницы
+  .third-section-title {
+    font-size: 36px;
+  }
+
+  .third-section-card {
+    width: 260px;
+
+    padding: 0 20px;
   }
 }
