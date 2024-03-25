@@ -1,19 +1,52 @@
 <header class="navigation">
-    <ul class="menu-list">
-        <li class="menu-list-item">
-            <a href="#main" class="link">ГЛАВНАЯ</a>
+  <ul class="menu-list">
+      <li class="menu-list-item">
+          <a href="#main" class="link">ГЛАВНАЯ</a>
+      </li>
+      <li class="menu-list-item">
+          <a href="#clients" class="link">КОМУ ПОДОЙДЕТ?</a>
+      </li>
+      <li class="menu-list-item">
+          <a href="#possibilities" class="link">ВОЗМОЖНОСТИ</a>
+      </li>
+  </ul>
+  <div class="navigation-container">
+      <button (click)="openDialogLogIn(login, 's')" class="authorization-btn">ВОЙТИ</button>
+      <button (click)="openDialogRegistration(registrtion, 's')" class="registration-btn">ЗАРЕГИСТРИРОВАТЬСЯ</button>
+  </div>
+
+  <button
+    class="mobile-menu"
+    (click)="toggleSidebar(true)"
+    (tuiActiveZoneChange)="toggleSidebar($event)"
+  >
+    <img ngSrc="./assets/img/mobile-menu.svg" width="40" height="40" alt="Меню">
+
+    <div *tuiSidebar="isCollapsed; direction: 'right'">
+      <button
+        class="mobile-menu-close"
+        (click)="toggleSidebar(false)"
+        (tuiActiveZoneChange)="toggleSidebar($event)"
+      >
+        <img ngSrc="./assets/img/close.svg" width="25" height="25" alt="Закрыть меню">
+      </button>
+      <ul class="mobile-menu-list">
+        <li class="mobile-menu-list-item">
+          <a href="#main" class="link mobile-a">Главная</a>
         </li>
-        <li class="menu-list-item">
-            <a href="#clients" class="link">КОМУ ПОДОЙДЕТ?</a>
+        <li class="mobile-menu-list-item">
+          <a href="#clients" class="link mobile-a">Кому подойдет?</a>
         </li>
-        <li class="menu-list-item">
-            <a href="#possibilities" class="link">ВОЗМОЖНОСТИ</a>
+        <li class="mobile-menu-list-item">
+          <a href="#possibilities" class="link mobile-a">Возможности</a>
         </li>
-    </ul>
-    <div class="navigation-container">
-        <button (click)="openDialogLogIn(login, 's')" class="authorization-btn">ВОЙТИ</button>
-        <button (click)="openDialogRegistration(registrtion, 's')" class="registration-btn">ЗАРЕГИСТРИРОВАТЬСЯ</button>
+      </ul>
+      <div class="mobile-navigation-container">
+        <button (click)="openDialogLogIn(login, 's')" class="mobile-authorization-btn">ВОЙТИ</button>
+        <button (click)="openDialogRegistration(registrtion, 's')" class="mobile-registration-btn">ЗАРЕГИСТРИРОВАТЬСЯ</button>
+      </div>
     </div>
+  </button>
 
   <ng-template #login>
     <form [formGroup]="form" class="pop-up">

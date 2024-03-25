@@ -17,6 +17,8 @@ import { HeaderComponent } from './components/header/header.component';
 import {WelcomeComponent} from "./pages/welcome/welcome.component";
 import { FooterComponent } from './components/footer/footer.component';
 import { environment } from "../environments/environment";
+import {TuiActiveZoneModule} from "@taiga-ui/cdk";
+import {TuiSidebarModule} from "@taiga-ui/addon-mobile";
 
 @NgModule({
   declarations: [
@@ -41,6 +43,8 @@ import { environment } from "../environments/environment";
     ReactiveFormsModule,
     TuiInputPasswordModule,
     TuiTextfieldControllerModule,
+    TuiActiveZoneModule,
+    TuiSidebarModule,
   ],
   providers: [
     provideClientHydration(),

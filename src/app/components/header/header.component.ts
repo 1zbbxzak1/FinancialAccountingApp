@@ -1,4 +1,4 @@
-import {Component, Inject} from '@angular/core';
+import {ChangeDetectionStrategy, Component, Inject} from '@angular/core';
 import {TuiDialogFormService} from "@taiga-ui/kit";
 import {TuiDialogContext, TuiDialogService, TuiDialogSize} from "@taiga-ui/core";
 import {PolymorpheusContent} from '@tinkoff/ng-polymorpheus';
@@ -13,9 +13,16 @@ import {Router} from "@angular/router";
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [TuiDialogFormService],
 })
 export class HeaderComponent {
+
+  isCollapsed: boolean = false;
+
+  toggleSidebar(isCollapsed: boolean): void {
+    this.isCollapsed = isCollapsed;
+  }
 
   public form: FormGroup = new FormGroup({
     email: new FormControl("", [Validators.required]),
