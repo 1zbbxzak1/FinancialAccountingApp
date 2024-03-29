@@ -18,13 +18,13 @@ import {Router} from "@angular/router";
 })
 export class HeaderComponent {
 
-  isCollapsed: boolean = false;
+  protected isCollapsed: boolean = false;
 
-  toggleSidebar(isCollapsed: boolean): void {
+  protected toggleSidebar(isCollapsed: boolean): void {
     this.isCollapsed = isCollapsed;
   }
 
-  public form: FormGroup = new FormGroup({
+  protected form: FormGroup = new FormGroup({
     email: new FormControl("", [Validators.required]),
     password: new FormControl("", [Validators.required, Validators.minLength(6), Validators.maxLength(15)]),
     repeatPassword: new FormControl("", [Validators.required, Validators.minLength(6), Validators.maxLength(15)])
@@ -39,7 +39,7 @@ export class HeaderComponent {
     private router: Router
   ) {}
 
-  openDialogLogIn(
+  protected openDialogLogIn(
     login: PolymorpheusContent<TuiDialogContext>,
     size: TuiDialogSize
   ): void {
@@ -66,7 +66,7 @@ export class HeaderComponent {
     });
   }
 
-  openDialogRegistration(
+  protected openDialogRegistration(
     registration: PolymorpheusContent<TuiDialogContext>,
     size: TuiDialogSize
   ): void {
@@ -93,7 +93,7 @@ export class HeaderComponent {
       });
   }
 
-  logInUser(): void {
+  protected logInUser(): void {
     const email = this.form.get('email')?.value;
     const password = this.form.get('password')?.value;
 
@@ -113,7 +113,7 @@ export class HeaderComponent {
     }
   }
 
-  registrationNewUser(): void {
+  protected registrationNewUser(): void {
     const email = this.form.get('email')?.value;
     const password = this.form.get('password')?.value;
 
