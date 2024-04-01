@@ -1,75 +1,63 @@
 <header class="navigation">
-  <ul class="menu-list">
-      <li class="menu-list-item">
-          <a href="#main" class="link">ГЛАВНАЯ</a>
-      </li>
-      <li class="menu-list-item">
-          <a href="#clients" class="link">КОМУ ПОДОЙДЕТ?</a>
-      </li>
-      <li class="menu-list-item">
-          <a href="#possibilities" class="link">ВОЗМОЖНОСТИ</a>
-      </li>
-  </ul>
-  <div class="navigation-container">
-      <button (click)="openDialogLogIn(login, 's')" class="authorization-btn">ВОЙТИ</button>
-      <button (click)="openDialogRegistration(registrtion, 's')" class="registration-btn">ЗАРЕГИСТРИРОВАТЬСЯ</button>
-  </div>
-
-  <button
-    class="mobile-menu"
-    (click)="toggleSidebar(true)"
-    (tuiActiveZoneChange)="toggleSidebar($event)"
-  >
-    <img ngSrc="./assets/img/mobile-menu.svg" width="40" height="40" alt="Меню">
-
-    <div *tuiSidebar="isCollapsed; direction: 'right'">
-      <button
-        class="mobile-menu-close"
-        (click)="toggleSidebar(false)"
-        (tuiActiveZoneChange)="toggleSidebar($event)"
-      >
-        <img ngSrc="./assets/img/close.svg" width="25" height="25" alt="Закрыть меню">
-      </button>
-      <ul class="mobile-menu-list">
-        <li class="mobile-menu-list-item">
-          <a href="#main" class="link mobile-a">Главная</a>
+    <ul class="menu-list">
+        <li class="menu-list-item">
+            <a class="link" href="#main">ГЛАВНАЯ</a>
         </li>
-        <li class="mobile-menu-list-item">
-          <a href="#clients" class="link mobile-a">Кому подойдет?</a>
+        <li class="menu-list-item">
+            <a class="link" href="#clients">КОМУ ПОДОЙДЕТ?</a>
         </li>
-        <li class="mobile-menu-list-item">
-          <a href="#possibilities" class="link mobile-a">Возможности</a>
+        <li class="menu-list-item">
+            <a class="link" href="#possibilities">ВОЗМОЖНОСТИ</a>
         </li>
-      </ul>
-      <div class="mobile-navigation-container">
-        <button (click)="openDialogLogIn(login, 's')" class="mobile-authorization-btn">ВОЙТИ</button>
-        <button (click)="openDialogRegistration(registrtion, 's')" class="mobile-registration-btn">ЗАРЕГИСТРИРОВАТЬСЯ</button>
-      </div>
+    </ul>
+    <div class="navigation-container">
+        <button (click)="openDialogLogIn(login, 's')" class="authorization-btn">ВОЙТИ</button>
+        <button (click)="openDialogRegistration(registration, 's')" class="registration-btn">ЗАРЕГИСТРИРОВАТЬСЯ</button>
     </div>
-  </button>
 
-  <ng-template #login>
-    <form [formGroup]="form" class="pop-up">
-      <div class="registration-title">
-        Сервис учета финансов
-      </div>
-      <tui-input formControlName="email" class="tui-space_bottom-4">Email</tui-input>
-      <tui-input-password formControlName="password" class="tui-space_bottom-10" tuiTextfieldSize="l">Пароль</tui-input-password>
-      <button appearance="custom" tuiButton type="button" size="l" (click)="logInUser()">Войти</button>
-    </form>
-  </ng-template>
+    <button
+        (click)="toggleSidebar(true)"
+        (tuiActiveZoneChange)="toggleSidebar($event)"
+        class="mobile-menu"
+    >
+        <img alt="Меню" height="40" ngSrc="./assets/img/mobile-menu.svg" width="40">
 
-  <ng-template #registrtion>
-    <form [formGroup]="form" class="pop-up">
-      <div class="registration-title">
-        Сервис учета финансов
-      </div>
-      <tui-input formControlName="email" class="tui-space_bottom-4">Email</tui-input>
-      <tui-input-password formControlName="password" class="tui-space_bottom-4" tuiTextfieldSize="l">Пароль</tui-input-password>
-      <tui-input-password formControlName="repeatPassword" class="tui-space_bottom-0" tuiTextfieldSize="l">Повторите пароль</tui-input-password>
-      <div *ngIf="form.hasError('passwordMismatch')" class="error-message">Пароли не совпадают</div>
-      <button tuiButton appearance="custom" type="button" size="l" class="tui-space_top-10" (click)="registrationNewUser()" [disabled] = "form.invalid">Зарегистрироваться</button>
+        <div *tuiSidebar="isCollapsed; direction: 'right'">
+            <button
+                (click)="toggleSidebar(false)"
+                (tuiActiveZoneChange)="toggleSidebar($event)"
+                class="mobile-menu-close"
+            >
+                <img alt="Закрыть меню" height="25" ngSrc="./assets/img/close.svg" width="25">
+            </button>
+            <ul class="mobile-menu-list">
+                <li class="mobile-menu-list-item">
+                    <a class="link mobile-a" href="#main">Главная</a>
+                </li>
+                <li class="mobile-menu-list-item">
+                    <a class="link mobile-a" href="#clients">Кому подойдет?</a>
+                </li>
+                <li class="mobile-menu-list-item">
+                    <a class="link mobile-a" href="#possibilities">Возможности</a>
+                </li>
+            </ul>
+            <div class="mobile-navigation-container">
+                <button (click)="openDialogLogIn(login, 's')" class="mobile-authorization-btn">ВОЙТИ</button>
+                <button (click)="openDialogRegistration(registration, 's')" class="mobile-registration-btn">
+                    ЗАРЕГИСТРИРОВАТЬСЯ
+                </button>
+            </div>
+        </div>
+    </button>
 
-    </form>
-  </ng-template>
+    <ng-template #login>
+        <app-login></app-login>
+    </ng-template>
+
+    <app-login style="display: none;"></app-login>
+    <app-registration style="display: none;"></app-registration>
+
+    <ng-template #registration>
+        <app-registration></app-registration>
+    </ng-template>
 </header>

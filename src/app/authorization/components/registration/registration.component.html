@@ -1,0 +1,55 @@
+<form [formGroup]="formRegistration" class="pop-up">
+    <div class="pop-up-title">
+        Сервис учета финансов
+    </div>
+    <div>
+        <tui-input formControlName="email">
+            Email
+        </tui-input>
+        <div *ngIf="formRegistration.controls['email'].invalid &&
+                 ( formRegistration.controls['email'].dirty || formRegistration.controls['email'].touched)
+                 " class="error-message"
+        >
+            <div *ngIf="formRegistration.controls['email'].hasError('required')">
+                Email обязателен.
+            </div>
+            <div *ngIf="formRegistration.controls['email'].hasError('email')">
+                Некорректный email.
+            </div>
+        </div>
+    </div>
+    <div>
+        <tui-input-password class="tui-space_top-4" formControlName="password" tuiTextfieldSize="l">
+            Пароль
+        </tui-input-password>
+        <div *ngIf="formRegistration.controls['password'].invalid &&
+                 ( formRegistration.controls['password'].dirty || formRegistration.controls['password'].touched)
+                 " class="error-message"
+        >
+            <div *ngIf="formRegistration.controls['password'].hasError('required')">
+                Пароль обязателен.
+            </div>
+            <div *ngIf="formRegistration.controls['password'].hasError('minlength')">
+                Пароль должен быть длиннее 6 символов.
+            </div>
+        </div>
+    </div>
+    <tui-input-password class="tui-space_top-4 tui-space_bottom-0" formControlName="repeatPassword"
+                        tuiTextfieldSize="l">
+        Повторите пароль
+    </tui-input-password>
+    <div *ngIf="formRegistration.hasError('passwordMismatch') &&
+        ( formRegistration.controls['repeatPassword'].dirty || formRegistration.controls['repeatPassword'].touched)"
+         class="error-message"
+    >
+        Пароли не совпадают
+    </div>
+
+    <button (click)="registrationNewUser()" [disabled]="formRegistration.invalid"
+            appearance="custom"
+            class="tui-space_top-10" size="l"
+            tuiButton type="button">
+        Зарегистрироваться
+    </button>
+</form>
+
