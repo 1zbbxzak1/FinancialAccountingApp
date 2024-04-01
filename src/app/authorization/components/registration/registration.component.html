@@ -6,14 +6,11 @@
         <tui-input formControlName="email">
             Email
         </tui-input>
-        <div *ngIf="formRegistration.controls['email'].invalid &&
-                 ( formRegistration.controls['email'].dirty || formRegistration.controls['email'].touched)
-                 " class="error-message"
-        >
-            <div *ngIf="formRegistration.controls['email'].hasError('required')">
+        <div *ngIf="isControlError('email')" class="error-message">
+            <div *ngIf="isControlRequired('email')">
                 Email обязателен.
             </div>
-            <div *ngIf="formRegistration.controls['email'].hasError('email')">
+            <div *ngIf="isEmailInvalid('email')">
                 Некорректный email.
             </div>
         </div>
@@ -22,14 +19,11 @@
         <tui-input-password class="tui-space_top-4" formControlName="password" tuiTextfieldSize="l">
             Пароль
         </tui-input-password>
-        <div *ngIf="formRegistration.controls['password'].invalid &&
-                 ( formRegistration.controls['password'].dirty || formRegistration.controls['password'].touched)
-                 " class="error-message"
-        >
-            <div *ngIf="formRegistration.controls['password'].hasError('required')">
+        <div *ngIf="isControlError('password')" class="error-message">
+            <div *ngIf="isControlRequired('password')">
                 Пароль обязателен.
             </div>
-            <div *ngIf="formRegistration.controls['password'].hasError('minlength')">
+            <div *ngIf="isPasswordInvalid('password')">
                 Пароль должен быть длиннее 6 символов.
             </div>
         </div>
@@ -38,10 +32,7 @@
                         tuiTextfieldSize="l">
         Повторите пароль
     </tui-input-password>
-    <div *ngIf="formRegistration.hasError('passwordMismatch') &&
-        ( formRegistration.controls['repeatPassword'].dirty || formRegistration.controls['repeatPassword'].touched)"
-         class="error-message"
-    >
+    <div *ngIf="isPasswordMismatch('password', 'repeatPassword')" class="error-message">
         Пароли не совпадают
     </div>
 

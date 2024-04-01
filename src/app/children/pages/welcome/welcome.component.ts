@@ -1,4 +1,4 @@
-import {Component, ViewChild} from '@angular/core';
+import {ChangeDetectionStrategy, Component, ViewChild} from '@angular/core';
 import {RegistrationComponent} from "../../../authorization/components/registration/registration.component";
 import {Router} from "@angular/router";
 import {PolymorpheusContent} from "@tinkoff/ng-polymorpheus";
@@ -9,10 +9,11 @@ import {TuiDialogFormService} from "@taiga-ui/kit";
     selector: 'app-welcome',
     templateUrl: './welcome.component.html',
     styleUrl: './styles/welcome.component.scss',
+    changeDetection: ChangeDetectionStrategy.OnPush,
     providers: [TuiDialogFormService],
 })
 export class WelcomeComponent {
-    @ViewChild(RegistrationComponent) registrationComponent!: RegistrationComponent;
+    @ViewChild(RegistrationComponent) private readonly registrationComponent!: RegistrationComponent;
 
     constructor(
         private _router: Router,

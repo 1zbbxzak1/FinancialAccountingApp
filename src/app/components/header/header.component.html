@@ -54,10 +54,10 @@
         <app-login></app-login>
     </ng-template>
 
-    <app-login style="display: none;"></app-login>
-    <app-registration style="display: none;"></app-registration>
-
     <ng-template #registration>
         <app-registration></app-registration>
     </ng-template>
 </header>
+
+<app-login class="hidden-auth"></app-login>
+<app-registration class="hidden-auth"></app-registration>

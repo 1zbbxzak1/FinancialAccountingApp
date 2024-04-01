@@ -1,10 +1,9 @@
 <tui-root>
 
-<!-- разделение на секции в папках components и pages -->
+    <router-outlet/>
 
-<app-welcome></app-welcome> <!-- pages/welcome (там подключен header, реализация которого находится в папке components/header) -->
-<app-footer></app-footer> <!-- components/footer -->
-
-<router-outlet />
+    <!-- разделение на секции в папках components и pages -->
+    <app-welcome></app-welcome> <!-- pages/welcome -->
+    <app-footer></app-footer> <!-- components/footer -->
 
 </tui-root>

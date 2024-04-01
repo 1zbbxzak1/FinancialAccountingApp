@@ -14,10 +14,9 @@ import {TuiDialogContext, TuiDialogSize} from "@taiga-ui/core";
     providers: [TuiDialogFormService],
 })
 export class HeaderComponent {
-    @ViewChild(LoginComponent) loginComponent!: LoginComponent;
-    @ViewChild(RegistrationComponent) registrationComponent!: RegistrationComponent;
-
     protected isCollapsed: boolean = false;
+    @ViewChild(RegistrationComponent) private readonly registrationComponent!: RegistrationComponent;
+    @ViewChild(LoginComponent) private readonly loginComponent!: LoginComponent;
 
     constructor(
         private _router: Router,

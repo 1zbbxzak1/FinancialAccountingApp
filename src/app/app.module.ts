@@ -1,18 +1,6 @@
 import {NgModule} from '@angular/core';
 import {BrowserModule, provideClientHydration} from '@angular/platform-browser';
-import {NgDompurifySanitizer} from "@tinkoff/ng-dompurify";
-import {
-    TUI_SANITIZER,
-    TuiAlertModule,
-    TuiButtonModule,
-    TuiDialogModule,
-    TuiRootModule,
-    TuiTextfieldControllerModule
-} from "@taiga-ui/core";
-import {provideAnimationsAsync} from '@angular/platform-browser/animations/async';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
-import {TuiInputModule, TuiInputPasswordModule} from "@taiga-ui/kit";
-import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 
 import {AngularFireModule} from "@angular/fire/compat";
 import {AngularFireAuthModule} from "@angular/fire/compat/auth";
@@ -24,10 +12,12 @@ import {HeaderComponent} from './components/header/header.component';
 import {WelcomeComponent} from "./children/pages/welcome/welcome.component";
 import {FooterComponent} from './components/footer/footer.component';
 import {environment} from "../environments/environment";
+import {AuthorizationModule} from "./authorization/authorization.module";
 import {TuiActiveZoneModule} from "@taiga-ui/cdk";
 import {TuiSidebarModule} from "@taiga-ui/addon-mobile";
-import {LoginComponent} from './authorization/components/login/login.component';
-import {RegistrationComponent} from './authorization/components/registration/registration.component';
+import {provideAnimationsAsync} from "@angular/platform-browser/animations/async";
+import {TUI_SANITIZER, TuiRootModule} from "@taiga-ui/core";
+import {NgDompurifySanitizer} from "@tinkoff/ng-dompurify";
 
 @NgModule({
     declarations: [
@@ -35,27 +25,18 @@ import {RegistrationComponent} from './authorization/components/registration/reg
         HeaderComponent,
         WelcomeComponent,
         FooterComponent,
-        LoginComponent,
-        RegistrationComponent,
     ],
     imports: [
+        BrowserModule,
+        AuthorizationModule,
         AngularFireModule.initializeApp(environment.firebaseConfig),
         AngularFireAuthModule,
-        BrowserModule,
         AppRoutingModule,
         NgOptimizedImage,
         BrowserAnimationsModule,
-        TuiRootModule,
-        TuiDialogModule,
-        TuiAlertModule,
-        TuiInputModule,
-        FormsModule,
-        TuiButtonModule,
-        ReactiveFormsModule,
-        TuiInputPasswordModule,
-        TuiTextfieldControllerModule,
         TuiActiveZoneModule,
         TuiSidebarModule,
+        TuiRootModule,
     ],
     providers: [
         provideClientHydration(),
