@@ -1,240 +1,56 @@
 {
     "root": true,
-    "ignorePatterns": ["**/*"],
-    "plugins": [
-        "@nrwl/nx",
-        "@nrwl/eslint-plugin-nx",
-        "@typescript-eslint",
-        "jsdoc",
-        "@angular-eslint/eslint-plugin",
-        "unused-imports",
-        "filename-rules"
+    "ignorePatterns": [
+        "projects/**/*"
     ],
     "overrides": [
         {
-            "files": ["*.ts"],
+            "files": [
+                "*.ts"
+            ],
+            "extends": [
+                "eslint:recommended",
+                "plugin:@typescript-eslint/recommended",
+                "plugin:@angular-eslint/recommended",
+                "plugin:@angular-eslint/template/process-inline-templates"
+            ],
             "rules": {
-                "@nrwl/nx/enforce-module-boundaries": [
+                "semi": [
+                    "error",
+                    "always"
+                ],
+                "max-len": [
                     "error",
                     {
-                        "allow": [],
-                        "depConstraints": [
-                            {
-                                "sourceTag": "web",
-                                "onlyDependOnLibsWithTags": ["common", "web"]
-                            },
-                            {
-                                "sourceTag": "adaptive",
-                                "onlyDependOnLibsWithTags": [
-                                    "common",
-                                    "adaptive"
-                                ]
-                            },
-                            {
-                                "sourceTag": "mobile",
-                                "onlyDependOnLibsWithTags": ["common", "mobile"]
-                            },
-                            {
-                                "sourceTag": "common",
-                                "onlyDependOnLibsWithTags": ["common"]
-                            },
-                            {
-                                "sourceTag": "feature",
-                                "onlyDependOnLibsWithTags": [
-                                    "feature",
-                                    "ui",
-                                    "base"
-                                ]
-                            },
-                            {
-                                "sourceTag": "ui",
-                                "onlyDependOnLibsWithTags": ["ui", "base"]
-                            },
-                            {
-                                "sourceTag": "base",
-                                "onlyDependOnLibsWithTags": ["base"]
-                            }
-                        ]
+                        "code": 140
                     }
                 ],
-                "prefer-const": "error",
-                "semi": "error",
-                "padding-line-between-statements": [
+                "@angular-eslint/directive-selector": [
                     "error",
                     {
-                        "blankLine": "always",
-                        "prev": "*",
-                        "next": "return"
+                        "type": "attribute",
+                        "prefix": "app",
+                        "style": "camelCase"
                     }
                 ],
-                "@typescript-eslint/member-ordering": [
+                "@angular-eslint/component-selector": [
                     "error",
                     {
-                        "default": [
-                            ["get", "set", "field", "static-method"],
-                            "constructor",
-                            "public-abstract-method",
-                            "protected-abstract-method",
-                            "public-decorated-method",
-                            "public-method",
-                            "protected-decorated-method",
-                            "protected-method",
-                            "private-decorated-method",
-                            "private-method"
-                        ]
+                        "type": "element",
+                        "prefix": "app",
+                        "style": "kebab-case"
                     }
-                ],
-                "@typescript-eslint/naming-convention": [
-                    "error",
-                    {
-                        "selector": "default",
-                        "format": ["camelCase"],
-                        "custom": {
-                            "regex": "^[^А-ЯЁа-яё]*$",
-                            "match": true
-                        }
-                    },
-                    {
-                        "selector": ["classProperty", "parameterProperty"],
-                        "format": ["camelCase"],
-                        "modifiers": ["private"],
-                        "prefix": ["_"],
-                        "custom": {
-                            "regex": "^[^А-ЯЁа-яё]*$",
-                            "match": true
-                        }
-                    },
-                    {
-                        "selector": ["classProperty"],
-                        "modifiers": ["public", "static", "readonly"],
-                        "format": ["camelCase", "UPPER_CASE"],
-                        "custom": {
-                            "regex": "^[^А-ЯЁа-яё]*$",
-                            "match": true
-                        }
-                    },
-                    {
-                        "selector": "interface",
-                        "format": ["PascalCase"],
-                        "custom": {
-                            "regex": "^I[A-Z][^А-Яа-я]*$",
-                            "match": true
-                        }
-                    },
-                    {
-                        "selector": "objectLiteralProperty",
-                        "format": null,
-                        "custom": {
-                            "regex": "^[^А-ЯЁа-яё]*$",
-                            "match": true
-                        }
-                    },
-                    {
-                        "selector": "typeLike",
-                        "format": ["PascalCase"],
-                        "custom": {
-                            "regex": "^[^А-ЯЁа-яё]*$",
-                            "match": true
-                        }
-                    },
-                    {
-                        "selector": ["variable"],
-                        "modifiers": ["const", "exported"],
-                        "format": ["camelCase", "UPPER_CASE"],
-                        "custom": {
-                            "regex": "^[^А-ЯЁа-яё]*$",
-                            "match": true
-                        }
-                    }
-                ],
-                "@typescript-eslint/no-shadow": "error",
-                "@typescript-eslint/explicit-member-accessibility": [
-                    "error",
-                    {
-                        "accessibility": "explicit",
-                        "overrides": {
-                            "constructors": "no-public"
-                        }
-                    }
-                ],
-                "@typescript-eslint/array-type": [
-                    "error",
-                    {
-                        "default": "array-simple"
-                    }
-                ],
-                "@typescript-eslint/typedef": [
-                    "error",
-                    {
-                        "arrowParameter": false,
-                        "variableDeclaration": true,
-                        "arrayDestructuring": false,
-                        "parameter": true,
-                        "propertyDeclaration": true,
-                        "memberVariableDeclaration": true,
-                        "objectDestructuring": false,
-                        "variableDeclarationIgnoreFunction": true
-                    }
-                ],
-                "@typescript-eslint/explicit-function-return-type": "error",
-                "@angular-eslint/no-conflicting-lifecycle": "error",
-                "@angular-eslint/no-host-metadata-property": "error",
-                "@angular-eslint/no-input-rename": "error",
-                "@angular-eslint/no-inputs-metadata-property": "error",
-                "@angular-eslint/no-output-native": "error",
-                "@angular-eslint/no-output-on-prefix": "error",
-                "@angular-eslint/no-output-rename": "error",
-                "@angular-eslint/no-outputs-metadata-property": "error",
-                "@angular-eslint/use-lifecycle-interface": "error",
-                "@angular-eslint/use-pipe-transform-interface": "error",
-                "@angular-eslint/prefer-on-push-component-change-detection": "error",
-                "jsdoc/require-jsdoc": [
-                    "error",
-                    {
-                        "contexts": [
-                            "MethodDefinition:not([key.name=/^ng[A-Z].+/]):not([key.name=/^ionView[A-Z].+/]):not([key.name=/^to[A-Z].+/]):not([override=true]):not([kind=\"get\"]):not([kind=\"set\"])"
-                        ],
-                        "require": {
-                            "ArrowFunctionExpression": false,
-                            "ClassDeclaration": false,
-                            "ClassExpression": false,
-                            "FunctionDeclaration": true,
-                            "FunctionExpression": true
-                        },
-                        "checkConstructors": false,
-                        "enableFixer": false
-                    }
-                ],
-                "jsdoc/require-description": "error",
-                "jsdoc/require-returns": "off",
-                "max-classes-per-file": ["error", 1],
-                "curly": "error",
-                "eqeqeq": ["error", "always"],
-                "indent": [
-                    "error",
-                    4,
-                    {
-                        "SwitchCase": 1
-                    }
-                ],
-                "quotes": [
-                    "error",
-                    "single",
-                    {
-                        "allowTemplateLiterals": true
-                    }
-                ],
-                "object-curly-spacing": ["error", "always"],
-                "unused-imports/no-unused-imports": "warn"
+                ]
             }
         },
         {
-            "files": "*.json",
-            "parser": "jsonc-eslint-parser",
+            "files": [
+                "*.html"
+            ],
+            "extends": [
+                "plugin:@angular-eslint/template/recommended"
+            ],
             "rules": {}
         }
-    ],
-    "rules": {
-        "filename-rules/match": [2, { ".ts": "/^[a-zA-Z0-9-?.*]+$/" }]
-    }
+    ]
 }
