@@ -2,8 +2,8 @@ import {Component, DestroyRef, Inject} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {passwordMatchValidator} from "../../../validators/auth.validator";
 import {
-    RegistrationRequestModelInterface
-} from "../../../data/request-models/auth/registration.request-model.interface";
+    IRegistrationRequestModel
+} from "../../../data/request-models/auth/IRegistration.request-model";
 import {PolymorpheusContent} from "@tinkoff/ng-polymorpheus";
 import {TuiDialogContext, TuiDialogService, TuiDialogSize} from "@taiga-ui/core";
 import {Observable} from "rxjs";
@@ -11,6 +11,7 @@ import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
 import {TuiDialogFormService} from "@taiga-ui/kit";
 import {AuthService} from "../../../data/services/auth.service";
 import {Router} from "@angular/router";
+import {IdentityService} from "../../../data/services/identity.service";
 
 @Component({
     selector: 'app-registration',
@@ -29,7 +30,7 @@ export class RegistrationComponent {
         private readonly _dialogForm: TuiDialogFormService,
         @Inject(TuiDialogService)
         private readonly _dialogs: TuiDialogService,
-        private _authService: AuthService,
+        private _identityService: IdentityService,
         private _destroyRef: DestroyRef,
         private _router: Router,
     ) {
@@ -70,16 +71,16 @@ export class RegistrationComponent {
         const password = this.formRegistration.get('password')?.value;
 
         if (email && password) {
-            const user: RegistrationRequestModelInterface = {email, password};
+            const user: IRegistrationRequestModel = {email, password};
 
-            this._authService.registerWithEmailAndPassword(user)
-                .then((): void => {
-                    console.log('Registered successfully');
-                    this._dialogForm.markAsDirty();
-                })
-                .catch((error): void => {
-                    console.error('Registration failed:', error);
-                });
+            this._identityService.registerWithEmailAndPassword(user).subscribe(
+                (data : boolean): void => {
+                    if (data) {
+                        console.log('Registered successfully');
+                        this._dialogForm.markAsDirty();
+                    }
+                }
+            );
         } else {
             console.error('Email and password are required');
         }

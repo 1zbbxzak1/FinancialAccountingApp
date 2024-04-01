@@ -7,7 +7,8 @@ import {Router} from "@angular/router";
 import {PolymorpheusContent} from "@tinkoff/ng-polymorpheus";
 import {Observable} from "rxjs";
 import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
-import {LoginRequestModelInterface} from "../../../data/request-models/auth/login.request-model.interface";
+import {ILoginRequestModel} from "../../../data/request-models/auth/ILogin.request-model";
+import {IdentityService} from "../../../data/services/identity.service";
 
 @Component({
     selector: 'app-login',
@@ -26,7 +27,7 @@ export class LoginComponent {
         private readonly _dialogForm: TuiDialogFormService,
         @Inject(TuiDialogService)
         private readonly _dialogs: TuiDialogService,
-        private _authService: AuthService,
+        private _identityService: IdentityService,
         private _destroyRef: DestroyRef,
         private _router: Router,
     ) {
@@ -67,16 +68,16 @@ export class LoginComponent {
         const password = this.formLogin.get('password')?.value;
 
         if (email && password) {
-            const user: LoginRequestModelInterface = {email, password};
-
-            this._authService.loginWithEmailAndPassword(user)
-                .then((): void => {
-                    console.log('LogIn successfully');
-                    this._dialogForm.markAsDirty();
-                })
-                .catch((error): void => {
-                    console.error('LogIn failed:', error);
-                });
+            const user: ILoginRequestModel = {email, password};
+            this._identityService.loginWithEmailAndPassword(user)
+                .subscribe(
+                data => {
+                    if (data) {
+                        console.log('LogIn successfully');
+                        this._dialogForm.markAsDirty();
+                    }
+                }
+            );
         } else {
             console.error('Email and password are required');
         }

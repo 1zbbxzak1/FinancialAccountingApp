@@ -1,19 +1,19 @@
 import { inject, Injectable } from '@angular/core';
 import { AngularFireAuth } from  '@angular/fire/compat/auth';
-import { RegistrationRequestModelInterface } from "../request-models/auth/registration.request-model.interface";
-import { LoginRequestModelInterface } from "../request-models/auth/login.request-model.interface";
+import { IRegistrationRequestModel } from "../request-models/auth/IRegistration.request-model";
+import { ILoginRequestModel } from "../request-models/auth/ILogin.request-model";
+import { from, Observable } from "rxjs";
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  dataBase = inject(AngularFireAuth)
+    dataBase: AngularFireAuth = inject(AngularFireAuth);
+    public registerWithEmailAndPassword(user: IRegistrationRequestModel) : Observable<firebase.default.auth.UserCredential> {
+        return from(this.dataBase.createUserWithEmailAndPassword(user.email, user.password));
+    }
 
-  public registerWithEmailAndPassword(user: RegistrationRequestModelInterface) {
-    return this.dataBase.createUserWithEmailAndPassword(user.email, user.password);
-  }
-
-  public loginWithEmailAndPassword(user: LoginRequestModelInterface) {
-    return this.dataBase.signInWithEmailAndPassword(user.email, user.password);
-  }
+    public loginWithEmailAndPassword(user: ILoginRequestModel) : Observable<firebase.default.auth.UserCredential> {
+        return from(this.dataBase.signInWithEmailAndPassword(user.email, user.password));
+    }
 }
