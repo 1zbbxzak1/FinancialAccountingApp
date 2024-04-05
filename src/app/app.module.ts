@@ -18,6 +18,8 @@ import {TuiSidebarModule} from "@taiga-ui/addon-mobile";
 import {provideAnimationsAsync} from "@angular/platform-browser/animations/async";
 import {TUI_SANITIZER, TuiRootModule} from "@taiga-ui/core";
 import {NgDompurifySanitizer} from "@tinkoff/ng-dompurify";
+import {IdentityService} from "./data/services/identity.service";
+import {AuthService} from "./data/services/auth.service";
 
 @NgModule({
     declarations: [
@@ -39,6 +41,8 @@ import {NgDompurifySanitizer} from "@tinkoff/ng-dompurify";
         TuiRootModule,
     ],
     providers: [
+        AuthService,
+        IdentityService,
         provideClientHydration(),
         provideAnimationsAsync(),
         {provide: TUI_SANITIZER, useClass: NgDompurifySanitizer}

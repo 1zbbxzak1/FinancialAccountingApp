@@ -1,14 +1,13 @@
-import { inject, Injectable } from '@angular/core';
+import { inject } from '@angular/core';
 import { AngularFireAuth } from  '@angular/fire/compat/auth';
 import { IRegistrationRequestModel } from "../request-models/auth/IRegistration.request-model";
 import { ILoginRequestModel } from "../request-models/auth/ILogin.request-model";
 import { from, Observable } from "rxjs";
 
-@Injectable({
-  providedIn: 'root'
-})
+
 export class AuthService {
     dataBase: AngularFireAuth = inject(AngularFireAuth);
+
     public registerWithEmailAndPassword(user: IRegistrationRequestModel) : Observable<firebase.default.auth.UserCredential> {
         return from(this.dataBase.createUserWithEmailAndPassword(user.email, user.password));
     }

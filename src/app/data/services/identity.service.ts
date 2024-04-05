@@ -1,12 +1,10 @@
-import {inject, Injectable} from '@angular/core';
+import {inject} from '@angular/core';
 import {AuthService} from "./auth.service";
 import {IRegistrationRequestModel} from "../request-models/auth/IRegistration.request-model";
 import {catchError, map, Observable, of} from "rxjs";
 import {ILoginRequestModel} from "../request-models/auth/ILogin.request-model";
 
-@Injectable({
-  providedIn: 'root'
-})
+
 export class IdentityService {
     authService : AuthService = inject(AuthService);
 
@@ -14,7 +12,7 @@ export class IdentityService {
         return this.authService.registerWithEmailAndPassword(user).pipe(
             map(() => true),
             catchError(err => {
-                console.log('An error occurred: ', err); // Заменить на ErrorHandler
+                console.error('An error occurred: ', err); // Заменить на ErrorHandler
                 return of(false);
             })
         );
@@ -24,7 +22,7 @@ export class IdentityService {
         return this.authService.loginWithEmailAndPassword(user).pipe(
             map(() => true),
             catchError(err => {
-                console.log('An error occurred: ', err); // Заменить на ErrorHandler
+                console.error('An error occurred: ', err); // Заменить на ErrorHandler
                 return of(false);
             })
         );

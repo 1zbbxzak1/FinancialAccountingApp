@@ -22,7 +22,7 @@ export class LoginComponent {
         password: new FormControl("", [Validators.required, Validators.minLength(6), Validators.maxLength(15)]),
     });
 
-    private readonly _controlValidator: ValidAuth = new ValidAuth();
+    private readonly _controlValidator: ValidAuth = new ValidAuth(this.formLogin);
 
     constructor(
         @Inject(TuiDialogFormService) private readonly _dialogForm: TuiDialogFormService,
@@ -31,7 +31,6 @@ export class LoginComponent {
         private _destroyRef: DestroyRef,
         private _router: Router,
     ) {
-        this._controlValidator.formGroup = this.formLogin;
     }
 
     public openDialogLogIn(

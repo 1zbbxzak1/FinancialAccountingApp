@@ -1,7 +1,11 @@
 import {AbstractControl, FormGroup} from "@angular/forms";
 
 export class ValidAuth {
-    public formGroup!: FormGroup;
+    private formGroup!: FormGroup;
+
+    constructor(formGroup: FormGroup) {
+        this.formGroup = formGroup;
+    }
 
     public getFormControl(controlName: string): AbstractControl | null {
         return this.formGroup!.get(controlName);

@@ -22,7 +22,7 @@ export class RegistrationComponent {
         repeatPassword: new FormControl("", [Validators.required, Validators.minLength(6), Validators.maxLength(15)])
     });
 
-    private readonly _controlValidator: ValidAuth = new ValidAuth();
+    private readonly _controlValidator: ValidAuth = new ValidAuth(this.formRegistration);
 
     constructor(
         @Inject(TuiDialogFormService) private readonly _dialogForm: TuiDialogFormService,
@@ -30,7 +30,6 @@ export class RegistrationComponent {
         private _identityService: IdentityService,
         private _destroyRef: DestroyRef,
     ) {
-        this._controlValidator.formGroup = this.formRegistration;
     }
 
     public openDialogRegistration(
