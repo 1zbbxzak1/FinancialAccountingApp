@@ -1,4 +1,5 @@
-export interface IRegistrationRequestModel {
-    readonly email: string,
-    readonly password: string,
+import {IAuthDataRequestModel} from "./IAuthData.request-model";
+
+export interface IRegistrationRequestModel extends IAuthDataRequestModel{
+
 }
