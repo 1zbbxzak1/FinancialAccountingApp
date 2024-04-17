@@ -5,7 +5,7 @@ import {IAuthDataRequestModel} from "../request-models/auth/IAuthData.request-mo
 
 
 export class AuthService {
-    dataBase: AngularFireAuth = inject(AngularFireAuth);
+    private readonly dataBase: AngularFireAuth = inject(AngularFireAuth);
 
     public registerWithEmailAndPassword(user: IAuthDataRequestModel) : Observable<firebase.default.auth.UserCredential> {
         return from(this.dataBase.createUserWithEmailAndPassword(user.email, user.password));

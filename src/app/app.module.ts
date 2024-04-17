@@ -20,6 +20,9 @@ import {TUI_SANITIZER, TuiRootModule} from "@taiga-ui/core";
 import {NgDompurifySanitizer} from "@tinkoff/ng-dompurify";
 import {IdentityService} from "./data/services/identity.service";
 import {AuthService} from "./data/services/auth.service";
+import {CardService} from "./data/services/card.service";
+import {AngularFirestoreModule} from "@angular/fire/compat/firestore";
+import {CardManagerService} from "./data/services/card.manager.service";
 
 @NgModule({
     declarations: [
@@ -32,6 +35,7 @@ import {AuthService} from "./data/services/auth.service";
         BrowserModule,
         AuthorizationModule,
         AngularFireModule.initializeApp(environment.firebaseConfig),
+        AngularFirestoreModule,
         AngularFireAuthModule,
         AppRoutingModule,
         NgOptimizedImage,
@@ -43,6 +47,8 @@ import {AuthService} from "./data/services/auth.service";
     providers: [
         AuthService,
         IdentityService,
+        CardService,
+        CardManagerService,
         provideClientHydration(),
         provideAnimationsAsync(),
         {provide: TUI_SANITIZER, useClass: NgDompurifySanitizer}

@@ -8,6 +8,7 @@ import {Observable} from "rxjs";
 import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
 import {TuiDialogFormService} from "@taiga-ui/kit";
 import {IdentityService} from "../../../data/services/identity.service";
+import {IUserResponseModel} from "../../../data/response-models/auth/IUser.response-model";
 
 @Component({
     selector: 'app-registration',
@@ -94,8 +95,8 @@ export class RegistrationComponent {
                     takeUntilDestroyed(this._destroyRef)
                 )
                 .subscribe(
-                    (data: boolean): void => {
-                        if (data) {
+                    (data: IUserResponseModel | undefined): void => {
+                        if (data !== undefined) {
                             console.log('Registered successfully');
                             this._dialogForm.markAsDirty();
                         }
