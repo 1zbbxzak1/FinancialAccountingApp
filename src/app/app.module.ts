@@ -23,6 +23,7 @@ import {AuthService} from "./data/services/auth.service";
 import {CardService} from "./data/services/card.service";
 import {AngularFirestoreModule} from "@angular/fire/compat/firestore";
 import {CardManagerService} from "./data/services/card.manager.service";
+import { CardComponent } from './components/card/card.component';
 
 @NgModule({
     declarations: [
@@ -30,6 +31,7 @@ import {CardManagerService} from "./data/services/card.manager.service";
         HeaderComponent,
         WelcomeComponent,
         FooterComponent,
+        CardComponent,
     ],
     imports: [
         BrowserModule,
