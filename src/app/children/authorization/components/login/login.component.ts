@@ -4,12 +4,11 @@ import {TuiDialogFormService} from "@taiga-ui/kit";
 import {TuiDialogContext, TuiDialogService, TuiDialogSize} from "@taiga-ui/core";
 import {Router} from "@angular/router";
 import {PolymorpheusContent} from "@tinkoff/ng-polymorpheus";
-import {Observable} from "rxjs";
 import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
-import {ILoginRequestModel} from "../../../data/request-models/auth/ILogin.request-model";
-import {IdentityService} from "../../../data/services/identity.service";
-import {ValidAuth} from "../../../validators/auth.validator";
-import {IUserResponseModel} from "../../../data/response-models/auth/IUser.response-model";
+import {ValidAuth} from "../../../../validators/auth.validator";
+import {ILoginRequestModel} from "../../../../data/request-models/auth/ILogin.request-model";
+import {IUserResponseModel} from "../../../../data/response-models/auth/IUser.response-model";
+import {IdentityService} from "../../../../data/services/identity.service";
 
 @Component({
     selector: 'app-login',
@@ -26,11 +25,13 @@ export class LoginComponent {
     private readonly _controlValidator: ValidAuth = new ValidAuth(this.formLogin);
 
     constructor(
-        @Inject(TuiDialogFormService) private readonly _dialogForm: TuiDialogFormService,
-        @Inject(TuiDialogService) private readonly _dialogs: TuiDialogService,
-        private _identityService: IdentityService,
-        private _destroyRef: DestroyRef,
-        private _router: Router,
+        @Inject(TuiDialogFormService)
+        private readonly _dialogForm: TuiDialogFormService,
+        @Inject(TuiDialogService)
+        private readonly _dialogs: TuiDialogService,
+        private readonly _identityService: IdentityService,
+        private readonly _destroyRef: DestroyRef,
+        private readonly _router: Router,
     ) {
     }
 
@@ -38,26 +39,17 @@ export class LoginComponent {
         login: PolymorpheusContent<TuiDialogContext>,
         size: TuiDialogSize,
     ): void {
-        const closeable: Observable<boolean> = this._dialogForm.withPrompt({
-            label: 'Вы уверены?',
-            data: {
-                content: 'Ваши данные будут <strong>потеряны</strong>',
-            },
-        });
-
         this._dialogs.open(
             login,
             {
                 size,
                 data: {button: 'Войти'},
-                closeable,
-                dismissible: closeable
             })
             .pipe(
                 takeUntilDestroyed(this._destroyRef)
             )
             .subscribe({
-                complete: () => {
+                complete: (): void => {
                     this.formLogin.reset();
                     this._dialogForm.markAsPristine();
                 },
@@ -95,6 +87,8 @@ export class LoginComponent {
                         if (data !== undefined) {
                             console.log('Login successfully');
                             this._dialogForm.markAsDirty();
+
+                            this._router.navigate(["dashboard/main"]);
                         }
                     }
                 );

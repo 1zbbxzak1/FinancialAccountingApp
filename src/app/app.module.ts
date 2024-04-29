@@ -1,52 +1,37 @@
 import {NgModule} from '@angular/core';
 import {BrowserModule, provideClientHydration} from '@angular/platform-browser';
-import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
-
 import {AngularFireModule} from "@angular/fire/compat";
 import {AngularFireAuthModule} from "@angular/fire/compat/auth";
-
-import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
-import {NgOptimizedImage} from "@angular/common";
-import {HeaderComponent} from './components/header/header.component';
-import {WelcomeComponent} from "./children/pages/welcome/welcome.component";
-import {FooterComponent} from './components/footer/footer.component';
 import {environment} from "../environments/environment";
-import {AuthorizationModule} from "./authorization/authorization.module";
-import {TuiActiveZoneModule} from "@taiga-ui/cdk";
-import {TuiSidebarModule} from "@taiga-ui/addon-mobile";
+import {AuthorizationModule} from "./children/authorization/authorization.module";
 import {provideAnimationsAsync} from "@angular/platform-browser/animations/async";
-import {TUI_SANITIZER, TuiRootModule} from "@taiga-ui/core";
+import {TUI_SANITIZER} from "@taiga-ui/core";
 import {NgDompurifySanitizer} from "@tinkoff/ng-dompurify";
 import {IdentityService} from "./data/services/identity.service";
 import {AuthService} from "./data/services/auth.service";
 import {CardService} from "./data/services/card.service";
 import {AngularFirestoreModule} from "@angular/fire/compat/firestore";
 import {CardManagerService} from "./data/services/card.manager.service";
-import { CardComponent } from './components/card/card.component';
+import {AppRoutingModule} from "./app-routing.module";
+import {NgOptimizedImage} from "@angular/common";
+import {AuthGuard} from "./data/guards/auth.guard";
 
 @NgModule({
     declarations: [
         AppComponent,
-        HeaderComponent,
-        WelcomeComponent,
-        FooterComponent,
-        CardComponent,
     ],
     imports: [
         BrowserModule,
-        AuthorizationModule,
+        AppRoutingModule,
         AngularFireModule.initializeApp(environment.firebaseConfig),
         AngularFirestoreModule,
         AngularFireAuthModule,
-        AppRoutingModule,
         NgOptimizedImage,
-        BrowserAnimationsModule,
-        TuiActiveZoneModule,
-        TuiSidebarModule,
-        TuiRootModule,
+        AuthorizationModule,
     ],
     providers: [
+        AuthGuard,
         AuthService,
         IdentityService,
         CardService,

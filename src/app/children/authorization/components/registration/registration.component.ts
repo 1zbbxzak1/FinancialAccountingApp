@@ -1,14 +1,14 @@
 import {ChangeDetectionStrategy, Component, DestroyRef, Inject} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {ValidAuth} from "../../../validators/auth.validator";
-import {IRegistrationRequestModel} from "../../../data/request-models/auth/IRegistration.request-model";
+import {ValidAuth} from "../../../../validators/auth.validator";
+import {IRegistrationRequestModel} from "../../../../data/request-models/auth/IRegistration.request-model";
 import {PolymorpheusContent} from "@tinkoff/ng-polymorpheus";
 import {TuiDialogContext, TuiDialogService, TuiDialogSize} from "@taiga-ui/core";
-import {Observable} from "rxjs";
 import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
 import {TuiDialogFormService} from "@taiga-ui/kit";
-import {IdentityService} from "../../../data/services/identity.service";
-import {IUserResponseModel} from "../../../data/response-models/auth/IUser.response-model";
+import {IdentityService} from "../../../../data/services/identity.service";
+import {IUserResponseModel} from "../../../../data/response-models/auth/IUser.response-model";
+import {Router} from "@angular/router";
 
 @Component({
     selector: 'app-registration',
@@ -26,10 +26,13 @@ export class RegistrationComponent {
     private readonly _controlValidator: ValidAuth = new ValidAuth(this.formRegistration);
 
     constructor(
-        @Inject(TuiDialogFormService) private readonly _dialogForm: TuiDialogFormService,
-        @Inject(TuiDialogService) private readonly _dialogs: TuiDialogService,
-        private _identityService: IdentityService,
-        private _destroyRef: DestroyRef,
+        @Inject(TuiDialogFormService)
+        private readonly _dialogForm: TuiDialogFormService,
+        @Inject(TuiDialogService)
+        private readonly _dialogs: TuiDialogService,
+        private readonly _identityService: IdentityService,
+        private readonly _destroyRef: DestroyRef,
+        private readonly _router: Router,
     ) {
     }
 
@@ -37,26 +40,17 @@ export class RegistrationComponent {
         registration: PolymorpheusContent<TuiDialogContext>,
         size: TuiDialogSize,
     ): void {
-        const closeable: Observable<boolean> = this._dialogForm.withPrompt({
-            label: 'Вы уверены?',
-            data: {
-                content: 'Ваши данные будут <strong>потеряны</strong>',
-            },
-        });
-
         this._dialogs.open(
             registration,
             {
                 size,
                 data: {button: 'Зарегистрироваться'},
-                closeable,
-                dismissible: closeable
             })
             .pipe(
                 takeUntilDestroyed(this._destroyRef)
             )
             .subscribe({
-                complete: () => {
+                complete: (): void => {
                     this.formRegistration.reset();
                     this._dialogForm.markAsPristine();
                 },
@@ -99,9 +93,13 @@ export class RegistrationComponent {
                         if (data !== undefined) {
                             console.log('Registered successfully');
                             this._dialogForm.markAsDirty();
+
+                            this._router.navigate(["dashboard/main"]);
                         }
                     }
                 );
+
+
         } else {
             console.error('Email and password are required');
         }

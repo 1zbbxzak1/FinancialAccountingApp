@@ -1,29 +1,27 @@
 import {ChangeDetectionStrategy, Component, ViewChild} from '@angular/core';
-import {RegistrationComponent} from "../../../authorization/components/registration/registration.component";
-import {Router} from "@angular/router";
+import {RegistrationComponent} from "../../components/registration/registration.component";
 import {PolymorpheusContent} from "@tinkoff/ng-polymorpheus";
 import {TuiDialogContext, TuiDialogSize} from "@taiga-ui/core";
 import {TuiDialogFormService} from "@taiga-ui/kit";
 
 @Component({
     selector: 'app-welcome',
-    templateUrl: './welcome.component.html',
-    styleUrl: './styles/welcome.component.scss',
+    templateUrl: './welcome.page.html',
+    styleUrl: './styles/welcome.page.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
     providers: [TuiDialogFormService],
 })
-export class WelcomeComponent {
-    @ViewChild(RegistrationComponent) private readonly registrationComponent!: RegistrationComponent;
 
-    constructor(
-        private _router: Router,
-    ) {
+export class WelcomePage {
+    @ViewChild(RegistrationComponent) private readonly _registrationComponent!: RegistrationComponent;
+
+    constructor() {
     }
 
     protected openDialogRegistration(
         registration: PolymorpheusContent<TuiDialogContext>,
         size: TuiDialogSize,
     ): void {
-        this.registrationComponent.openDialogRegistration(registration, size);
+        this._registrationComponent.openDialogRegistration(registration, size);
     }
 }

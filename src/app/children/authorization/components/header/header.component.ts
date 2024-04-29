@@ -1,8 +1,6 @@
 import {ChangeDetectionStrategy, Component, ViewChild} from '@angular/core';
-import {TuiDialogFormService} from "@taiga-ui/kit";
-import {Router} from "@angular/router";
-import {LoginComponent} from "../../authorization/components/login/login.component";
-import {RegistrationComponent} from "../../authorization/components/registration/registration.component";
+import {LoginComponent} from "../login/login.component";
+import {RegistrationComponent} from "../registration/registration.component";
 import {PolymorpheusContent} from "@tinkoff/ng-polymorpheus";
 import {TuiDialogContext, TuiDialogSize} from "@taiga-ui/core";
 
@@ -11,16 +9,13 @@ import {TuiDialogContext, TuiDialogSize} from "@taiga-ui/core";
     templateUrl: './header.component.html',
     styleUrl: './styles/header.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
-    providers: [TuiDialogFormService],
 })
 export class HeaderComponent {
     protected isCollapsed: boolean = false;
-    @ViewChild(RegistrationComponent) private readonly registrationComponent!: RegistrationComponent;
-    @ViewChild(LoginComponent) private readonly loginComponent!: LoginComponent;
+    @ViewChild(RegistrationComponent) private readonly _registrationComponent!: RegistrationComponent;
+    @ViewChild(LoginComponent) private readonly _loginComponent!: LoginComponent;
 
-    constructor(
-        private _router: Router,
-    ) {
+    constructor() {
     }
 
     protected toggleSidebar(isCollapsed: boolean): void {
@@ -31,13 +26,13 @@ export class HeaderComponent {
         login: PolymorpheusContent<TuiDialogContext>,
         size: TuiDialogSize,
     ): void {
-        this.loginComponent.openDialogLogIn(login, size);
+        this._loginComponent.openDialogLogIn(login, size);
     }
 
     protected openDialogRegistration(
         registration: PolymorpheusContent<TuiDialogContext>,
         size: TuiDialogSize,
     ): void {
-        this.registrationComponent.openDialogRegistration(registration, size);
+        this._registrationComponent.openDialogRegistration(registration, size);
     }
 }

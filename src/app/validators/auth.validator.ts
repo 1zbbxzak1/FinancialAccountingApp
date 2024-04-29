@@ -1,14 +1,14 @@
 import {AbstractControl, FormGroup} from "@angular/forms";
 
 export class ValidAuth {
-    private formGroup!: FormGroup;
+    private readonly _formGroup!: FormGroup;
 
     constructor(formGroup: FormGroup) {
-        this.formGroup = formGroup;
+        this._formGroup = formGroup;
     }
 
     public getFormControl(controlName: string): AbstractControl | null {
-        return this.formGroup!.get(controlName);
+        return this._formGroup!.get(controlName);
     }
 
     public isControlError(controlName: string): boolean {

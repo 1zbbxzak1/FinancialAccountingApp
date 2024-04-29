@@ -5,17 +5,26 @@ import {
     TuiAlertModule,
     TuiButtonModule,
     TuiDialogModule,
+    TuiModeModule,
     TuiRootModule,
     TuiTextfieldControllerModule
 } from "@taiga-ui/core";
-import {TuiInputModule, TuiInputPasswordModule} from "@taiga-ui/kit";
+import {TuiDialogFormService, TuiInputModule, TuiInputPasswordModule} from "@taiga-ui/kit";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {CommonModule} from "@angular/common";
+import {CommonModule, NgOptimizedImage} from "@angular/common";
+import {WelcomePage} from "./pages/welcome/welcome.page";
+import {HeaderComponent} from "./components/header/header.component";
+import {TuiActiveZoneModule} from "@taiga-ui/cdk";
+import {TuiSidebarModule} from "@taiga-ui/addon-mobile";
+import {FooterComponent} from "./components/footer/footer.component";
 
 @NgModule({
     declarations: [
         LoginComponent,
         RegistrationComponent,
+        WelcomePage,
+        HeaderComponent,
+        FooterComponent,
     ],
     imports: [
         TuiRootModule,
@@ -28,11 +37,19 @@ import {CommonModule} from "@angular/common";
         TuiInputPasswordModule,
         TuiTextfieldControllerModule,
         CommonModule,
+        TuiActiveZoneModule,
+        TuiSidebarModule,
+        NgOptimizedImage,
+        TuiModeModule,
     ],
     exports: [
         LoginComponent,
         RegistrationComponent,
     ],
+    providers: [
+        TuiDialogFormService,
+    ]
 })
+
 export class AuthorizationModule {
 }
