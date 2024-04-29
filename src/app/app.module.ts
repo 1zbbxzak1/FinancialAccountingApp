@@ -15,6 +15,7 @@ import {AngularFirestoreModule} from "@angular/fire/compat/firestore";
 import {CardManagerService} from "./data/services/card.manager.service";
 import {AppRoutingModule} from "./app-routing.module";
 import {NgOptimizedImage} from "@angular/common";
+import {DashboardModule} from "./children/dashboard/dashboard.module";
 import {AuthGuard} from "./data/guards/auth.guard";
 
 @NgModule({
@@ -29,6 +30,7 @@ import {AuthGuard} from "./data/guards/auth.guard";
         AngularFireAuthModule,
         NgOptimizedImage,
         AuthorizationModule,
+        DashboardModule,
     ],
     providers: [
         AuthGuard,

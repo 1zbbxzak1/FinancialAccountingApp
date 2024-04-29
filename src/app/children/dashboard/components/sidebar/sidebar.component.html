@@ -1,0 +1,66 @@
+<nav class="sidebar">
+    <ul class="sidebar-menu-list">
+        <li>
+            <div class="sidebar-header">
+                <img alt="Логотип" class="img-logo" height="35" ngSrc="assets/img/logo.svg" width="34">
+                <p class="sidebar-title">Finance</p>
+            </div>
+        </li>
+        <li class="sidebar-menu-list-item">
+            <button (click)="toggleState('isHomeClicked', 'dashboard/main')" [class.active]="states['isHomeClicked']"
+                    class="sidebar-router">
+                <img [src]="states['isHomeClicked'] ? 'assets/img/home_icon_active.svg' : 'assets/img/home_icon.svg'"
+                     alt="Главная"
+                     height="25"
+                     width="25">
+                <p class="sidebar-item">Главная</p>
+            </button>
+        </li>
+        <li class="sidebar-menu-list-item">
+            <button (click)="toggleState('isHistoryClicked', 'dashboard/history')"
+                    [class.active]="states['isHistoryClicked']"
+                    class="sidebar-router">
+                <img
+                    [src]="states['isHistoryClicked'] ? 'assets/img/history_icon_active.svg' : 'assets/img/history_icon.svg'"
+                    alt="Главная"
+                    height="25"
+                    width="25">
+                <p class="sidebar-item">История</p>
+            </button>
+        </li>
+        <li class="sidebar-menu-list-item">
+            <button (click)="toggleState('isUserClicked', 'dashboard/user')"
+                    [class.active]="states['isUserClicked']"
+                    class="sidebar-router">
+                <img [src]="states['isUserClicked'] ? 'assets/img/user_icon_active.svg' : 'assets/img/user_icon.svg'"
+                     alt="Главная"
+                     height="25"
+                     width="25">
+                <p class="sidebar-item">Счета</p>
+            </button>
+        </li>
+        <li class="sidebar-menu-list-item">
+            <button (click)="toggleState('isCardsClicked', 'dashboard/cards')" [class.active]="states['isCardsClicked']"
+                    class="sidebar-router">
+                <img
+                    [src]="states['isCardsClicked'] ? 'assets/img/cards_icon_active.svg' : 'assets/img/cards_icon.svg'"
+                    alt="Главная"
+                    height="25"
+                    width="25">
+                <p class="sidebar-item">Карты</p>
+            </button>
+        </li>
+        <li class="sidebar-menu-list-item">
+            <button (click)="toggleState('isPaymentsClicked', 'dashboard/payments')"
+                    [class.active]="states['isPaymentsClicked']"
+                    class="sidebar-router">
+                <img
+                    [src]="states['isPaymentsClicked'] ? 'assets/img/articles_icon_active.svg' : 'assets/img/articles_icon.svg'"
+                    alt="Главная"
+                    height="25"
+                    width="25">
+                <p class="sidebar-item">Платежи</p>
+            </button>
+        </li>
+    </ul>
+</nav>
