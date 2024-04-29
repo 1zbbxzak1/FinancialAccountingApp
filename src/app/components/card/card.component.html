@@ -4,7 +4,7 @@
             <li class="list__item item__title">Баланс</li>
             <li class="list__item price">{{card.balance}}</li>
         </ul>
-        <img alt="Чип" height="35" ngSrc="../../../../assets/img/Chip_Card.svg" width="35">
+        <img alt="Чип" height="35" ngSrc="./assets/img/Chip_Card.svg" width="35">
     </header>
     <div class="card__middle">
         <ul class="middle__list right">
@@ -18,8 +18,6 @@
     </div>
     <footer class="card__footer">
         <p class="footer__title">Платежная система</p>
-        <img *ngIf="card.provider === 'МИР'" class="footer__icon" ngSrc="assets/img/mir_logo.png" alt="Card Icon" width="50" height="30">
-        <img *ngIf="card.provider === 'Visa'" class="footer__icon" ngSrc="assets/img/visa_logo.png" alt="Card Icon" width="50" height="30">
-        <img *ngIf="card.provider === 'MasterCard'" class="footer__icon" ngSrc="assets/img/mastercard_logo.png" alt="Card Icon" width="50" height="30">
+        <img [ngSrc]="'/assets/img/{{card.provider}}.png'" class="footer__icon" ngSrc="assets/img/mir_logo.png" alt="Card Icon" width="50" height="30">
     </footer>
 </section>
