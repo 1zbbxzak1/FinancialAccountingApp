@@ -8,7 +8,8 @@ import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
 import {ValidAuth} from "../../../../validators/auth.validator";
 import {ILoginRequestModel} from "../../../../data/request-models/auth/ILogin.request-model";
 import {IUserResponseModel} from "../../../../data/response-models/auth/IUser.response-model";
-import {IdentityService} from "../../../../data/services/identity.service";
+import {IdentityService} from "../../../../data/services/auth/identity.service";
+
 
 @Component({
     selector: 'app-login',
@@ -83,13 +84,11 @@ export class LoginComponent {
                     takeUntilDestroyed(this._destroyRef)
                 )
                 .subscribe(
-                    (data: IUserResponseModel | undefined): void => {
-                        if (data !== undefined) {
-                            console.log('Login successfully');
-                            this._dialogForm.markAsDirty();
+                    (): void => {
+                        console.log('Login successfully');
+                        this._dialogForm.markAsDirty();
 
-                            this._router.navigate(["dashboard/main"]);
-                        }
+                        this._router.navigate(["dashboard/main"]);
                     }
                 );
         } else {

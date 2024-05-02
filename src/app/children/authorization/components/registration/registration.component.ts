@@ -6,9 +6,10 @@ import {PolymorpheusContent} from "@tinkoff/ng-polymorpheus";
 import {TuiDialogContext, TuiDialogService, TuiDialogSize} from "@taiga-ui/core";
 import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
 import {TuiDialogFormService} from "@taiga-ui/kit";
-import {IdentityService} from "../../../../data/services/identity.service";
+
 import {IUserResponseModel} from "../../../../data/response-models/auth/IUser.response-model";
 import {Router} from "@angular/router";
+import {IdentityService} from "../../../../data/services/auth/identity.service";
 
 @Component({
     selector: 'app-registration',
@@ -89,13 +90,11 @@ export class RegistrationComponent {
                     takeUntilDestroyed(this._destroyRef)
                 )
                 .subscribe(
-                    (data: IUserResponseModel | undefined): void => {
-                        if (data !== undefined) {
-                            console.log('Registered successfully');
-                            this._dialogForm.markAsDirty();
+                    (): void => {
+                        console.log('Registered successfully');
+                        this._dialogForm.markAsDirty();
 
-                            this._router.navigate(["dashboard/main"]);
-                        }
+                        this._router.navigate(["dashboard/main"]);
                     }
                 );
 
