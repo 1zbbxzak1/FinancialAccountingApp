@@ -7,7 +7,6 @@ import {PolymorpheusContent} from "@tinkoff/ng-polymorpheus";
 import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
 import {ValidAuth} from "../../../../validators/auth.validator";
 import {ILoginRequestModel} from "../../../../data/request-models/auth/ILogin.request-model";
-import {IUserResponseModel} from "../../../../data/response-models/auth/IUser.response-model";
 import {IdentityService} from "../../../../data/services/auth/identity.service";
 
 

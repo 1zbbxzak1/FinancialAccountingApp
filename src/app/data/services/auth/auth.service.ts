@@ -1,17 +1,25 @@
 import {inject} from '@angular/core';
 import {AngularFireAuth} from '@angular/fire/compat/auth';
-import {from, Observable} from "rxjs";
+import {from, map, Observable} from "rxjs";
 import {IAuthDataRequestModel} from "../../request-models/auth/IAuthData.request-model";
 
 
 export class AuthService {
     private readonly _firebaseAuth: AngularFireAuth = inject(AngularFireAuth);
 
-    public registerWithEmailAndPassword(user: IAuthDataRequestModel): Observable<firebase.default.auth.UserCredential> {
-        return from(this._firebaseAuth.createUserWithEmailAndPassword(user.email, user.password));
+    public registerWithEmailAndPassword(user: IAuthDataRequestModel): Observable<string> {
+        return from(this._firebaseAuth.createUserWithEmailAndPassword(user.email, user.password)).pipe(
+            map((obj: firebase.default.auth.UserCredential) => {
+                return obj.user!.uid;
+            })
+        );
     }
 
-    public loginWithEmailAndPassword(user: IAuthDataRequestModel): Observable<firebase.default.auth.UserCredential> {
-        return from(this._firebaseAuth.signInWithEmailAndPassword(user.email, user.password));
+    public loginWithEmailAndPassword(user: IAuthDataRequestModel): Observable<string> {
+        return from(this._firebaseAuth.signInWithEmailAndPassword(user.email, user.password)).pipe(
+            map((obj: firebase.default.auth.UserCredential) => {
+                return obj.user!.uid;
+            })
+        );
     }
 }

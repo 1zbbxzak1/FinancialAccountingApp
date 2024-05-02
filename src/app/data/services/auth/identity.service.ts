@@ -9,8 +9,8 @@ export class IdentityService {
 
     public registerWithEmailAndPassword(user: IAuthDataRequestModel): Observable<void> {
         return this._authService.registerWithEmailAndPassword(user).pipe(
-            map((userCredential: firebase.default.auth.UserCredential): void => {
-                localStorage.setItem('uid', userCredential.user!.uid);
+            map((uid: string): void => {
+                localStorage.setItem('uid', uid);
             }),
             catchError(err => {
                 console.error('An error occurred: ', err); // Заменить на ErrorHandler
@@ -21,8 +21,8 @@ export class IdentityService {
 
     public loginWithEmailAndPassword(user: IAuthDataRequestModel): Observable<void> {
         return this._authService.loginWithEmailAndPassword(user).pipe(
-            map((userCredential: firebase.default.auth.UserCredential): void => {
-                localStorage.setItem('uid', userCredential.user!.uid);
+            map((uid: string): void => {
+                localStorage.setItem('uid', uid);
             }),
             catchError(err => {
                 console.error('An error occurred: ', err); // Заменить на ErrorHandler

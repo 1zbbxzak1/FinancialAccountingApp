@@ -1,5 +1,5 @@
 import {Component, Input} from '@angular/core';
-import {ICardResponseModel} from '../../../../data/response-models/card/ICard.response-model';
+import {CardModel} from "../../../../data/models/card/card.model";
 
 
 @Component({
@@ -9,5 +9,5 @@ import {ICardResponseModel} from '../../../../data/response-models/card/ICard.re
 })
 export class CardComponent {
     @Input()
-    public card: ICardResponseModel = {} as ICardResponseModel;
+    public card: CardModel = {} as CardModel;
 }

@@ -6,8 +6,6 @@ import {PolymorpheusContent} from "@tinkoff/ng-polymorpheus";
 import {TuiDialogContext, TuiDialogService, TuiDialogSize} from "@taiga-ui/core";
 import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
 import {TuiDialogFormService} from "@taiga-ui/kit";
-
-import {IUserResponseModel} from "../../../../data/response-models/auth/IUser.response-model";
 import {Router} from "@angular/router";
 import {IdentityService} from "../../../../data/services/auth/identity.service";
 
