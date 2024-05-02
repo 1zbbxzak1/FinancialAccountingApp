@@ -1,8 +1,8 @@
-import {cardProvider} from "../../directions/cardProvider.direction";
+import {cardProvider} from "../../directions/card/cardProvider.direction";
 
 export interface ICardRequestModel {
-    readonly balance: string,
+    readonly balance: number,
     readonly name: string,
-    readonly dateCreated: Date,
+    readonly dateCreatedTimestamp: number,
     readonly provider: cardProvider,
 }
