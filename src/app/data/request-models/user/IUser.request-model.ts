@@ -1,11 +1,13 @@
 export interface IUserRequestModel {
-    readonly name: string;
-    readonly surname: string;
-    readonly dateOfBirthTimestamp: number;
-    readonly permanentAddress: string;
-    readonly presentAddress: string;
-    readonly postalCode: number;
-    readonly city: string;
-    readonly country: string;
+    readonly name: string | null;
+    readonly surname: string | null;
+    readonly email: string;
+    readonly dateOfBirthTimestamp: number | null;
+    readonly permanentAddress: string | null;
+    readonly presentAddress: string | null;
+    readonly postalCode: number | null;
+    readonly city: string | null;
+    readonly country: string | null;
     readonly notification: boolean;
+    readonly photoURL: string | null;
 }

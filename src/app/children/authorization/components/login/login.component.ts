@@ -5,7 +5,7 @@ import {TuiDialogContext, TuiDialogService, TuiDialogSize} from "@taiga-ui/core"
 import {Router} from "@angular/router";
 import {PolymorpheusContent} from "@tinkoff/ng-polymorpheus";
 import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
-import {ValidAuth} from "../../../../validators/auth.validator";
+import {ValidAuth} from "../../../../validators/auth/auth.validator";
 import {ILoginRequestModel} from "../../../../data/request-models/auth/ILogin.request-model";
 import {IdentityService} from "../../../../data/services/auth/identity.service";
 

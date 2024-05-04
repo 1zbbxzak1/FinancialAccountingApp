@@ -15,6 +15,11 @@ import {AngularFirestoreModule} from "@angular/fire/compat/firestore";
 import {AngularFireAuthModule} from "@angular/fire/compat/auth";
 import {AngularFireModule} from "@angular/fire/compat";
 import {environment} from "../../environments/environment";
+import {AngularFireStorageModule} from "@angular/fire/compat/storage";
+import {CardMapper} from "./mappers/card/card.mapper";
+import {OperationMapper} from "./mappers/operation/operation.mapper";
+import {PaymentMapper} from "./mappers/payment/payment.mapper";
+import {UserMapper} from "./mappers/user/user.mapper";
 
 
 @NgModule({
@@ -22,8 +27,9 @@ import {environment} from "../../environments/environment";
     imports: [
         CommonModule,
         AngularFireModule.initializeApp(environment.firebaseConfig),
-        AngularFirestoreModule,
         AngularFireAuthModule,
+        AngularFirestoreModule,
+        AngularFireStorageModule,
     ],
     providers: [
         AuthGuard,
@@ -37,6 +43,11 @@ import {environment} from "../../environments/environment";
         PaymentManagerService,
         UserService,
         UserManagerService,
+
+        CardMapper,
+        OperationMapper,
+        PaymentMapper,
+        UserMapper,
     ]
 })
 export class DataModule {

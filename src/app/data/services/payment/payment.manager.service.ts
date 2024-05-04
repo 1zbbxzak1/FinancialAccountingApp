@@ -85,7 +85,7 @@ export class PaymentManagerService {
         );
     }
 
-    public calculateCountPayment(lastMonthlyPaymentTimestamp: number, periodTimestamp: number): Observable<number> {
+    public calculateCountPayment(lastMonthlyPaymentTimestamp: number, periodTimestamp: number): number {
         const lastPayment: Date = new Date(lastMonthlyPaymentTimestamp);
         const period: Date = new Date(periodTimestamp);
 
@@ -100,14 +100,11 @@ export class PaymentManagerService {
 
         const countPayments: number = yearDifference * 12 + monthDifference;
 
-        return new Observable<number>((observer: Subscriber<number>): void => {
-            observer.next(countPayments);
-            observer.complete();
-        });
+        return countPayments;
     }
 
 
-    public makePayment(uid: string, payment: PaymentModel): Observable<PaymentModel> {
+    public makePayment(uid: string, payment: PaymentModel): PaymentModel {
         payment.totalPayment += payment.monthlyPayment;
 
         this.addToCardBalanceOfPaymentType(uid, payment.cardId, payment.monthlyPayment, payment.type);
@@ -116,13 +113,10 @@ export class PaymentManagerService {
 
         this.update(uid, payment.paymentId, payment);
 
-        return new Observable<PaymentModel>((observer: Subscriber<PaymentModel>): void => {
-            observer.next(payment);
-            observer.complete();
-        });
+        return payment;
     }
 
-    private addToCardBalanceOfPaymentType(uid: string, cardId: string, sum: number, paymentType: paymentType): Observable<void> {
+    private addToCardBalanceOfPaymentType(uid: string, cardId: string, sum: number, paymentType: paymentType): void {
         switch (paymentType) {
             case ('credit'):
                 this.addToCardBalance(uid, cardId, -sum);
@@ -133,11 +127,9 @@ export class PaymentManagerService {
             default:
             // throw new Error();
         }
-
-        return new Observable<void>();
     }
 
-    private addToCardBalance(uid: string, cardId: string, sum: number): Observable<void> {
+    private addToCardBalance(uid: string, cardId: string, sum: number): void {
         this._cardManager.getById(uid, cardId)
             .pipe(
                 takeUntilDestroyed(this._destroyRef)
@@ -148,7 +140,5 @@ export class PaymentManagerService {
                     this._cardManager.update(uid, cardId, card);
                 }
             );
-
-        return new Observable<void>();
     }
 }

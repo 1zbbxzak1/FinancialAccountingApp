@@ -1,6 +1,6 @@
 import {ChangeDetectionStrategy, Component, DestroyRef, Inject} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {ValidAuth} from "../../../../validators/auth.validator";
+import {ValidAuth} from "../../../../validators/auth/auth.validator";
 import {IRegistrationRequestModel} from "../../../../data/request-models/auth/IRegistration.request-model";
 import {PolymorpheusContent} from "@tinkoff/ng-polymorpheus";
 import {TuiDialogContext, TuiDialogService, TuiDialogSize} from "@taiga-ui/core";

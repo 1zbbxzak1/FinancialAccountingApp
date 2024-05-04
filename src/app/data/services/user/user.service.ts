@@ -1,15 +1,21 @@
 import {inject} from '@angular/core';
 import {AngularFirestore} from "@angular/fire/compat/firestore";
-import {from, map, Observable} from "rxjs";
+import {from, map, Observable, timer} from "rxjs";
 import {IUserResponseModel} from "../../response-models/user/IUser.response-model";
 import {IUserRequestModel} from "../../request-models/user/IUser.request-model";
 import {UserModel} from "../../models/user/user.model";
 import {AngularFireAuth} from "@angular/fire/compat/auth";
+import {AngularFireStorage} from "@angular/fire/compat/storage";
 
 export class UserService {
 
-    private readonly _firestore: AngularFirestore = inject(AngularFirestore)
+    private readonly _firestore: AngularFirestore = inject(AngularFirestore);
+    private readonly _storage: AngularFireStorage = inject(AngularFireStorage);
     private readonly _firebaseAuth: AngularFireAuth = inject(AngularFireAuth);
+
+    public createUserInfo(uid: string, user: IUserRequestModel): Observable<void> {
+        return from(this._firestore.doc<IUserRequestModel>(`users/${uid}`).set(user));
+    }
 
     public getUserInfo(uid: string): Observable<UserModel> {
         return from(this._firestore.doc<IUserResponseModel>(`users/${uid}`).get()).pipe(
@@ -39,5 +45,9 @@ export class UserService {
                 obj.user!.updateEmail(newEmail);
             })
         );
+    }
+
+    public uploadUserPhoto(image: File, path: string): Observable<string> {
+        return from(this._storage.upload(path, image).task.snapshot.ref.getDownloadURL());
     }
 }
