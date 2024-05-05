@@ -1,4 +1,4 @@
-import {NgModule} from '@angular/core';
+import {ErrorHandler, NgModule} from '@angular/core';
 import {BrowserModule, provideClientHydration} from '@angular/platform-browser';
 import {AppComponent} from './app.component';
 import {AuthorizationModule} from "./children/authorization/authorization.module";
@@ -10,6 +10,7 @@ import {NgOptimizedImage} from "@angular/common";
 import {DashboardModule} from "./children/dashboard/dashboard.module";
 import {DataModule} from "./data/data.module";
 import {ValidatorsModule} from "./validators/validators.module";
+import { GlobalErrorHandlerService } from './global-error-handler/global-error-handler.service';
 
 @NgModule({
     declarations: [
@@ -25,6 +26,7 @@ import {ValidatorsModule} from "./validators/validators.module";
         DashboardModule,
     ],
     providers: [
+        { provide: ErrorHandler, useClass: GlobalErrorHandlerService },
         provideClientHydration(),
         provideAnimationsAsync(),
         {provide: TUI_SANITIZER, useClass: NgDompurifySanitizer}

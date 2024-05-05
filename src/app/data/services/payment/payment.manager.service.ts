@@ -19,8 +19,7 @@ export class PaymentManagerService {
 
         return this._paymentService.create(uid, payment).pipe(
             catchError(err => {
-                console.error('An error occurred: ', err); // Заменить на ErrorHandler
-                return NEVER;
+                throw new Error('payment/not-created');
             })
         );
     }
@@ -28,8 +27,7 @@ export class PaymentManagerService {
     public update(uid: string, paymentId: string, payment: IPaymentRequestModel): Observable<void> {
         return this._paymentService.update(uid, paymentId, payment).pipe(
             catchError(err => {
-                console.error('An error occurred: ', err); // Заменить на ErrorHandler
-                return NEVER;
+                throw new Error('payment/not-found');
             })
         );
     }
@@ -37,8 +35,7 @@ export class PaymentManagerService {
     public getAll(uid: string): Observable<PaymentModel[]> {
         return this._paymentService.getAll(uid).pipe(
             catchError(err => {
-                console.error('An error occurred: ', err); // Заменить на ErrorHandler
-                return NEVER;
+                throw new Error('payment/not-in-collection');
             })
         );
     }
@@ -46,8 +43,7 @@ export class PaymentManagerService {
     public getById(uid: string, paymentId: string): Observable<PaymentModel> {
         return this._paymentService.getById(uid, paymentId).pipe(
             catchError(err => {
-                console.error('An error occurred: ', err); // Заменить на ErrorHandler
-                return NEVER;
+                throw new Error('payment/not-found');
             })
         );
     }
@@ -64,8 +60,7 @@ export class PaymentManagerService {
 
         return this._paymentService.delete(uid, payment.paymentId).pipe(
             catchError(err => {
-                console.error('An error occurred: ', err); // Заменить на ErrorHandler
-                return NEVER;
+                throw new Error('payment/not-found');
             })
         );
     }
@@ -125,7 +120,7 @@ export class PaymentManagerService {
                 this.addToCardBalance(uid, cardId, sum);
                 break;
             default:
-            // throw new Error();
+                 break;
         }
     }
 

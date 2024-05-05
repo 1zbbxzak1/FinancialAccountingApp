@@ -11,8 +11,7 @@ export class OperationManagerService {
     public create(uid: string, operation: IOperationRequestModel): Observable<OperationModel> {
         return this._operationService.create(uid, operation).pipe(
             catchError(err => {
-                console.error('An error occurred: ', err); // Заменить на ErrorHandler
-                return NEVER;
+                throw new Error('operation/not-created');
             })
         );
     }
@@ -20,8 +19,7 @@ export class OperationManagerService {
     public update(uid: string, operationID: string, operation: IOperationRequestModel): Observable<void> {
         return this._operationService.update(uid, operationID, operation).pipe(
             catchError(err => {
-                console.error('An error occurred: ', err); // Заменить на ErrorHandler
-                return NEVER;
+                throw new Error('operation/not-found');
             })
         );
     }
@@ -29,8 +27,7 @@ export class OperationManagerService {
     public getAll(uid: string, cardID: string): Observable<OperationModel[]> {
         return this._operationService.getAll(uid, cardID).pipe(
             catchError(err => {
-                console.error('An error occurred: ', err); // Заменить на ErrorHandler
-                return NEVER;
+                throw new Error('operation/card-not-found');
             })
         );
     }
@@ -38,8 +35,7 @@ export class OperationManagerService {
     public getByID(uid: string, cardID: string, operationID: string): Observable<OperationModel> {
         return this._operationService.getById(uid, cardID, operationID).pipe(
             catchError(err => {
-                console.error('An error occurred: ', err); // Заменить на ErrorHandler
-                return NEVER;
+                throw new Error('operation/not-found');
             })
         );
     }
@@ -47,8 +43,7 @@ export class OperationManagerService {
     public delete(uid: string, cardID: string, operationID: string): Observable<void> {
         return this._operationService.delete(uid, cardID, operationID).pipe(
             catchError(err => {
-                console.error('An error occurred: ', err); // Заменить на ErrorHandler
-                return of(undefined);
+                throw new Error('operation/not-found');
             })
         );
     }

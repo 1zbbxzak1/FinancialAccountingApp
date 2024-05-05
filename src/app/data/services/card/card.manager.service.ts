@@ -16,8 +16,7 @@ export class CardManagerService {
     public create(uid: string, card: ICardRequestModel): Observable<CardModel> {
         return this._cardService.create(uid, card).pipe(
             catchError(err => {
-                console.error('An error occurred: ', err); // Заменить на ErrorHandler
-                return NEVER;
+                throw new Error('card/not-created');
             })
         );
     }
@@ -25,8 +24,7 @@ export class CardManagerService {
     public update(uid: string, cardId: string, card: ICardRequestModel): Observable<void> {
         return this._cardService.update(uid, cardId, card).pipe(
             catchError(err => {
-                console.error('An error occurred: ', err); // Заменить на ErrorHandler
-                return NEVER;
+                throw new Error('card/not-found');
             })
         );
     }
@@ -34,9 +32,7 @@ export class CardManagerService {
     public getAll(uid: string): Observable<CardModel[]> {
         return this._cardService.getAll(uid).pipe(
             catchError(err => {
-                console.error('An error occurred: ', err); // Заменить на ErrorHandler
-                return NEVER;
-                // throwError() Закидывать ошибки для обработки в ErrorHandler
+                throw new Error('card/not-in-collection');
             })
         );
     }
@@ -44,8 +40,7 @@ export class CardManagerService {
     public getById(uid: string, cardId: string): Observable<CardModel> {
         return this._cardService.getById(uid, cardId).pipe(
             catchError(err => {
-                console.error('An error occurred: ', err); // Заменить на ErrorHandler
-                return NEVER;
+                throw new Error('card/not-found');
             })
         );
     }
@@ -69,8 +64,7 @@ export class CardManagerService {
     public delete(uid: string, cardId: string): Observable<void> {
         return this._cardService.delete(uid, cardId).pipe(
             catchError(err => {
-                console.error('An error occurred: ', err); // Заменить на ErrorHandler
-                return NEVER;
+                throw new Error('card/not-found');
             })
         );
     }
