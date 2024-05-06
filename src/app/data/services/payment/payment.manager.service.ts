@@ -1,13 +1,14 @@
 import {DestroyRef, inject} from "@angular/core";
 import {PaymentService} from "./payment.service";
 import {IPaymentRequestModel} from "../../request-models/payment/IPayment.request-model";
-import {catchError, map, NEVER, Observable, Subscriber} from "rxjs";
+import {catchError, map, Observable} from "rxjs";
 import {CardManagerService} from "../card/card.manager.service";
 import {PaymentModel} from "../../models/payment/payment.model";
 import {CardModel} from "../../models/card/card.model";
 import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
 import {paymentType} from "../../directions/payment/paymentType.direction";
 import {dateTimestampProvider} from "rxjs/internal/scheduler/dateTimestampProvider";
+import {CustomError} from "../../../global-error-handler/global-error-handler.service";
 
 export class PaymentManagerService {
     private readonly _cardManager: CardManagerService = inject(CardManagerService);
@@ -19,7 +20,7 @@ export class PaymentManagerService {
 
         return this._paymentService.create(uid, payment).pipe(
             catchError(err => {
-                throw new Error('payment/not-created');
+                throw new CustomError(err, 'Не удалось создать платеж. Повторите попытку');
             })
         );
     }
@@ -27,7 +28,7 @@ export class PaymentManagerService {
     public update(uid: string, paymentId: string, payment: IPaymentRequestModel): Observable<void> {
         return this._paymentService.update(uid, paymentId, payment).pipe(
             catchError(err => {
-                throw new Error('payment/not-found');
+                throw new CustomError(err, 'Не удалось обновить данные о платеже. Повторите попытку');
             })
         );
     }
@@ -35,7 +36,7 @@ export class PaymentManagerService {
     public getAll(uid: string): Observable<PaymentModel[]> {
         return this._paymentService.getAll(uid).pipe(
             catchError(err => {
-                throw new Error('payment/not-in-collection');
+                throw new CustomError(err, 'Записи о платежах не найдены');
             })
         );
     }
@@ -43,7 +44,7 @@ export class PaymentManagerService {
     public getById(uid: string, paymentId: string): Observable<PaymentModel> {
         return this._paymentService.getById(uid, paymentId).pipe(
             catchError(err => {
-                throw new Error('payment/not-found');
+                throw new CustomError(err, 'Не удалось найти запрашиваемый платеж. Повторите попытку');
             })
         );
     }
@@ -60,7 +61,7 @@ export class PaymentManagerService {
 
         return this._paymentService.delete(uid, payment.paymentId).pipe(
             catchError(err => {
-                throw new Error('payment/not-found');
+                throw new CustomError(err, 'Не удалось удалить выбранный платеж. Повторите попытку');
             })
         );
     }

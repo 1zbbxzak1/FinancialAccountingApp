@@ -2,27 +2,35 @@ import {inject} from '@angular/core';
 import {AuthService} from "./auth.service";
 import {catchError, map, Observable} from "rxjs";
 import {IAuthDataRequestModel} from "../../request-models/auth/IAuthData.request-model";
-import {IUserRequestModel} from "../../request-models/user/IUser.request-model";
+import {IUserRequestModel, ParamsToIUserRequestModel} from "../../request-models/user/IUser.request-model";
 import {UserManagerService} from "../user/user.manager.service";
-import {UserMapper} from "../../mappers/user/user.mapper";
+import {CustomError} from "../../../global-error-handler/global-error-handler.service";
 
 
 export class IdentityService {
     private readonly _authService: AuthService = inject(AuthService);
     private readonly _userManager: UserManagerService = inject(UserManagerService);
-    private readonly _userMapper: UserMapper = inject(UserMapper);
 
     public registerWithEmailAndPassword(user: IAuthDataRequestModel): Observable<void> {
         return this._authService.registerWithEmailAndPassword(user).pipe(
             map((uid: string): void => {
                 localStorage.setItem('uid', uid);
 
-                const userInfo: IUserRequestModel = this._userMapper.ParamsToIUserRequestModel(user.email, false);
+                const userInfo: IUserRequestModel = ParamsToIUserRequestModel(user.email, false);
 
                 this._userManager.createUserInfo(uid, userInfo);
             }),
             catchError(err => {
-                throw new Error(err);
+                switch (err.code) {
+                    case('auth/email-already-in-use'): {
+                        throw new CustomError(err, 'Указанная почта уже используется');
+                    }
+                    case('"auth/too-many-requests"'): {
+                        throw new CustomError(err, 'Доступ временно заблокирован. Повторите попытку позже');
+                    }
+                    default:
+                        throw new CustomError(err, 'Возникла непредвиденная ошибка. Повторите попытку');
+                }
             })
         );
     }
@@ -33,7 +41,22 @@ export class IdentityService {
                 localStorage.setItem('uid', uid);
             }),
             catchError(err => {
-                throw new Error(err);
+                switch (err.code) {
+                    case('auth/user-not-found'): {
+                        throw new CustomError(err, 'Пользователь с указанной почтой не зарегистрирован');
+                    }
+                    case('auth/wrong-password'): {
+                        throw new CustomError(err, 'Введен неверный пароль');
+                    }
+                    case('auth/invalid-credential'): {
+                        throw new CustomError(err, 'Неверно указаны почта или пароль');
+                    }
+                    case('"auth/too-many-requests"'): {
+                        throw new CustomError(err, 'Доступ временно заблокирован. Повторите попытку позже');
+                    }
+                    default:
+                        throw new CustomError(err, 'Возникла непредвиденная ошибка. Повторите попытку');
+                }
             })
         );
     }

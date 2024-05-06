@@ -2,22 +2,21 @@ import {DestroyRef, inject} from '@angular/core';
 import {catchError, Observable} from "rxjs";
 import {UserModel} from "../../models/user/user.model";
 import {UserService} from "./user.service";
-import {IUserRequestModel} from "../../request-models/user/IUser.request-model";
-import {UserMapper} from "../../mappers/user/user.mapper";
+import {IUserRequestModel, UserModelToIUserRequestModel} from "../../request-models/user/IUser.request-model";
 import {UserValidator} from "../../../validators/user/user.validator";
 import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
+import {CustomError} from "../../../global-error-handler/global-error-handler.service";
 
 export class UserManagerService {
 
     private readonly _userService: UserService = inject(UserService);
-    private readonly _userMapper: UserMapper = inject(UserMapper);
     private readonly _userValidator: UserValidator = inject(UserValidator);
     private readonly _destroyRef: DestroyRef = inject(DestroyRef);
 
     public createUserInfo(uid: string, user: IUserRequestModel): Observable<void> {
         return this._userService.createUserInfo(uid, user).pipe(
             catchError(err => {
-                throw new Error('user/not-created');
+                throw new CustomError(err, 'Не удалось создать информацию о пользователе. Повторите попытку');
             })
         );
     }
@@ -25,7 +24,7 @@ export class UserManagerService {
     public getUserInfo(uid: string): Observable<UserModel> {
         return this._userService.getUserInfo(uid).pipe(
             catchError(err => {
-                throw new Error('user/not-found');
+                throw new CustomError(err, 'Информация о пользователе не найдена');
             })
         );
     }
@@ -33,7 +32,7 @@ export class UserManagerService {
     public updateUserInfo(uid: string, user: IUserRequestModel): Observable<void> {
         return this._userService.updateUserInfo(uid, user).pipe(
             catchError(err => {
-                throw new Error('user/not-found');
+                throw new CustomError(err, 'Не удалось обновить информацию о пользователе. Повторите попытку');
             })
         );
     }
@@ -41,7 +40,22 @@ export class UserManagerService {
     public updatePassword(email: string, password: string, newPassword: string): Observable<void> {
         return this._userService.updatePassword(email, password, newPassword).pipe(
             catchError(err => {
-                throw new Error(err);
+                switch (err.code) {
+                    case('auth/weak-password'): {
+                        throw new CustomError(err, 'Новый пароль ненадежный.');
+                    }
+                    case('auth/wrong-password'): {
+                        throw new CustomError(err, 'Введен неверный пароль');
+                    }
+                    case('auth/invalid-credential'): {
+                        throw new CustomError(err, 'Неверно указаны почта или пароль');
+                    }
+                    case('"auth/too-many-requests"'): {
+                        throw new CustomError(err, 'Доступ временно заблокирован. Повторите попытку позже');
+                    }
+                    default:
+                        throw new CustomError(err, 'Возникла непредвиденная ошибка. Повторите попытку');
+                }
             })
         );
     }
@@ -49,16 +63,27 @@ export class UserManagerService {
     public updateEmail(email: string, password: string, newEmail: string): Observable<void> {
         return this._userService.updateEmail(email, password, newEmail).pipe(
             catchError(err => {
-                throw new Error(err);
+                switch (err.code) {
+                    case('auth/email-already-in-use'): {
+                        throw new CustomError(err, 'Указанная почта уже используется');
+                    }
+                    case('auth/wrong-password'): {
+                        throw new CustomError(err, 'Введен неверный пароль');
+                    }
+                    case('auth/invalid-credential'): {
+                        throw new CustomError(err, 'Неверно указаны почта или пароль');
+                    }
+                    case('"auth/too-many-requests"'): {
+                        throw new CustomError(err, 'Доступ временно заблокирован. Повторите попытку позже');
+                    }
+                    default:
+                        throw new CustomError(err, 'Возникла непредвиденная ошибка. Повторите попытку');
+                }
             })
         );
     }
 
     public uploadUserPhoto(uid: string, image: File): void {
-        if(!this._userValidator.userPhotoIsCorrect(image)) {
-            throw new Error('user/photo-not-upload');
-        }
-
         const imageType: string = image.name.split('.').pop()!;
         const pathImage: string = `${uid}/userPhoto.${imageType}`;
 
@@ -67,7 +92,7 @@ export class UserManagerService {
                 takeUntilDestroyed(this._destroyRef),
 
                 catchError(err => {
-                    throw new Error('user/photo-not-uploaded');
+                    throw new CustomError(err, 'Не удалось загрузить изображение. Повторите попытку');
                 }),
             )
             .subscribe(
@@ -80,7 +105,7 @@ export class UserManagerService {
                         (userModel: UserModel): void => {
                             userModel.photoURL = photoURL;
 
-                            const userInfo: IUserRequestModel = this._userMapper.UserModelToIUserRequestModel(userModel);
+                            const userInfo: IUserRequestModel = UserModelToIUserRequestModel(userModel);
 
                             this.updateUserInfo(uid, userInfo);
                         }

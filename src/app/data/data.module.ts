@@ -16,10 +16,6 @@ import {AngularFireAuthModule} from "@angular/fire/compat/auth";
 import {AngularFireModule} from "@angular/fire/compat";
 import {environment} from "../../environments/environment";
 import {AngularFireStorageModule} from "@angular/fire/compat/storage";
-import {CardMapper} from "./mappers/card/card.mapper";
-import {OperationMapper} from "./mappers/operation/operation.mapper";
-import {PaymentMapper} from "./mappers/payment/payment.mapper";
-import {UserMapper} from "./mappers/user/user.mapper";
 
 
 @NgModule({
@@ -43,11 +39,6 @@ import {UserMapper} from "./mappers/user/user.mapper";
         PaymentManagerService,
         UserService,
         UserManagerService,
-
-        CardMapper,
-        OperationMapper,
-        PaymentMapper,
-        UserMapper,
     ]
 })
 export class DataModule {

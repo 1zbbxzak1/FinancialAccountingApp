@@ -3,6 +3,7 @@ import {inject} from "@angular/core";
 import {catchError, NEVER, Observable, of} from "rxjs";
 import {IOperationRequestModel} from "../../request-models/operation/IOperation.request-model";
 import {OperationModel} from "../../models/operation/operation.model";
+import {CustomError} from "../../../global-error-handler/global-error-handler.service";
 
 export class OperationManagerService {
 
@@ -11,7 +12,7 @@ export class OperationManagerService {
     public create(uid: string, operation: IOperationRequestModel): Observable<OperationModel> {
         return this._operationService.create(uid, operation).pipe(
             catchError(err => {
-                throw new Error('operation/not-created');
+                throw new CustomError(err, 'Не удалось создать операцию. Повторите попытку');
             })
         );
     }
@@ -19,7 +20,7 @@ export class OperationManagerService {
     public update(uid: string, operationID: string, operation: IOperationRequestModel): Observable<void> {
         return this._operationService.update(uid, operationID, operation).pipe(
             catchError(err => {
-                throw new Error('operation/not-found');
+                throw new CustomError(err, 'Не удалось обновить данные операции. Повторите попытку');
             })
         );
     }
@@ -27,7 +28,7 @@ export class OperationManagerService {
     public getAll(uid: string, cardID: string): Observable<OperationModel[]> {
         return this._operationService.getAll(uid, cardID).pipe(
             catchError(err => {
-                throw new Error('operation/card-not-found');
+                throw new CustomError(err, 'Записи об операциях по карте не найдены');
             })
         );
     }
@@ -35,7 +36,7 @@ export class OperationManagerService {
     public getByID(uid: string, cardID: string, operationID: string): Observable<OperationModel> {
         return this._operationService.getById(uid, cardID, operationID).pipe(
             catchError(err => {
-                throw new Error('operation/not-found');
+                throw new CustomError(err, 'Не удалось найти запрашиваемую операцию. Повторите попытку');
             })
         );
     }
@@ -43,7 +44,7 @@ export class OperationManagerService {
     public delete(uid: string, cardID: string, operationID: string): Observable<void> {
         return this._operationService.delete(uid, cardID, operationID).pipe(
             catchError(err => {
-                throw new Error('operation/not-found');
+                throw new CustomError(err, 'Не удалось удалить выбранную операцию. Повторите попытку');
             })
         );
     }
