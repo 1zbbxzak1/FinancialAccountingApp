@@ -1,0 +1,30 @@
+<tui-root>
+    <section class="settings__preferences__section">
+        <div class="setting__preferences__container">
+            <div class="currency container">
+                <label for="currency">Валюта</label>
+                <input type="text" id="currency" name="currency" placeholder="RUB" readonly>
+            </div>
+            <div class="timezone container">
+                <label for="timezone">Часовой пояс</label>
+                <input type="text"  id="timezone" name="timezone" #timezone readonly>
+            </div>
+        </div>
+        <div class="prefepences__notifications">
+            <h1 class="prefepences__notifications__title">Уведомления</h1>
+            <form [formGroup]="notificationForm" class="prefepences__notifications__form">
+                <div>
+                    <label>
+                        <tui-toggle
+                            [formControlName]="'notification'"
+                            size="l"
+                            (click)="changeStateToggle()"
+                        ></tui-toggle>
+                        Получать информацию о балансе
+                    </label>
+                </div>
+            </form>
+        </div>
+        <button class="save__button__settings" (click)="updateInfoNotification()" >Сохранить</button>
+    </section>
+</tui-root>
