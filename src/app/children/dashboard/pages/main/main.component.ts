@@ -1,4 +1,6 @@
-import {ChangeDetectionStrategy, Component} from '@angular/core';
+import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
+import {Capacitor, CapacitorGlobal} from "@capacitor/core";
+import {StateBarService} from "../../services/state-bar/state-bar.service";
 
 @Component({
     selector: 'app-main',
@@ -7,6 +9,13 @@ import {ChangeDetectionStrategy, Component} from '@angular/core';
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 
-export class MainComponent {
+export class MainComponent implements OnInit {
 
+    constructor(private stateBarService: StateBarService) { }
+
+    ngOnInit(): void {
+        this.stateBarService.toggleState('isHomeClicked');
+    }
+
+    protected readonly Capacitor: CapacitorGlobal = Capacitor;
 }

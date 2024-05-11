@@ -1,4 +1,5 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core';
+import {Capacitor, CapacitorGlobal} from "@capacitor/core";
 
 @Component({
     selector: 'app-cards',
@@ -8,4 +9,5 @@ import {ChangeDetectionStrategy, Component} from '@angular/core';
 })
 export class CardsComponent {
 
+    protected readonly Capacitor: CapacitorGlobal = Capacitor;
 }

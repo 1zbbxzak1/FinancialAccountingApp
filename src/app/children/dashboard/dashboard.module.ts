@@ -1,6 +1,6 @@
 import {NgModule} from "@angular/core";
 import {MainComponent} from "./pages/main/main.component";
-import {NgIf, NgOptimizedImage} from "@angular/common";
+import {NgForOf, NgIf, NgOptimizedImage} from "@angular/common";
 import {CardComponent} from "./components/card/card.component";
 import {UserComponent} from './pages/user/user.component';
 import {HistoryComponent} from './pages/history/history.component';
@@ -18,6 +18,9 @@ import { NavigationComponent } from './pages/settings/components/navigation/navi
 import { ReactiveFormsModule } from "@angular/forms";
 import { AppRoutingModule } from "../../app-routing.module";
 import { CheckDownloadDirective } from './pages/settings/pages/edit-profile/directive/check-download.directive';
+import { TabbarComponent } from "./components/tabbar/tabbar.component";
+import { TuiTabBarModule } from "@taiga-ui/addon-mobile";
+import {StateBarService} from "./services/state-bar/state-bar.service";
 
 @NgModule({
     declarations: [
@@ -35,6 +38,7 @@ import { CheckDownloadDirective } from './pages/settings/pages/edit-profile/dire
         SecurityComponent,
         NavigationComponent,
         CheckDownloadDirective,
+        TabbarComponent,
     ],
     imports: [
         NgOptimizedImage,
@@ -45,7 +49,9 @@ import { CheckDownloadDirective } from './pages/settings/pages/edit-profile/dire
         TuiButtonModule,
         TuiDataListModule,
         TuiDataListDropdownManagerModule,
-        
+        TuiTabBarModule,
+        NgForOf,
+
         TuiTabsModule,
         TuiToggleModule,
         ReactiveFormsModule,
@@ -57,8 +63,11 @@ import { CheckDownloadDirective } from './pages/settings/pages/edit-profile/dire
     ],
     exports: [
         CardComponent,
+        TabbarComponent,
     ],
-    providers: []
+    providers: [
+        StateBarService,
+    ]
 })
 export class DashboardModule {
 }

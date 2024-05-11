@@ -1,0 +1,54 @@
+<nav
+    class="tabs"
+    tuiTabBar
+>
+    <button
+        icon="{{ states['isUserClicked'] ? 'assets/img/user_icon_active.svg' : 'assets/img/user_icon.svg' }}"
+        routerLink="/dashboard/user"
+        routerLinkActive
+        tuiTabBarItem
+        (click)="toggleState('isUserClicked')"
+    >
+        Счета
+    </button>
+
+    <button
+        icon="{{ states['isPaymentsClicked'] ? 'assets/img/articles_icon_active.svg' : 'assets/img/articles_icon.svg' }}"
+        routerLink="/dashboard/payments"
+        routerLinkActive
+        tuiTabBarItem
+        (click)="toggleState('isPaymentsClicked')"
+    >
+        Платежи
+    </button>
+
+    <button
+        icon="{{ states['isHomeClicked'] ? 'assets/img/home_icon_active.svg' : 'assets/img/home_icon.svg' }}"
+        routerLink="/dashboard/main"
+        routerLinkActive
+        tuiTabBarItem
+        (click)="toggleState('isHomeClicked')"
+    >
+        Главная
+    </button>
+
+    <button
+        icon="{{ states['isCardsClicked'] ? 'assets/img/cards_icon_active.svg' : 'assets/img/cards_icon.svg' }}"
+        routerLink="/dashboard/cards"
+        routerLinkActive
+        tuiTabBarItem
+        (click)="toggleState('isCardsClicked')"
+    >
+        Карты
+    </button>
+
+    <button
+        icon="{{ states['isHistoryClicked'] ? 'assets/img/history_icon_active.svg' : 'assets/img/history_icon.svg' }}"
+        routerLink="/dashboard/history"
+        routerLinkActive
+        tuiTabBarItem
+        (click)="toggleState('isHistoryClicked')"
+    >
+        История
+    </button>
+</nav>

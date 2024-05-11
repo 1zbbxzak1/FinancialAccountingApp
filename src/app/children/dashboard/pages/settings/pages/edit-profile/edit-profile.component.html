@@ -21,7 +21,7 @@
                                     type="file"
                                     id="text"
                                     tuiOption
-                                    accept="image/jpeg"
+                                    accept="image/jpg"
                                     (click)="onClick()" appCheckDownload (fileLoaded)="onFileLoaded($event)"
                                 >
                             </tui-opt-group>
@@ -39,36 +39,36 @@
 
                 <div class="setting__form__filds__container">
                     <label for="name">Ваше имя</label>
-                    <input type="text" id="name" name="name" class="setting__form__input" 
+                    <input type="text" id="name" name="name" class="setting__form__input"
                     [formControlName]="'name'">
-    
+
                     <label for="email">Почта</label>
-                    <input type="email" id="email" name="email" class="setting__form__input" 
+                    <input type="email" id="email" name="email" class="setting__form__input"
                     [formControlName]="'email'" readonly>
-    
+
                     <label for="birthday">Дата рождения</label>
-                    <input type="datetime" id="birthday" name="birthday" class="setting__form__input" 
+                    <input type="datetime" id="birthday" name="birthday" class="setting__form__input"
                     [formControlName]="'dateOfBirthTimestamp'">
-    
+
                     <label for="residence">Адрес по прописке</label>
-                    <input type="text" id="residence" name="residence" class="setting__form__input" 
+                    <input type="text" id="residence" name="residence" class="setting__form__input"
                     [formControlName]="'permanentAddress'">
-    
+
                     <label for="login">Фамилия</label>
-                    <input type="text" id="login" name="login" class="setting__form__input" 
+                    <input type="text" id="login" name="login" class="setting__form__input"
                     [formControlName]="'surname'">
-    
+
                     <label for="address">Адрес проживания</label>
-                    <input type="text" id="address" name="address" class="setting__form__input" 
+                    <input type="text" id="address" name="address" class="setting__form__input"
                     [formControlName]="'presentAddress'">
-    
+
                     <label for="city">Город</label>
-                    <input type="text" id="city" name="city" class="setting__form__input" 
+                    <input type="text" id="city" name="city" class="setting__form__input"
                     [formControlName]="'city'">
-    
+
                     <label for="citizenship">Гражданство</label>
-                    <input type="text" id="citizenship" name="citizenship" class="setting__form__input" 
-                    [formControlName]="'country'"> 
+                    <input type="text" id="citizenship" name="citizenship" class="setting__form__input"
+                    [formControlName]="'country'">
                 </div>
             </form>
         </div>

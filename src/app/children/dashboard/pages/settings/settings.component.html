@@ -1,6 +1,6 @@
 <div class="main-content-dashboard">
     <div class="main-content-dashboard-second">
-        <app-sidebar></app-sidebar>
+        <app-sidebar *ngIf="!Capacitor.isNativePlatform()"></app-sidebar>
         <div class="main-content-dashboard-full">
             <app-header></app-header>
             <div class="content-dashboard">
@@ -9,6 +9,7 @@
                 </div>
                 <router-outlet></router-outlet>
             </div>
+            <app-tabbar *ngIf="Capacitor.isNativePlatform()"></app-tabbar>
         </div>
     </div>
 </div>
