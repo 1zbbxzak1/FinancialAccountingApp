@@ -12,7 +12,7 @@ export class UserModel implements IUserResponseModel {
     public city: string | null;
     public country: string | null;
     public notification: boolean;
-    public photoURL: string | null;
+    public AvatarURL: string | null;
 
     constructor(user: IUserRequestModel) {
         this.name = user.name;
@@ -25,6 +25,6 @@ export class UserModel implements IUserResponseModel {
         this.city = user.city;
         this.country = user.country;
         this.notification = user.notification;
-        this.photoURL = user.photoURL;
+        this.AvatarURL = user.AvatarURL;
     }
 }

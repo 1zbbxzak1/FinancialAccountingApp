@@ -1,5 +1,5 @@
 import {DestroyRef, inject} from '@angular/core';
-import {catchError, Observable} from "rxjs";
+import {catchError, map, Observable, switchMap} from "rxjs";
 import {UserModel} from "../../models/user/user.model";
 import {UserService} from "./user.service";
 import {IUserRequestModel, UserModelToIUserRequestModel} from "../../request-models/user/IUser.request-model";
@@ -83,34 +83,26 @@ export class UserManagerService {
         );
     }
 
-    public uploadUserPhoto(uid: string, image: File): void {
+    public uploadAvatar(uid: string, image: File): Observable<string> {
         const imageType: string = image.name.split('.').pop()!;
         const pathImage: string = `${uid}/userPhoto.${imageType}`;
 
-        this._userService.uploadUserPhoto(image, pathImage)
+        return this._userService.uploadAvatar(image, pathImage)
             .pipe(
-                takeUntilDestroyed(this._destroyRef),
-
+                switchMap((photoURL: string) => {
+                    return this.getUserInfo(localStorage.getItem('uid')!)
+                        .pipe(
+                            map((userModel: UserModel) => {
+                                userModel.AvatarURL = photoURL;
+                                const userInfo: IUserRequestModel = UserModelToIUserRequestModel(userModel);
+                                this.updateUserInfo(uid, userInfo);
+                                return photoURL;
+                            })
+                        );
+                }),
                 catchError(err => {
                     throw new CustomError(err, 'Не удалось загрузить изображение. Повторите попытку');
                 }),
-            )
-            .subscribe(
-                (photoURL: string): void => {
-                    this.getUserInfo(localStorage.getItem('uid')!)
-                        .pipe(
-                            takeUntilDestroyed(this._destroyRef),
-                        )
-                        .subscribe(
-                        (userModel: UserModel): void => {
-                            userModel.photoURL = photoURL;
-
-                            const userInfo: IUserRequestModel = UserModelToIUserRequestModel(userModel);
-
-                            this.updateUserInfo(uid, userInfo);
-                        }
-                    );
-                }
             );
     }
 }

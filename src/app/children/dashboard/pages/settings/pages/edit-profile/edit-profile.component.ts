@@ -14,7 +14,7 @@ import { UserValidator } from '../../../../../../validators/user/user.validator'
   styleUrl: './styles/edit-profile.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class EditProfileComponent implements OnInit{ 
+export class EditProfileComponent implements OnInit{
 
   private _userId: string = localStorage.getItem('uid')!;
 
@@ -29,8 +29,7 @@ export class EditProfileComponent implements OnInit{
     city: new FormControl(''),
     country: new FormControl(''),
     notification: new FormControl('false'),
-    photoURL: new FormControl(''),
-    
+    avatarURL: new FormControl(''),
   });
 
   constructor(
@@ -57,13 +56,13 @@ export class EditProfileComponent implements OnInit{
       city: data.city,
       country: data.country,
       notification: data.notification,
-      photoURL: data.photoURL,
+      avatarURL: data.AvatarURL,
     }));
   }
 
   protected onFileLoaded(file:File){
     if(this._userValidator.userPhotoIsCorrect(file)){
-       this._userManagerService.uploadUserPhoto(this._userId, file);
+       this._userManagerService.uploadAvatar(this._userId, file);
     }
   }
 
