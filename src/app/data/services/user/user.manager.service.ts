@@ -83,26 +83,34 @@ export class UserManagerService {
         );
     }
 
-    public uploadUserPhoto(uid: string, image: File): Observable<string> {
+    public uploadUserPhoto(uid: string, image: File): void {
         const imageType: string = image.name.split('.').pop()!;
         const pathImage: string = `${uid}/userPhoto.${imageType}`;
 
-        return this._userService.uploadUserPhoto(image, pathImage)
+        this._userService.uploadUserPhoto(image, pathImage)
             .pipe(
-                switchMap((photoURL: string) => {
-                    return this.getUserInfo(localStorage.getItem('uid')!)
-                        .pipe(
-                            map((userModel: UserModel) => {
-                                userModel.photoURL = photoURL;
-                                const userInfo: IUserRequestModel = UserModelToIUserRequestModel(userModel);
-                                this.updateUserInfo(uid, userInfo);
-                                return photoURL;
-                            })
-                        );
-                }),
+                takeUntilDestroyed(this._destroyRef),
+
                 catchError(err => {
                     throw new CustomError(err, 'Не удалось загрузить изображение. Повторите попытку');
                 }),
+            )
+            .subscribe(
+                (photoURL: string): void => {
+                    this.getUserInfo(localStorage.getItem('uid')!)
+                        .pipe(
+                            takeUntilDestroyed(this._destroyRef),
+                        )
+                        .subscribe(
+                            (userModel: UserModel): void => {
+                                userModel.photoURL = photoURL;
+
+                                const userInfo: IUserRequestModel = UserModelToIUserRequestModel(userModel);
+
+                                this.updateUserInfo(uid, userInfo);
+                            }
+                        );
+                }
             );
     }
 }
