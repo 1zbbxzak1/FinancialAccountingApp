@@ -29,7 +29,7 @@ export class EditProfileComponent implements OnInit{
     city: new FormControl(''),
     country: new FormControl(''),
     notification: new FormControl('false'),
-    avatarURL: new FormControl(''),
+    photoURL: new FormControl(''),
   });
 
   constructor(
@@ -46,23 +46,23 @@ export class EditProfileComponent implements OnInit{
     .pipe(takeUntilDestroyed(this._destroyRef))
     .subscribe((data:UserModel)=>
     this.userInfoForm.setValue({
-      name: data.name,
-      surname: data.surname,
-      email: data.email,
-      dateOfBirthTimestamp: data.dateOfBirthTimestamp ? new Date(data.dateOfBirthTimestamp).toLocaleDateString() : '',
-      permanentAddress: data.permanentAddress,
-      presentAddress: data.presentAddress,
-      postalCode: data.postalCode,
-      city: data.city,
-      country: data.country,
-      notification: data.notification,
-      avatarURL: data.AvatarURL,
+        name: data.name,
+        surname: data.surname,
+        email: data.email,
+        dateOfBirthTimestamp: data.dateOfBirthTimestamp ? new Date(data.dateOfBirthTimestamp).toLocaleDateString() : '',
+        permanentAddress: data.permanentAddress,
+        presentAddress: data.presentAddress,
+        postalCode: data.postalCode,
+        city: data.city,
+        country: data.country,
+        notification: data.notification,
+        photoURL: data.photoURL,
     }));
   }
 
   protected onFileLoaded(file:File){
     if(this._userValidator.userPhotoIsCorrect(file)){
-       this._userManagerService.uploadAvatar(this._userId, file);
+       this._userManagerService.uploadUserPhoto(this._userId, file);
     }
   }
 

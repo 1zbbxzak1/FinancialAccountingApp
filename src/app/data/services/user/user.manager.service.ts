@@ -83,17 +83,17 @@ export class UserManagerService {
         );
     }
 
-    public uploadAvatar(uid: string, image: File): Observable<string> {
+    public uploadUserPhoto(uid: string, image: File): Observable<string> {
         const imageType: string = image.name.split('.').pop()!;
         const pathImage: string = `${uid}/userPhoto.${imageType}`;
 
-        return this._userService.uploadAvatar(image, pathImage)
+        return this._userService.uploadUserPhoto(image, pathImage)
             .pipe(
                 switchMap((photoURL: string) => {
                     return this.getUserInfo(localStorage.getItem('uid')!)
                         .pipe(
                             map((userModel: UserModel) => {
-                                userModel.AvatarURL = photoURL;
+                                userModel.photoURL = photoURL;
                                 const userInfo: IUserRequestModel = UserModelToIUserRequestModel(userModel);
                                 this.updateUserInfo(uid, userInfo);
                                 return photoURL;

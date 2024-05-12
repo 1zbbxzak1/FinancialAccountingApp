@@ -11,7 +11,7 @@ export interface IUserRequestModel {
     readonly city: string | null;
     readonly country: string | null;
     readonly notification: boolean;
-    readonly AvatarURL: string | null;
+    readonly photoURL: string | null;
 }
 
 export function UserModelToIUserRequestModel(user: UserModel): IUserRequestModel {
@@ -26,14 +26,14 @@ export function UserModelToIUserRequestModel(user: UserModel): IUserRequestModel
         city: user.city,
         country: user.country,
         notification: user.notification,
-        AvatarURL: user.AvatarURL,
+        photoURL: user.photoURL,
     };
 }
 
 export function ParamsToIUserRequestModel(email: string, notification: boolean, name: string | null = null, surname: string | null = null,
       dateOfBirthTimestamp: number | null = null, permanentAddress: string | null = null, presentAddress: string | null = null,
       postalCode: number | null = null, city: string | null = null, country: string | null = null,
-      avatarURL: string | null = null): IUserRequestModel {
+      photoURL: string | null = null): IUserRequestModel {
 
     return {
         name: name,
@@ -46,6 +46,6 @@ export function ParamsToIUserRequestModel(email: string, notification: boolean, 
         city: city,
         country: country,
         notification: notification,
-        AvatarURL: avatarURL,
+        photoURL: photoURL,
     };
 }

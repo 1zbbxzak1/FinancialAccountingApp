@@ -47,7 +47,7 @@ export class UserService {
         );
     }
 
-    public uploadAvatar(image: File, path: string): Observable<string> {
+    public uploadUserPhoto(image: File, path: string): Observable<string> {
         return from(this._storage.upload(path, image).task.snapshot.ref.getDownloadURL());
     }
 }
