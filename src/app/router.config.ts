@@ -61,7 +61,7 @@ export const routes: Routes = [
             {
                 path: "",
                 redirectTo: "editProfile",
-                pathMatch: 'full',
+                pathMatch: "full",
             },
             {
                 path: "editProfile",

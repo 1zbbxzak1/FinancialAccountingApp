@@ -23,7 +23,7 @@ export class SecurityComponent implements OnInit{
   constructor(
     private _userMAnagerService: UserManagerService,
     private _destroyRef: DestroyRef,
-    private readonly alerts: TuiAlertService,
+    private readonly _alerts: TuiAlertService,
   ){}
 
   public ngOnInit(): void {
@@ -38,7 +38,7 @@ export class SecurityComponent implements OnInit{
     if(this.securityForm.get('previousPassword')?.value !== ""){
       this._userMAnagerService.updatePassword(this.userEmail, this.securityForm.get('previousPassword')?.value, this.securityForm.get('newPassword')?.value)
       .pipe(takeUntilDestroyed(this._destroyRef))
-      .subscribe(()=> this.alerts.open("Пароль обновлен")
+      .subscribe(()=> this._alerts.open("Пароль обновлен")
       .pipe(takeUntilDestroyed(this._destroyRef))
       .subscribe());
     }

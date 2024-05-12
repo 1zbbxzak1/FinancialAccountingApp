@@ -17,7 +17,7 @@ import { SecurityComponent } from './pages/settings/pages/security/security.comp
 import { NavigationComponent } from './pages/settings/components/navigation/navigation.component';
 import { ReactiveFormsModule } from "@angular/forms";
 import { AppRoutingModule } from "../../app-routing.module";
-import { CheckDownloadDirective } from './pages/settings/pages/edit-profile/directive/check-download.directive';
+import { CheckDownloadDirective } from './pages/settings/pages/preferences/directive/check-download.directive';
 import { TabbarComponent } from "./components/tabbar/tabbar.component";
 import { TuiTabBarModule } from "@taiga-ui/addon-mobile";
 import {StateBarService} from "./services/state-bar/state-bar.service";

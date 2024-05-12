@@ -5,7 +5,7 @@ import { UserModel } from '../../../../../../data/models/user/user.model';
 import { IUserRequestModel, UserModelToIUserRequestModel } from '../../../../../../data/request-models/user/IUser.request-model';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import {ChangeDetectionStrategy, ViewChild} from '@angular/core';
-import {TuiHostedDropdownComponent} from '@taiga-ui/core';
+import {TuiHostedDropdownComponent, TuiAlertService} from '@taiga-ui/core';
 import { UserValidator } from '../../../../../../validators/user/user.validator';
 
 @Component({
@@ -35,7 +35,8 @@ export class EditProfileComponent implements OnInit{
   constructor(
     private _userManagerService: UserManagerService,
     private _destroyRef: DestroyRef,
-    private _userValidator: UserValidator){}
+    private _userValidator: UserValidator,
+    private readonly _alert: TuiAlertService){}
 
   @ViewChild(TuiHostedDropdownComponent) component?: TuiHostedDropdownComponent;
 
@@ -64,6 +65,11 @@ export class EditProfileComponent implements OnInit{
     if(this._userValidator.userPhotoIsCorrect(file)){
        this._userManagerService.uploadUserPhoto(this._userId, file);
     }
+    else{
+      this._alert.open("Это фото не подходит")
+      .pipe(takeUntilDestroyed(this._destroyRef))
+      .subscribe();
+    }
   }
 
   protected onClick(): void {
@@ -80,6 +86,8 @@ export class EditProfileComponent implements OnInit{
 
     this._userManagerService.updateUserInfo(this._userId, userForRequest)
     .pipe(takeUntilDestroyed(this._destroyRef))
-    .subscribe(()=>console.log("UserInfo update!"));
+    .subscribe(()=>this._alert.open("Информация обновлена!")
+    .pipe(takeUntilDestroyed(this._destroyRef))
+    .subscribe());
   }
 }

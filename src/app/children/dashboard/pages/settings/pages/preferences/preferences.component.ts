@@ -1,5 +1,6 @@
 import {AfterViewInit, ChangeDetectionStrategy, Component, DestroyRef, ElementRef, OnChanges, OnInit, SimpleChanges, ViewChild, ɵallowSanitizationBypassAndThrow} from '@angular/core';
 import {FormControl, FormGroup} from '@angular/forms';
+import { TuiAlertService } from '@taiga-ui/core';
 import { UserManagerService } from '../../../../../../data/services/user/user.manager.service';
 import { UserModel } from '../../../../../../data/models/user/user.model';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
@@ -24,6 +25,7 @@ export class PreferencesComponent implements OnInit, AfterViewInit{
   constructor(
     private _userManagerService: UserManagerService,
     private _destroyRef: DestroyRef,
+    private _alert: TuiAlertService,
     ){}
 
   public ngOnInit(): void{
@@ -51,7 +53,9 @@ export class PreferencesComponent implements OnInit, AfterViewInit{
       const userForRequest: IUserRequestModel = UserModelToIUserRequestModel(this.user);
       this._userManagerService.updateUserInfo(this._userId, userForRequest)
       .pipe(takeUntilDestroyed(this._destroyRef))
-      .subscribe(()=>console.log(userForRequest));
+      .subscribe(()=>this._alert.open("Информация обновлена!")
+      .pipe(takeUntilDestroyed(this._destroyRef))
+      .subscribe());
     }
   }
 }
