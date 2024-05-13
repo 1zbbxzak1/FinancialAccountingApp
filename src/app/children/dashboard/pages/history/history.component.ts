@@ -4,7 +4,7 @@ import {Capacitor, CapacitorGlobal} from "@capacitor/core";
 @Component({
     selector: 'app-history',
     templateUrl: './history.component.html',
-    styleUrls: ['../../styles/dashboard-styles.scss', './styles/history.component.scss'],
+    styleUrl: './styles/history.master.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HistoryComponent {

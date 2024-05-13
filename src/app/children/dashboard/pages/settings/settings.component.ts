@@ -4,7 +4,7 @@ import {Capacitor, CapacitorGlobal} from "@capacitor/core";
 @Component({
     selector: 'app-settings',
     templateUrl: './settings.component.html',
-    styleUrls: ['../../styles/dashboard-styles.scss', './styles/settings.component.scss'],
+    styleUrl: './styles/settings.master.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SettingsComponent {

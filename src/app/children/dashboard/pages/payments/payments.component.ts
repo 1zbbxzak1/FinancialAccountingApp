@@ -4,7 +4,7 @@ import {Capacitor, CapacitorGlobal} from "@capacitor/core";
 @Component({
     selector: 'app-payments',
     templateUrl: './payments.component.html',
-    styleUrls: ['../../styles/dashboard-styles.scss', './styles/payments.component.scss'],
+    styleUrl: './styles/payments.master.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PaymentsComponent {

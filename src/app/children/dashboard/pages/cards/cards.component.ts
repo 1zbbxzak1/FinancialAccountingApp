@@ -4,7 +4,7 @@ import {Capacitor, CapacitorGlobal} from "@capacitor/core";
 @Component({
     selector: 'app-cards',
     templateUrl: './cards.component.html',
-    styleUrls: ['../../styles/dashboard-styles.scss', './styles/cards.component.scss'],
+    styleUrl: './styles/cards.master.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CardsComponent {
