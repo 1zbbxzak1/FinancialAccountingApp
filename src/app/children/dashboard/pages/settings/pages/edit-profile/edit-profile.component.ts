@@ -6,7 +6,7 @@ import { IUserRequestModel, UserModelToIUserRequestModel } from '../../../../../
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import {ChangeDetectionStrategy, ViewChild} from '@angular/core';
 import {TuiHostedDropdownComponent, TuiAlertService} from '@taiga-ui/core';
-import { UserValidator } from '../../../../../../validators/user/user.validator';
+import { userPhotoIsCorrect } from '../../../../../../validators/user/user.validator';
 
 @Component({
   selector: 'app-edit-profile',
@@ -21,7 +21,7 @@ export class EditProfileComponent implements OnInit{
   protected userInfoForm: FormGroup = new FormGroup({
     name: new FormControl(''),
     surname: new FormControl(''),
-    email: new FormControl(''),
+    email: new FormControl({value: '', disabled: true}),
     dateOfBirthTimestamp: new FormControl(''),
     permanentAddress: new FormControl(''),
     presentAddress: new FormControl(''),
@@ -35,7 +35,6 @@ export class EditProfileComponent implements OnInit{
   constructor(
     private _userManagerService: UserManagerService,
     private _destroyRef: DestroyRef,
-    private _userValidator: UserValidator,
     private readonly _alert: TuiAlertService){}
 
   @ViewChild(TuiHostedDropdownComponent) component?: TuiHostedDropdownComponent;
@@ -62,11 +61,11 @@ export class EditProfileComponent implements OnInit{
   }
 
   protected onFileLoaded(file:File){
-    if(this._userValidator.userPhotoIsCorrect(file)){
+    if(userPhotoIsCorrect(file)){
        this._userManagerService.uploadUserPhoto(this._userId, file);
     }
     else{
-      this._alert.open("Это фото не подходит")
+      this._alert.open("Неверный формат файла")
       .pipe(takeUntilDestroyed(this._destroyRef))
       .subscribe();
     }

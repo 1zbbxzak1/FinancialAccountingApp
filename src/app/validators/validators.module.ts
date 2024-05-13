@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {UserValidator} from "./user/user.validator";
+import { userPhotoIsCorrect } from './user/user.validator';
 
 
 
@@ -10,7 +10,7 @@ import {UserValidator} from "./user/user.validator";
     CommonModule
     ],
     providers: [
-        UserValidator,
+        {provide: userPhotoIsCorrect, useValue: userPhotoIsCorrect}
     ],
 })
 export class ValidatorsModule { }

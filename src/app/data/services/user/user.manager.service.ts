@@ -3,14 +3,13 @@ import {catchError, map, Observable, switchMap} from "rxjs";
 import {UserModel} from "../../models/user/user.model";
 import {UserService} from "./user.service";
 import {IUserRequestModel, UserModelToIUserRequestModel} from "../../request-models/user/IUser.request-model";
-import {UserValidator} from "../../../validators/user/user.validator";
+import { userPhotoIsCorrect } from '../../../validators/user/user.validator';
 import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
 import {CustomError} from "../../../global-error-handler/global-error-handler.service";
 
 export class UserManagerService {
 
     private readonly _userService: UserService = inject(UserService);
-    private readonly _userValidator: UserValidator = inject(UserValidator);
     private readonly _destroyRef: DestroyRef = inject(DestroyRef);
 
     public createUserInfo(uid: string, user: IUserRequestModel): Observable<void> {
