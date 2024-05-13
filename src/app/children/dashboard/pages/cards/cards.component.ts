@@ -10,4 +10,5 @@ import {Capacitor, CapacitorGlobal} from "@capacitor/core";
 export class CardsComponent {
 
     protected readonly Capacitor: CapacitorGlobal = Capacitor;
+    protected readonly window: Window = window;
 }

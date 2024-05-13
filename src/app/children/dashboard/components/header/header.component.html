@@ -9,9 +9,9 @@
 
             <tui-hosted-dropdown
                 #dropdown
+                *ngIf="!Capacitor.isNativePlatform() && window.innerWidth > 1001"
                 [(open)]="dropdownOpen"
                 [content]="content"
-                *ngIf="!Capacitor.isNativePlatform()"
             >
                 <button (click)="dropdown.open || null" class="dashboard-header-item">
                     <img alt="Профиль" height="45" ngSrc="assets/img/profile-logo.svg" width="50">
@@ -21,9 +21,9 @@
                 #content
             >
                 <tui-data-list
+                    *ngIf="!Capacitor.isNativePlatform() && window.innerWidth > 1001"
                     [size]="size"
                     tuiDataListDropdownManager
-                    *ngIf="!Capacitor.isNativePlatform()"
                 >
                     <button (click)="navigateToSettings()" class="dashboard-header-submenu" tuiOption>
                         <img alt="Настройки" height="24" ngSrc="assets/img/settings.svg" width="24">
@@ -36,7 +36,8 @@
                 </tui-data-list>
             </ng-template>
 
-            <button *ngIf="Capacitor.isNativePlatform()" (click)="navigateToSettings()" class="dashboard-header-item">
+            <button (click)="navigateToSettings()" *ngIf="Capacitor.isNativePlatform() || window.innerWidth <= 1000"
+                    class="dashboard-header-item">
                 <img alt="Профиль" height="45" ngSrc="assets/img/profile-logo.svg" width="50">
             </button>
         </div>

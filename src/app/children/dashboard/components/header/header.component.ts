@@ -13,4 +13,5 @@ export class HeaderComponent extends StateHeaderService {
     protected dropdownOpen: boolean = false;
     protected size: TuiSizeL | TuiSizeS = 's';
     protected readonly Capacitor: CapacitorGlobal = Capacitor;
+    protected readonly window: Window = window;
 }
