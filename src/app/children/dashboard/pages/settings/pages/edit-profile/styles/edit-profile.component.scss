@@ -31,6 +31,8 @@
     }
     .profile-photo__container__img{
         border-radius: 130px;
+        height: 130px;
+        width: 130px;
     }
 }
 
@@ -40,14 +42,14 @@
     gap: 55px;
     .setting__form__filds__container{
         display: flex;
-        height: 460px;
+        height: 460px; 
         flex-direction: column;
         flex-wrap: wrap;
         gap: 10px;
         margin-bottom: 30px;
     }
     .setting__form__input{
-        width: 415px;
+        width: 40%; // 415px
         box-sizing: border-box;
         border: 1px solid rgb(223, 234, 242);
         border-radius: 15px;
@@ -60,7 +62,7 @@
         outline: 2px solid rgb(22, 219, 204);
     }
     #email{
-        background: rgb(223, 234, 242);
+        background: rgb(238, 245, 250);
     }
 }
 .save__button__settings{
@@ -74,7 +76,7 @@
     background: rgb(0, 120, 74);
     box-shadow: 0 5px 15px 0 rgb(0, 120, 74);
     transition: 0.5s;
-    margin-left: 890px;
+    margin-left: 80%; //890px
     margin-top: auto;
 }
 .save__button__settings:hover {
@@ -83,4 +85,92 @@
 }
 .save__button__settings:active{
     background: rgb(22, 219, 204);
+}
+
+//Адаптив
+@media(max-width: 1300px){
+    .setting__form__filds__container{
+        display: flex;
+        width: 800px;
+        height: 920px; 
+        flex-direction: column;
+        flex-wrap: nowrap;
+        gap: 10px;
+        margin-bottom: 30px;
+    }
+}
+@media(max-width: 760px){
+    .setting__form{
+        display: flex;
+        flex-direction: column;
+        width: 483px;
+        .setting__form__filds__container{
+            display: flex;
+            flex-direction: column;
+            flex-wrap: nowrap;
+            height: auto;
+            margin-left: 20px;
+        }
+        .setting__form__input{
+            width: 529px;
+        }
+        .profile-photo__container{
+            margin-left: 200px;
+            margin-bottom: 30px;
+            .profile-photo__container__img{
+                height: 200px;
+                width: 200px;
+            }
+            .profile-photo__container__icon{
+                top: 147px;
+                left: 168px;
+            }
+            .profile-photo__container__button{
+                top: 140px;
+                left: 160px;
+            }
+        }
+    }
+    .save__button__settings{
+        margin-left: 190px;
+    }
+}
+
+@media(max-width: 480px){
+    .setting__form{
+        display: flex;
+        flex-direction: column;
+        width: 325px;
+        .setting__form__filds__container{
+            display: flex;
+            flex-direction: column;
+            flex-wrap: nowrap;
+            height: auto;
+            margin-left: 10px;
+        }
+        .setting__form__input{
+            width: 280px;
+        }
+        .profile-photo__container{
+            margin-left: 45px;
+            margin-bottom: 30px;
+            .profile-photo__container__img{
+                height: 200px;
+                width: 200px;
+            }
+            .profile-photo__container__icon{
+                top: 147px;
+                left: 168px;
+            }
+            .profile-photo__container__button{
+                top: 140px;
+                left: 160px;
+            }
+        }
+    }
+    .save__button__settings{
+        width: 285px;
+        margin-left: 10px;
+        font-size: 15px;
+    }
 }
