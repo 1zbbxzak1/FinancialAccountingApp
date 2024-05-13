@@ -52,11 +52,6 @@ export const routes: Routes = [
         path: "dashboard/settings",
         component: SettingsComponent,
         canActivate: [(router: ActivatedRouteSnapshot, state: RouterStateSnapshot) => inject(AuthGuard).canActivate(router, state)],
-    },
-    {
-        path: "dashboard/settings",
-        component: SettingsComponent,
-        canActivate: [(router: ActivatedRouteSnapshot, state: RouterStateSnapshot) => inject(AuthGuard).canActivate(router, state)],
         children:[
             {
                 path: "",
