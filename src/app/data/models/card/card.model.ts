@@ -10,6 +10,7 @@ export class CardModel implements ICardResponseModel {
     public dateCreatedTimestamp: number;
     public dateCreated: Date;
     public provider: cardProvider;
+    public isSelected: boolean = false;
 
     constructor(data: ICardRequestModel, cardId: string) {
         this.cardId = cardId;

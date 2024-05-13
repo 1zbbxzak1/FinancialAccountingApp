@@ -4,10 +4,7 @@
         <div class="main-content-dashboard-full">
             <app-header></app-header>
             <div class="content-dashboard">
-                <div class="content-dashboard-header">
-                    <p class="content-dashboard-title">Мои карты</p>
-
-                </div>
+                <app-my-cards [itemsCount]="2"></app-my-cards>
             </div>
             <app-tabbar *ngIf="Capacitor.isNativePlatform() || window.innerWidth <= 1000"></app-tabbar>
         </div>

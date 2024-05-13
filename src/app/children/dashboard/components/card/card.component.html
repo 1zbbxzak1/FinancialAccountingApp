@@ -1,24 +1,31 @@
-<section class="card">
-    <header class="card__header">
-        <ul class="header__list">
-            <li class="list__item item__title">Баланс</li>
-            <li class="list__item price">{{ card.balance }}</li>
-        </ul>
-        <img alt="Чип" height="35" ngSrc="../../../../../assets/img/Chip_Card.svg" width="35">
-    </header>
-    <div class="card__middle">
-        <ul class="middle__list right">
-            <li class="list__item item__title">Владелец</li>
-            <li class="list__item">{{ card.name }}</li>
-        </ul>
-        <ul class="middle__list left">
-            <li class="list__item item__title">Дата создания</li>
-            <li class="list__item">{{ card.dateCreated }}</li>
-        </ul>
+<section class="card" [class.selected]="card.isSelected" (click)="toggleSelection()">
+    <div class="card-container">
+        <header class="card-header">
+            <ul class="header-list">
+                <li class="list-item list-item-title">Баланс</li>
+                <li class="list-item list-item-value balance">{{ card.balance }}₽</li>
+            </ul>
+            <img *ngIf="card.isSelected" class="img chip-icon-img" ngSrc="assets/img/children/dashboard/components/card/selected/chip/chip_card.svg"
+                 alt="Чип" height="35" width="35">
+            <img *ngIf="!card.isSelected" class="img chip-icon-img" ngSrc="assets/img/children/dashboard/components/card/no-selected/chip/chip_card.svg"
+                 alt="Чип" height="35" width="35">
+        </header>
+        <div class="card-content">
+            <ul class="content-list content-list-card-name">
+                <li class="list-item list-item-title">Название</li>
+                <li class="list-item list-item-value name">{{ card.name }}</li>
+            </ul>
+            <ul class="content-list content-list-date-created">
+                <li class="list-item  list-item-title">Дата создания</li>
+                <li class="list-item list-item-value date">{{ card.dateCreated.toLocaleDateString() }}</li>
+            </ul>
+        </div>
+        <footer class="card-footer">
+            <p class="footer-title">Платежная система</p>
+            <img *ngIf="card.isSelected" class="img payment-system-img" [ngSrc]="'assets/img/children/dashboard/components/card/selected/providers/' + card.provider + '.svg'"
+                 alt="Платежная система" width="60" height="40">
+            <img *ngIf="!card.isSelected" class="img payment-system-img" [ngSrc]="'assets/img/children/dashboard/components/card/no-selected/providers/' + card.provider + '.svg'"
+                 alt="Платежная система" width="60" height="40">
+        </footer>
     </div>
-    <footer class="card__footer">
-        <p class="footer__title">Платежная система</p>
-        <img [ngSrc]="'/assets/img/{{card.provider}}.png'" alt="Card Icon" class="footer__icon"
-             height="30" ngSrc="assets/img/Mir.png" width="50">
-    </footer>
 </section>

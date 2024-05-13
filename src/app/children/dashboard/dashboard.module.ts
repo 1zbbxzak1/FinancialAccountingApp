@@ -7,7 +7,13 @@ import {HistoryComponent} from './pages/history/history.component';
 import {CardsComponent} from './pages/cards/cards.component';
 import {PaymentsComponent} from './pages/payments/payments.component';
 import {TuiButtonModule, TuiDataListModule, TuiHostedDropdownModule, TuiRootModule} from "@taiga-ui/core";
-import {TuiAccordionModule, TuiDataListDropdownManagerModule, TuiTabsModule, TuiToggleModule} from "@taiga-ui/kit";
+import {
+    TuiAccordionModule,
+    TuiCarouselModule,
+    TuiDataListDropdownManagerModule, TuiIslandModule,
+    TuiTabsModule,
+    TuiToggleModule
+} from "@taiga-ui/kit";
 import {SettingsComponent} from './pages/settings/settings.component';
 import {HeaderComponent} from "./components/header/header.component";
 import {SidebarComponent} from "./components/sidebar/sidebar.component";
@@ -21,6 +27,7 @@ import { CheckDownloadDirective } from './pages/settings/pages/edit-profile/dire
 import { TabbarComponent } from "./components/tabbar/tabbar.component";
 import { TuiTabBarModule } from "@taiga-ui/addon-mobile";
 import {StateBarService} from "./services/state-bar/state-bar.service";
+import { MyCardsComponent } from './components/my-cards/my-cards.component';
 
 @NgModule({
     declarations: [
@@ -39,6 +46,7 @@ import {StateBarService} from "./services/state-bar/state-bar.service";
         NavigationComponent,
         CheckDownloadDirective,
         TabbarComponent,
+        MyCardsComponent,
     ],
     imports: [
         NgOptimizedImage,
@@ -60,6 +68,8 @@ import {StateBarService} from "./services/state-bar/state-bar.service";
         TuiButtonModule,
         ReactiveFormsModule,
         NgOptimizedImage,
+        TuiCarouselModule,
+        TuiIslandModule,
     ],
     exports: [
         CardComponent,
