@@ -1,4 +1,4 @@
-<form [formGroup]="formLogin" class="pop-up">
+<form [formGroup]="formAuth" class="pop-up">
     <div class="pop-up-title">
         Сервис учета финансов
     </div>
@@ -29,7 +29,7 @@
         </div>
     </div>
 
-    <button (click)="logInUser()" [disabled]="formLogin.invalid"
+    <button (click)="userLogin()" [disabled]="formAuth.invalid"
             appearance="custom"
             class="tui-space_top-10" size="l" tuiButton
             type="button">

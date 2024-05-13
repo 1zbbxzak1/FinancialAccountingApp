@@ -26,13 +26,13 @@ export class HeaderComponent {
         login: PolymorpheusContent<TuiDialogContext>,
         size: TuiDialogSize,
     ): void {
-        this._loginComponent.openDialogLogIn(login, size);
+        this._loginComponent.openDialogAuth(login, size);
     }
 
     protected openDialogRegistration(
         registration: PolymorpheusContent<TuiDialogContext>,
         size: TuiDialogSize,
     ): void {
-        this._registrationComponent.openDialogRegistration(registration, size);
+        this._registrationComponent.openDialogAuth(registration, size);
     }
 }
