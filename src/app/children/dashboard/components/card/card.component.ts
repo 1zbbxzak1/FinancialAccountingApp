@@ -8,6 +8,6 @@ import {CardModel} from "../../../../data/models/card/card.model";
     styleUrl: './styles/card.component.scss'
 })
 export class CardComponent {
-    @Input()
-    public card: CardModel = {} as CardModel;
+    @Input({required: true})
+    public card!: CardModel;
 }

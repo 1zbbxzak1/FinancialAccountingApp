@@ -15,10 +15,12 @@ import { IUserRequestModel, UserModelToIUserRequestModel } from '../../../../../
 export class PreferencesComponent implements OnInit, AfterViewInit{
 
   private _userId: string = localStorage.getItem('uid')!;
-  protected notificationForm:FormGroup = new FormGroup({
+  
+  protected notificationForm: FormGroup = new FormGroup({
     notification: new FormControl('false')
   });
-  protected user!: UserModel;
+  
+  private _user!: UserModel;
 
   @ViewChild('timezone') timeZoneInput!: ElementRef;
 
@@ -26,36 +28,37 @@ export class PreferencesComponent implements OnInit, AfterViewInit{
     private _userManagerService: UserManagerService,
     private _destroyRef: DestroyRef,
     private _alert: TuiAlertService,
-    ){}
+  ) {}
 
-  public ngOnInit(): void{
-    const userId: string = localStorage.getItem('uid')!;
-    this._userManagerService.getUserInfo(userId)
-    .pipe(takeUntilDestroyed(this._destroyRef))
-    .subscribe((data:UserModel)=>{
-      this.user = data;
-      this.notificationForm.setValue({
-        notification: data.notification
-      })
-    });
+  public ngOnInit(): void {
+    
+    this._userManagerService.getUserInfo(this._userId)
+      .pipe(takeUntilDestroyed(this._destroyRef))
+      .subscribe((data: UserModel) => {
+        this._user = data;
+        this.notificationForm.setValue({
+          notification: data.notification
+        });
+      });
   }
 
   public ngAfterViewInit(): void {
     this.timeZoneInput.nativeElement.value = Intl.DateTimeFormat().resolvedOptions().timeZone;
   }
 
-  protected changeStateToggle(){
-    this.user.notification = !this.notificationForm.get('notification')?.value;
+  protected changeStateToggle(): void {
+    this._user.notification = !this.notificationForm.get('notification')?.value;
   }
 
-  protected updateInfoNotification(){
-    if(this.user){
-      const userForRequest: IUserRequestModel = UserModelToIUserRequestModel(this.user);
+  protected updateInfoNotification(): void {
+    if (this._user) {
+      const userForRequest: IUserRequestModel = UserModelToIUserRequestModel(this._user);
+      
       this._userManagerService.updateUserInfo(this._userId, userForRequest)
-      .pipe(takeUntilDestroyed(this._destroyRef))
-      .subscribe(()=>this._alert.open("Информация обновлена!")
-      .pipe(takeUntilDestroyed(this._destroyRef))
-      .subscribe());
+        .pipe(takeUntilDestroyed(this._destroyRef))
+        .subscribe(() => this._alert.open("Информация обновлена!")
+          .pipe(takeUntilDestroyed(this._destroyRef))
+          .subscribe());
     }
   }
 }
