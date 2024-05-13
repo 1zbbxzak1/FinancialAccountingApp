@@ -8,79 +8,81 @@
         </li>
 
         <li class="sidebar-menu-list-item">
-            <button (click)="toggleState('isHomeClicked')"
-                    [class.active]="states['isHomeClicked']"
+            <button [class.active]="states['isHomeClicked']"
                     class="sidebar-router"
                     routerLink="/dashboard/main"
                     routerLinkActive
             >
-                <img ngSrc="{{ states['isHomeClicked'] ? 'assets/img/home_icon_active.svg' : 'assets/img/home_icon.svg' }}"
-                     alt="Главная"
-                     height="25"
-                     width="25">
+                <img
+                    alt="Главная"
+                    height="25"
+                    ngSrc="{{ states['isHomeClicked'] ? 'assets/img/home_icon_active.svg' : 'assets/img/home_icon.svg' }}"
+                    width="25"
+                >
                 <p class="sidebar-item">Главная</p>
             </button>
         </li>
 
         <li class="sidebar-menu-list-item">
-            <button (click)="toggleState('isHistoryClicked')"
-                    [class.active]="states['isHistoryClicked']"
+            <button [class.active]="states['isHistoryClicked']"
                     class="sidebar-router"
                     routerLink="/dashboard/history"
                     routerLinkActive
             >
                 <img
-                    ngSrc="{{ states['isHistoryClicked'] ? 'assets/img/history_icon_active.svg' : 'assets/img/history_icon.svg' }}"
                     alt="Главная"
                     height="25"
-                    width="25">
+                    ngSrc="{{ states['isHistoryClicked'] ? 'assets/img/history_icon_active.svg' : 'assets/img/history_icon.svg' }}"
+                    width="25"
+                >
                 <p class="sidebar-item">История</p>
             </button>
         </li>
 
         <li class="sidebar-menu-list-item">
-            <button (click)="toggleState('isUserClicked')"
-                    [class.active]="states['isUserClicked']"
+            <button [class.active]="states['isUserClicked']"
                     class="sidebar-router"
                     routerLink="/dashboard/user"
                     routerLinkActive
             >
-                <img ngSrc="{{ states['isUserClicked'] ? 'assets/img/user_icon_active.svg' : 'assets/img/user_icon.svg' }}"
-                     alt="Главная"
-                     height="25"
-                     width="25">
+                <img
+                    alt="Главная"
+                    height="25"
+                    ngSrc="{{ states['isUserClicked'] ? 'assets/img/user_icon_active.svg' : 'assets/img/user_icon.svg' }}"
+                    width="25"
+                >
                 <p class="sidebar-item">Счета</p>
             </button>
         </li>
 
         <li class="sidebar-menu-list-item">
-            <button (click)="toggleState('isCardsClicked')"
-                    [class.active]="states['isCardsClicked']"
+            <button [class.active]="states['isCardsClicked']"
                     class="sidebar-router"
                     routerLink="/dashboard/cards"
                     routerLinkActive
             >
                 <img
-                    ngSrc="{{ states['isCardsClicked'] ? 'assets/img/cards_icon_active.svg' : 'assets/img/cards_icon.svg' }}"
                     alt="Главная"
                     height="25"
-                    width="25">
+                    ngSrc="{{ states['isCardsClicked'] ? 'assets/img/cards_icon_active.svg' : 'assets/img/cards_icon.svg' }}"
+                    width="25"
+                >
                 <p class="sidebar-item">Карты</p>
             </button>
         </li>
 
         <li class="sidebar-menu-list-item">
-            <button (click)="toggleState('isPaymentsClicked')"
-                    [class.active]="states['isPaymentsClicked']"
+            <button [class.active]="states['isPaymentsClicked']"
                     class="sidebar-router"
                     routerLink="/dashboard/payments"
                     routerLinkActive
             >
                 <img
-                    ngSrc="{{ states['isPaymentsClicked'] ? 'assets/img/articles_icon_active.svg' : 'assets/img/articles_icon.svg' }}"
                     alt="Главная"
                     height="25"
-                    width="25">
+                    ngSrc="{{ states['isPaymentsClicked'] ? 'assets/img/articles_icon_active.svg' : 'assets/img/articles_icon.svg' }}"
+                    width="25"
+                >
                 <p class="sidebar-item">Платежи</p>
             </button>
         </li>

@@ -7,36 +7,27 @@ export class StateHeaderService {
         private readonly _router: Router,
     ) {
     }
+
     protected findState(): string | undefined {
-        const savedStates: string | null = localStorage.getItem('sidebarStates');
-        if (savedStates) {
-            const parsedStates: { [key: string]: boolean } = JSON.parse(savedStates);
-            for (const key in parsedStates) {
-                if (parsedStates[key]) {
-                    switch (key) {
-                        case 'isHomeClicked':
-                            return 'Главная';
-                        case 'isHistoryClicked':
-                            return 'История';
-                        case 'isUserClicked':
-                            return 'Счета';
-                        case 'isCardsClicked':
-                            return 'Карты';
-                        case 'isPaymentsClicked':
-                            return 'Платежи';
-                        case 'Settings':
-                            return 'Настройки';
-                        default:
-                            return undefined;
-                    }
-                }
-            }
+        const url: string = this._router.url;
+        let state: string | undefined;
+        if (url.includes('dashboard/main')) {
+            state = 'Главная';
+        } else if (url.includes('dashboard/history')) {
+            state = 'История';
+        } else if (url.includes('dashboard/user')) {
+            state = 'Счета';
+        } else if (url.includes('dashboard/cards')) {
+            state = 'Карты';
+        } else if (url.includes('dashboard/payments')) {
+            state = 'Платежи';
+        } else if (url.includes('dashboard/settings')) {
+            state = 'Настройки';
         }
-        return undefined;
+        return state;
     }
 
     protected navigateToSettings(): void {
-        localStorage.setItem('sidebarStates', JSON.stringify({Settings: true}));
         this._router.navigate(['dashboard/settings']);
     }
 

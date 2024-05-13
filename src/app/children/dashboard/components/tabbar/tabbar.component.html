@@ -2,12 +2,10 @@
     class="tabs"
     tuiTabBar
 >
-    <button
-        icon="{{ states['isUserClicked'] ? 'assets/img/user_icon_active.svg' : 'assets/img/user_icon.svg' }}"
-        routerLink="/dashboard/user"
-        routerLinkActive
-        tuiTabBarItem
-        (click)="toggleState('isUserClicked')"
+    <button icon="{{ states['isUserClicked'] ? 'assets/img/user_icon_active.svg' : 'assets/img/user_icon.svg' }}"
+            routerLink="/dashboard/user"
+            routerLinkActive
+            tuiTabBarItem
     >
         Счета
     </button>
@@ -17,27 +15,22 @@
         routerLink="/dashboard/payments"
         routerLinkActive
         tuiTabBarItem
-        (click)="toggleState('isPaymentsClicked')"
     >
         Платежи
     </button>
 
-    <button
-        icon="{{ states['isHomeClicked'] ? 'assets/img/home_icon_active.svg' : 'assets/img/home_icon.svg' }}"
-        routerLink="/dashboard/main"
-        routerLinkActive
-        tuiTabBarItem
-        (click)="toggleState('isHomeClicked')"
+    <button icon="{{ states['isHomeClicked'] ? 'assets/img/home_icon_active.svg' : 'assets/img/home_icon.svg' }}"
+            routerLink="/dashboard/main"
+            routerLinkActive
+            tuiTabBarItem
     >
         Главная
     </button>
 
-    <button
-        icon="{{ states['isCardsClicked'] ? 'assets/img/cards_icon_active.svg' : 'assets/img/cards_icon.svg' }}"
-        routerLink="/dashboard/cards"
-        routerLinkActive
-        tuiTabBarItem
-        (click)="toggleState('isCardsClicked')"
+    <button icon="{{ states['isCardsClicked'] ? 'assets/img/cards_icon_active.svg' : 'assets/img/cards_icon.svg' }}"
+            routerLink="/dashboard/cards"
+            routerLinkActive
+            tuiTabBarItem
     >
         Карты
     </button>
@@ -47,7 +40,6 @@
         routerLink="/dashboard/history"
         routerLinkActive
         tuiTabBarItem
-        (click)="toggleState('isHistoryClicked')"
     >
         История
     </button>

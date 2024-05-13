@@ -1,8 +1,10 @@
-import {Injectable, OnInit} from '@angular/core';
-import {Router} from "@angular/router";
+import {DestroyRef, Injectable} from '@angular/core';
+import {NavigationEnd, Router} from "@angular/router";
+import {filter} from 'rxjs/operators';
+import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
 
 @Injectable()
-export class StateBarService implements OnInit {
+export class StateBarService {
     protected states: { [key: string]: boolean } = {
         isHomeClicked: false,
         isHistoryClicked: false,
@@ -11,32 +13,41 @@ export class StateBarService implements OnInit {
         isPaymentsClicked: false,
     };
 
-    constructor(private readonly _router: Router) {
+    constructor(
+        private readonly _router: Router,
+        private readonly _destroyRef: DestroyRef
+    ) {
+        this.initStates();
+        this._router.events.pipe(
+            filter(event => event instanceof NavigationEnd),
+            takeUntilDestroyed(this._destroyRef)
+        )
+            .subscribe((): void => {
+                this.initStates();
+            });
     }
 
-    ngOnInit(): void {
-        const savedStates: string | null = localStorage.getItem('sidebarStates');
-        if (savedStates) {
-            this.states = JSON.parse(savedStates);
-        } else {
-            this.toggleState('isHomeClicked');
-            this._router.navigate(['dashboard/main']);
+    private initStates(): void {
+        const url: string = this._router.url;
+        this.resetStates();
+        if (url.includes('dashboard/main')) {
+            this.states['isHomeClicked'] = true;
+        } else if (url.includes('dashboard/history')) {
+            this.states['isHistoryClicked'] = true;
+        } else if (url.includes('dashboard/user')) {
+            this.states['isUserClicked'] = true;
+        } else if (url.includes('dashboard/cards')) {
+            this.states['isCardsClicked'] = true;
+        } else if (url.includes('dashboard/payments')) {
+            this.states['isPaymentsClicked'] = true;
         }
     }
 
-    public toggleState(stateName: string): void {
-        const currentState: boolean = this.states[stateName];
-        if (currentState) {
-            return;
-        }
+    private resetStates(): void {
         for (const key in this.states) {
             if (Object.prototype.hasOwnProperty.call(this.states, key)) {
-                if (Object.prototype.hasOwnProperty.call(this.states, key)) {
-                    this.states[key] = (key === stateName);
-                }
+                this.states[key] = false;
             }
         }
-        this.states[stateName] = true;
-        localStorage.setItem('sidebarStates', JSON.stringify(this.states));
     }
 }
