@@ -42,6 +42,7 @@ import {BalanceChartComponent} from './pages/history/components/balance-chart/ba
 import {TuiAxesModule, TuiBarChartModule, TuiBarSetModule} from "@taiga-ui/addon-charts";
 import {LastOperationsComponent} from "./pages/main/components/last-operations/last-operations.component";
 import {DateFormatterPipe} from './pipes/date-formatter.pipe';
+import {CardSelectionService} from "./services/my-cards/card-selection.service";
 
 @NgModule({
     declarations: [
@@ -104,6 +105,7 @@ import {DateFormatterPipe} from './pipes/date-formatter.pipe';
     ],
     providers: [
         StateBarService,
+        CardSelectionService,
     ]
 })
 export class DashboardModule {

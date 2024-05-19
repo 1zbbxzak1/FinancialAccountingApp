@@ -2,6 +2,7 @@ import {ChangeDetectorRef, Component, DestroyRef, HostListener, inject, OnInit} 
 import {CardManagerService} from "../../../../data/services/card/card.manager.service";
 import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
 import {CardModel} from "../../../../data/models/card/card.model";
+import {CardSelectionService} from "../../services/my-cards/card-selection.service";
 
 @Component({
     selector: 'app-my-cards',
@@ -15,6 +16,7 @@ export class MyCardsComponent implements OnInit {
     protected indexSelectedCard: number = 0;
     protected cards: CardModel[] = [];
     private readonly _cardManager: CardManagerService = inject(CardManagerService);
+    private readonly _cardSelectionService: CardSelectionService  = inject(CardSelectionService);
     private readonly _destroyRef: DestroyRef = inject(DestroyRef);
     private readonly _changeDetectorRef: ChangeDetectorRef = inject(ChangeDetectorRef);
     private readonly _uid: string = localStorage.getItem('uid')!;
@@ -23,6 +25,11 @@ export class MyCardsComponent implements OnInit {
     ngOnInit(): void {
         this.updateItemsCount(window.innerWidth);
 
+        this._cardSelectionService.selectedCardId.subscribe(
+            (cardId: string | null): void => {
+                this._selectedCardId = cardId;
+            }
+        );
         this._cardManager.getAll(this._uid)
             .pipe(
                 takeUntilDestroyed(this._destroyRef),
@@ -31,15 +38,15 @@ export class MyCardsComponent implements OnInit {
                 this.cards = cards;
 
                 if (this._selectedCardId) {
-                    const selectedCard: CardModel = this.getCardById(this._selectedCardId!);
-                    this.setIndex(this._selectedCardId!);
+                    const selectedCard: CardModel = this.getCardById(this._selectedCardId);
+                    this.setIndex(this._selectedCardId);
                     this.selectCard(selectedCard);
                 } else if (this.cards.length > 0) {
                     this.selectCard(this.cards[0]);
                 }
+
                 this._changeDetectorRef.detectChanges();
             });
-        this._changeDetectorRef.detectChanges();
     }
 
     @HostListener('window:resize', ['$event'])
@@ -60,7 +67,7 @@ export class MyCardsComponent implements OnInit {
 
     selectCard(selectedCard: CardModel): void {
         selectedCard.isSelected = true;
-        localStorage.setItem('selectedCardId', selectedCard.cardId);
+        this._cardSelectionService.setSelectedCardId(selectedCard.cardId);
     }
 
     getCardById(cardId: string): CardModel {
