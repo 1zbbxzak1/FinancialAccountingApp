@@ -5,6 +5,7 @@
             <app-header></app-header>
             <div class="content-dashboard">
                 <app-my-cards></app-my-cards>
+                <app-balance-chart></app-balance-chart>
             </div>
             <app-tabbar *ngIf="Capacitor.isNativePlatform() || window.innerWidth <= 1000"></app-tabbar>
         </div>

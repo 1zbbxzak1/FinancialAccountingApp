@@ -34,6 +34,7 @@ import { TabbarComponent } from "./components/tabbar/tabbar.component";
 import { TuiTabBarModule } from "@taiga-ui/addon-mobile";
 import {StateBarService} from "./services/state-bar/state-bar.service";
 import { MyCardsComponent } from './components/my-cards/my-cards.component';
+import { BalanceChartComponent } from './pages/history/components/balance-chart/balance-chart.component';
 import {TuiAxesModule, TuiBarChartModule, TuiBarSetModule} from "@taiga-ui/addon-charts";
 
 @NgModule({
@@ -54,6 +55,7 @@ import {TuiAxesModule, TuiBarChartModule, TuiBarSetModule} from "@taiga-ui/addon
         CheckDownloadDirective,
         TabbarComponent,
         MyCardsComponent,
+        BalanceChartComponent,
     ],
     imports: [
         NgOptimizedImage,

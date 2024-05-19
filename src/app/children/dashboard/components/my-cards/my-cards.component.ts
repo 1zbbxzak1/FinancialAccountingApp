@@ -33,12 +33,12 @@ export class MyCardsComponent implements OnInit {
             .subscribe((cards: CardModel[]): void => {
                 this.cards = cards;
 
-                if (!this._selectedCardId && this.cards.length > 0) {
-                    this.selectCard(this.cards[0]);
-                } else {
+                if (this._selectedCardId) {
                     const selectedCard: CardModel = this.getCardById(this._selectedCardId!);
                     this.setIndex(this._selectedCardId!);
                     this.selectCard(selectedCard);
+                } else if (this.cards.length > 0) {
+                    this.selectCard(this.cards[0]);
                 }
             });
         this._changeDetectorRef.detectChanges();

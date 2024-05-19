@@ -9,6 +9,7 @@ export class OperationModel implements IOperationResponseModel {
     public category: string;
     public amount: number;
     public dateTimestamp: number;
+    public date: Date;
 
     constructor(data: IOperationRequestModel, operationId: string) {
         this.operationId = operationId;
@@ -17,5 +18,6 @@ export class OperationModel implements IOperationResponseModel {
         this.category = data.category;
         this.amount = data.amount;
         this.dateTimestamp = data.dateTimestamp;
+        this.date = new Date(data.dateTimestamp);
     }
 }
