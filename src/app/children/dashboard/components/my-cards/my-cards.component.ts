@@ -1,4 +1,4 @@
-import {ChangeDetectorRef, Component, DestroyRef, inject, Input, OnInit} from '@angular/core';
+import {ChangeDetectorRef, Component, DestroyRef, HostListener, inject, Input, OnInit} from '@angular/core';
 import {CardManagerService} from "../../../../data/services/card/card.manager.service";
 import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
 import {CardModel} from "../../../../data/models/card/card.model";
@@ -10,7 +10,7 @@ import {CardModel} from "../../../../data/models/card/card.model";
 })
 export class MyCardsComponent implements OnInit {
 
-    @Input() public itemsCount: number = 2;
+    public itemsCount: number = 2;
 
     private readonly _cardManager: CardManagerService = inject(CardManagerService);
     private readonly _destroyRef: DestroyRef = inject(DestroyRef);
@@ -20,6 +20,7 @@ export class MyCardsComponent implements OnInit {
 
 
     ngOnInit(): void {
+        this.updateItemsCount(window.innerWidth);
 
         this._cardManager.getAll(this._uid)
             .pipe(
@@ -31,6 +32,15 @@ export class MyCardsComponent implements OnInit {
                     this.cards[0].isSelected = true;
                 }
             });
+    }
+
+    @HostListener('window:resize', ['$event'])
+    onResize(event: any): void {
+        this.updateItemsCount(event.target.innerWidth);
+    }
+
+    updateItemsCount(width: number): void {
+        this.itemsCount = width < 600 ? 1 : this.itemsCount;
     }
 
     deselectAllExcept(selectedCard: CardModel): void {

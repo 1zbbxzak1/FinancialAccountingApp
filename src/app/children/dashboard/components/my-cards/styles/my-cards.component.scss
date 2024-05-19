@@ -3,24 +3,40 @@
     font-size: 22px;
     color: #343c6a;
 
-    margin-left: 64px;
+    margin-left: 80px;
     margin-bottom: 20px;
 }
 
 .my-cards-carousel-main-container {
     display: flex;
     align-items: center;
+
+    .my-cards-carousel {
+        background: transparent;
+        width: 780px;
+
+        .my-cards-carousel-item-container {
+            margin: 0;
+            padding: 0;
+            width: fit-content;
+        }
+    }
 }
 
-.my-cards-carousel-item-container {
-    margin: 0;
-    padding: 0;
-    width: fit-content;
+@media (max-width: 1000px) {
+    .my-cards-title {
+        margin-left: 10px;
+    }
+
+    .my-cards-carousel-main-container {
+
+        .my-cards-btn {
+            display: none;
+        }
+    }
 }
 
-.my-cards-carousel {
-    background: transparent;
 
-    width: 780px;
-}
+
+
 
