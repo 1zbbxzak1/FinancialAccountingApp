@@ -1,4 +1,4 @@
-import {ChangeDetectorRef, Component, DestroyRef, HostListener, inject, Input, OnInit} from '@angular/core';
+import {ChangeDetectorRef, Component, DestroyRef, HostListener, inject, OnInit} from '@angular/core';
 import {CardManagerService} from "../../../../data/services/card/card.manager.service";
 import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
 import {CardModel} from "../../../../data/models/card/card.model";
@@ -12,16 +12,13 @@ export class MyCardsComponent implements OnInit {
 
     public itemsCount: number = 2;
     public maxItemsCount: number = 2;
-
+    protected indexSelectedCard: number = 0;
+    protected cards: CardModel[] = [];
     private readonly _cardManager: CardManagerService = inject(CardManagerService);
     private readonly _destroyRef: DestroyRef = inject(DestroyRef);
     private readonly _changeDetectorRef: ChangeDetectorRef = inject(ChangeDetectorRef);
-
     private readonly _uid: string = localStorage.getItem('uid')!;
     private _selectedCardId: string | null = localStorage.getItem('selectedCardId');
-    protected indexSelectedCard: number = 0;
-    protected cards: CardModel[] = [];
-
 
     ngOnInit(): void {
         this.updateItemsCount(window.innerWidth);
@@ -40,6 +37,7 @@ export class MyCardsComponent implements OnInit {
                 } else if (this.cards.length > 0) {
                     this.selectCard(this.cards[0]);
                 }
+                this._changeDetectorRef.detectChanges();
             });
         this._changeDetectorRef.detectChanges();
     }
@@ -62,7 +60,7 @@ export class MyCardsComponent implements OnInit {
 
     selectCard(selectedCard: CardModel): void {
         selectedCard.isSelected = true;
-        localStorage.setItem('selectedCardId', selectedCard.cardId)
+        localStorage.setItem('selectedCardId', selectedCard.cardId);
     }
 
     getCardById(cardId: string): CardModel {

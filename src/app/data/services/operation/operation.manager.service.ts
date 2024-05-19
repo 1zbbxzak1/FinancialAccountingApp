@@ -1,6 +1,6 @@
 import {OperationService} from "./operation.service";
 import {inject} from "@angular/core";
-import {catchError, NEVER, Observable, of} from "rxjs";
+import {catchError, Observable} from "rxjs";
 import {IOperationRequestModel} from "../../request-models/operation/IOperation.request-model";
 import {OperationModel} from "../../models/operation/operation.model";
 import {CustomError} from "../../../global-error-handler/global-error-handler.service";

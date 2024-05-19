@@ -4,10 +4,19 @@
         <div class="main-content-dashboard-full">
             <app-header></app-header>
             <div class="content-dashboard">
-                <div class="content-dashboard-header">
-                    <p class="content-dashboard-title">Мои карты</p>
-                </div>
-                <router-outlet></router-outlet>
+                <section class="first-main-section">
+                    <app-my-cards></app-my-cards>
+
+                    <app-last-operations></app-last-operations>
+                </section>
+
+                <section class="second-main-section">
+
+                </section>
+
+                <section class="third-main-section">
+
+                </section>
             </div>
             <app-tabbar *ngIf="Capacitor.isNativePlatform() || window.innerWidth <= 1000"></app-tabbar>
         </div>

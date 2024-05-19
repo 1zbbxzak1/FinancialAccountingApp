@@ -1,0 +1,13 @@
+.first-main-section {
+    display: flex;
+    min-width: 100%;
+    gap: 30px;
+
+    margin-top: 24px;
+}
+
+@media (max-width: 1000px) {
+    .first-main-section {
+        flex-direction: column;
+    }
+}

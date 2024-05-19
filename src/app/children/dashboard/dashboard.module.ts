@@ -1,6 +1,6 @@
 import {NgModule} from "@angular/core";
 import {MainComponent} from "./pages/main/main.component";
-import {NgForOf, NgIf, NgOptimizedImage} from "@angular/common";
+import {CommonModule, CurrencyPipe, NgForOf, NgIf, NgOptimizedImage} from "@angular/common";
 import {CardComponent} from "./components/card/card.component";
 import {UserComponent} from './pages/user/user.component';
 import {HistoryComponent} from './pages/history/history.component';
@@ -9,33 +9,39 @@ import {PaymentsComponent} from './pages/payments/payments.component';
 import {
     TuiButtonModule,
     TuiDataListModule,
-    TuiFormatNumberPipeModule, TuiHintModule,
+    TuiFormatNumberPipeModule,
+    TuiHintModule,
     TuiHostedDropdownModule,
     TuiRootModule
 } from "@taiga-ui/core";
 import {
     TuiAccordionModule,
     TuiCarouselModule,
-    TuiDataListDropdownManagerModule, TuiDataListWrapperModule, TuiIslandModule, TuiSelectModule,
+    TuiDataListDropdownManagerModule,
+    TuiDataListWrapperModule,
+    TuiIslandModule,
+    TuiSelectModule,
     TuiTabsModule,
     TuiToggleModule
 } from "@taiga-ui/kit";
 import {SettingsComponent} from './pages/settings/settings.component';
 import {HeaderComponent} from "./components/header/header.component";
 import {SidebarComponent} from "./components/sidebar/sidebar.component";
-import { EditProfileComponent } from './pages/settings/pages/edit-profile/edit-profile.component';
-import { PreferencesComponent } from './pages/settings/pages/preferences/preferences.component';
-import { SecurityComponent } from './pages/settings/pages/security/security.component';
-import { NavigationComponent } from './pages/settings/components/navigation/navigation.component';
+import {EditProfileComponent} from './pages/settings/pages/edit-profile/edit-profile.component';
+import {PreferencesComponent} from './pages/settings/pages/preferences/preferences.component';
+import {SecurityComponent} from './pages/settings/pages/security/security.component';
+import {NavigationComponent} from './pages/settings/components/navigation/navigation.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import { AppRoutingModule } from "../../app-routing.module";
-import { CheckDownloadDirective } from './pages/settings/pages/edit-profile/directive/check-download.directive';
-import { TabbarComponent } from "./components/tabbar/tabbar.component";
-import { TuiTabBarModule } from "@taiga-ui/addon-mobile";
+import {AppRoutingModule} from "../../app-routing.module";
+import {CheckDownloadDirective} from './pages/settings/pages/edit-profile/directive/check-download.directive';
+import {TabbarComponent} from "./components/tabbar/tabbar.component";
+import {TuiTabBarModule} from "@taiga-ui/addon-mobile";
 import {StateBarService} from "./services/state-bar/state-bar.service";
-import { MyCardsComponent } from './components/my-cards/my-cards.component';
-import { BalanceChartComponent } from './pages/history/components/balance-chart/balance-chart.component';
+import {MyCardsComponent} from './components/my-cards/my-cards.component';
+import {BalanceChartComponent} from './pages/history/components/balance-chart/balance-chart.component';
 import {TuiAxesModule, TuiBarChartModule, TuiBarSetModule} from "@taiga-ui/addon-charts";
+import {LastOperationsComponent} from "./pages/main/components/last-operations/last-operations.component";
+import {DateFormatterPipe} from './pipes/date-formatter.pipe';
 
 @NgModule({
     declarations: [
@@ -56,6 +62,8 @@ import {TuiAxesModule, TuiBarChartModule, TuiBarSetModule} from "@taiga-ui/addon
         TabbarComponent,
         MyCardsComponent,
         BalanceChartComponent,
+        LastOperationsComponent,
+        DateFormatterPipe,
     ],
     imports: [
         NgOptimizedImage,
@@ -73,6 +81,7 @@ import {TuiAxesModule, TuiBarChartModule, TuiBarSetModule} from "@taiga-ui/addon
         TuiToggleModule,
         ReactiveFormsModule,
         AppRoutingModule,
+        CommonModule,
         TuiRootModule,
         TuiButtonModule,
         ReactiveFormsModule,
@@ -87,6 +96,7 @@ import {TuiAxesModule, TuiBarChartModule, TuiBarSetModule} from "@taiga-ui/addon
         TuiBarChartModule,
         FormsModule,
         TuiHintModule,
+        CurrencyPipe,
     ],
     exports: [
         CardComponent,
