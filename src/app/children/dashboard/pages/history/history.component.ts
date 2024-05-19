@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component} from '@angular/core';
+import {ChangeDetectionStrategy, ChangeDetectorRef, Component, inject, OnInit} from '@angular/core';
 import {Capacitor, CapacitorGlobal} from "@capacitor/core";
 import {CardModel} from "../../../../data/models/card/card.model";
 
@@ -8,8 +8,14 @@ import {CardModel} from "../../../../data/models/card/card.model";
     styleUrl: './styles/history.master.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class HistoryComponent {
+export class HistoryComponent implements OnInit {
 
     protected readonly Capacitor: CapacitorGlobal = Capacitor;
     protected readonly window: Window = window;
+    private readonly _changeDetectorRef: ChangeDetectorRef = inject(ChangeDetectorRef);
+
+
+    ngOnInit(): void {
+        this._changeDetectorRef.detectChanges();
+    }
 }

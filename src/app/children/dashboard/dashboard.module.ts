@@ -6,11 +6,17 @@ import {UserComponent} from './pages/user/user.component';
 import {HistoryComponent} from './pages/history/history.component';
 import {CardsComponent} from './pages/cards/cards.component';
 import {PaymentsComponent} from './pages/payments/payments.component';
-import {TuiButtonModule, TuiDataListModule, TuiHostedDropdownModule, TuiRootModule} from "@taiga-ui/core";
+import {
+    TuiButtonModule,
+    TuiDataListModule,
+    TuiFormatNumberPipeModule, TuiHintModule,
+    TuiHostedDropdownModule,
+    TuiRootModule
+} from "@taiga-ui/core";
 import {
     TuiAccordionModule,
     TuiCarouselModule,
-    TuiDataListDropdownManagerModule, TuiIslandModule,
+    TuiDataListDropdownManagerModule, TuiDataListWrapperModule, TuiIslandModule, TuiSelectModule,
     TuiTabsModule,
     TuiToggleModule
 } from "@taiga-ui/kit";
@@ -21,13 +27,14 @@ import { EditProfileComponent } from './pages/settings/pages/edit-profile/edit-p
 import { PreferencesComponent } from './pages/settings/pages/preferences/preferences.component';
 import { SecurityComponent } from './pages/settings/pages/security/security.component';
 import { NavigationComponent } from './pages/settings/components/navigation/navigation.component';
-import { ReactiveFormsModule } from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { AppRoutingModule } from "../../app-routing.module";
 import { CheckDownloadDirective } from './pages/settings/pages/edit-profile/directive/check-download.directive';
 import { TabbarComponent } from "./components/tabbar/tabbar.component";
 import { TuiTabBarModule } from "@taiga-ui/addon-mobile";
 import {StateBarService} from "./services/state-bar/state-bar.service";
 import { MyCardsComponent } from './components/my-cards/my-cards.component';
+import {TuiAxesModule, TuiBarChartModule, TuiBarSetModule} from "@taiga-ui/addon-charts";
 
 @NgModule({
     declarations: [
@@ -70,6 +77,14 @@ import { MyCardsComponent } from './components/my-cards/my-cards.component';
         NgOptimizedImage,
         TuiCarouselModule,
         TuiIslandModule,
+        TuiBarSetModule,
+        TuiFormatNumberPipeModule,
+        TuiAxesModule,
+        TuiSelectModule,
+        TuiDataListWrapperModule,
+        TuiBarChartModule,
+        FormsModule,
+        TuiHintModule,
     ],
     exports: [
         CardComponent,

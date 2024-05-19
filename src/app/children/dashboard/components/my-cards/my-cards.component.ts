@@ -11,11 +11,15 @@ import {CardModel} from "../../../../data/models/card/card.model";
 export class MyCardsComponent implements OnInit {
 
     public itemsCount: number = 2;
+    public maxItemsCount: number = 2;
 
     private readonly _cardManager: CardManagerService = inject(CardManagerService);
     private readonly _destroyRef: DestroyRef = inject(DestroyRef);
+    private readonly _changeDetectorRef: ChangeDetectorRef = inject(ChangeDetectorRef);
 
     private readonly _uid: string = localStorage.getItem('uid')!;
+    private _selectedCardId: string | null = localStorage.getItem('selectedCardId');
+    protected indexSelectedCard: number = 0;
     protected cards: CardModel[] = [];
 
 
@@ -28,10 +32,16 @@ export class MyCardsComponent implements OnInit {
             )
             .subscribe((cards: CardModel[]): void => {
                 this.cards = cards;
-                if (this.cards.length > 0) {
-                    this.cards[0].isSelected = true;
+
+                if (!this._selectedCardId && this.cards.length > 0) {
+                    this.selectCard(this.cards[0]);
+                } else {
+                    const selectedCard: CardModel = this.getCardById(this._selectedCardId!);
+                    this.setIndex(this._selectedCardId!);
+                    this.selectCard(selectedCard);
                 }
             });
+        this._changeDetectorRef.detectChanges();
     }
 
     @HostListener('window:resize', ['$event'])
@@ -40,12 +50,27 @@ export class MyCardsComponent implements OnInit {
     }
 
     updateItemsCount(width: number): void {
-        this.itemsCount = width < 600 ? 1 : this.itemsCount;
+        this.itemsCount = width < 600 ? 1 : this.maxItemsCount;
     }
 
     deselectAllExcept(selectedCard: CardModel): void {
+        this.selectCard(selectedCard);
         this.cards.forEach((card: CardModel): void => {
             card.isSelected = card === selectedCard;
         });
+    }
+
+    selectCard(selectedCard: CardModel): void {
+        selectedCard.isSelected = true;
+        localStorage.setItem('selectedCardId', selectedCard.cardId)
+    }
+
+    getCardById(cardId: string): CardModel {
+        return this.cards.find((card: CardModel): boolean => card.cardId === cardId)!;
+    }
+
+    setIndex(cardId: string): void {
+        const index: number = this.cards.findIndex((card: CardModel): boolean => card.cardId === cardId);
+        this.indexSelectedCard = (index === this.cards.length - 1) ? index - 1 : index;
     }
 }

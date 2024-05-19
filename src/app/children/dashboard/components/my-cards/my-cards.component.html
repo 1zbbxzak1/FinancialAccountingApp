@@ -17,6 +17,7 @@
         class="my-cards-carousel"
         [itemsCount]="itemsCount"
         [draggable]="true"
+        [index]="indexSelectedCard"
     >
         <ng-container *ngFor="let card of cards" class="my-cards-carousel-list">
             <tui-island *tuiItem class="my-cards-carousel-item-container">

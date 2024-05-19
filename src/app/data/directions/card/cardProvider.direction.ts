@@ -1,1 +1,1 @@
-export type cardProvider = "mir" | "masterCard" | "visa"
+export type cardProvider = "mir" | "mastercard" | "visa"
