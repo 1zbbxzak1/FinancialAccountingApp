@@ -6,6 +6,7 @@
             <div class="content-dashboard">
                 <app-my-cards [itemsCount]="2"></app-my-cards>
             </div>
+            <app-card [card]="myCard"></app-card>
             <app-tabbar *ngIf="Capacitor.isNativePlatform() || window.innerWidth <= 1000"></app-tabbar>
         </div>
     </div>

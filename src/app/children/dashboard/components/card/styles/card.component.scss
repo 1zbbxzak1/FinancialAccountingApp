@@ -11,83 +11,74 @@ ul {
     line-height: 15px;
     color: rgb(52, 60, 106);
     background: rgb(255, 255, 255);
-}
 
-.card-container {
-    padding: 25px 25px 17px 25px;
-}
+    .card-header {
+        padding: 25px 24px 0;
 
-.card-header {
-    display: flex;
-    justify-content: space-between;
 
-    .balance {
-        margin-top: 5px;
-        font-size: 20px;
+        display: flex;
+        justify-content: space-between;
+
+        .balance {
+            margin-top: 5px;
+            font-size: 20px;
+        }
+    }
+
+    .card-content {
+        padding: 25px 24px 0;
+
+        display: flex;
+        height: 80px;
+        overflow: hidden;
+
+
+        .list-item-title {
+            color: rgba(113, 142, 191, 0.7);
+            font-size: 12px;
+            font-weight: 400;
+            line-height: 15px;
+        }
+
+        .list-item-value {
+            font-size: 15px;
+            font-weight: 250;
+            line-height: 18px;
+        }
+
+        .content-list-card-name {
+            width: 200px;
+            margin-right: auto;
+        }
+
+        .content-list-date-created {
+            width: 100px;
+        }
+    }
+
+    .card-footer {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border-radius: 0 0 25px 25px;
+        padding: 0 24px;
+        height: 70px;
+
+        border: 1px solid rgb(223, 234, 242);
+
+        .footer-title {
+            font-size: 18px;
+            font-weight: 250;
+            line-height: 27px;
+        }
+
+        .payment-system-img {
+            display: block;
+            margin: 0;
+            padding: 0;
+        }
     }
 }
-
-
-
-.card-content {
-    padding-top: 25px;
-    display: flex;
-    max-height: 70px;
-    overflow: hidden;
-
-
-    .list-item-title {
-        color: rgba(113, 142, 191, 0.7);
-        font-size: 12px;
-        font-weight: 400;
-        line-height: 15px;
-    }
-
-    .list-item-value {
-        font-size: 15px;
-        font-weight: 250;
-        line-height: 18px;
-    }
-
-    .content-list-card-name {
-        width: 200px;
-        margin-right: auto;
-    }
-
-    .content-list-date-created {
-        width: 100px;
-    }
-}
-
-.card-footer {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    border-radius: 0 0 25px 25px;
-    padding: 0 24px;
-    height: 70px;
-
-    border: 1px solid rgb(223, 234, 242);
-
-    .footer-title {
-        font-size: 18px;
-        font-weight: 250;
-        line-height: 27px;
-    }
-
-    .payment-system-img {
-        display: block;
-        margin: 0;
-        padding: 0;
-    }
-}
-
-
 
 .card:hover {
     transform: scale(1.02);
@@ -118,58 +109,54 @@ ul {
     .card {
         width: 265px;
         height: 170px;
-    }
 
-    .card-container {
-        padding: 17px 20px 10px 20px;
-    }
+        .card-header {
+            .chip-icon-img {
+                width: 29px;
+                height: 29px;
+            }
 
-    .card-header {
-        .chip-icon-img {
-            width: 29px;
-            height: 29px;
+            .balance {
+                font-size: 16px;
+            }
+
+            .list-item-title {
+                font-size: 13px;
+            }
         }
 
-        .balance {
-            font-size: 16px;
+        .card-content {
+            padding-top: 10px;
+            height: 50px;
+
+            .list-item-title {
+                font-size: 10px;
+            }
+
+            .list-item-value {
+                font-size: 13px;
+            }
+
+            .content-list-card-name {
+                width: 150px;
+            }
+
+            .content-list-date-created {
+                width: 80px;
+            }
         }
 
-        .list-item-title {
-            font-size: 13px;
-        }
-    }
+        .card-footer {
+            height: 51px;
 
-    .card-content {
-        padding-top: 10px;
-        height: 50px;
+            .footer-title {
+                font-size: 15px;
+            }
 
-        .list-item-title {
-            font-size: 10px;
-        }
-
-        .list-item-value {
-            font-size: 13px;
-        }
-
-        .content-list-card-name {
-            width: 150px;
-        }
-
-        .content-list-date-created {
-            width: 80px;
-        }
-    }
-
-    .card-footer {
-        height: 51px;
-
-        .footer-title {
-            font-size: 15px;
-        }
-
-        .payment-system-img {
-            width: 40px;
-            height: 26.6px;
+            .payment-system-img {
+                width: 40px;
+                height: 26.6px;
+            }
         }
     }
 }
