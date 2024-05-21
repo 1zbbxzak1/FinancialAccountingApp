@@ -47,6 +47,7 @@ import { TransactionComponent } from './pages/user/components/transaction/transa
 import { OperationChartComponent } from './pages/user/components/operation-chart/operation-chart.component';
 import { CardOperationListComponent } from './pages/user/components/card-operation-list/card-operation-list.component';
 import { CategoryComponent } from './pages/user/components/category/category.component';
+import { OperationAccountingService } from "./services/operation/operation-accounting.service";
 
 @NgModule({
     declarations: [
@@ -114,6 +115,7 @@ import { CategoryComponent } from './pages/user/components/category/category.com
     providers: [
         StateBarService,
         CardSelectionService,
+        OperationAccountingService
     ]
 })
 export class DashboardModule {

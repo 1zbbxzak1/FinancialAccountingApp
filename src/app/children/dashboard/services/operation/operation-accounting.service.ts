@@ -58,11 +58,15 @@ export class OperationAccountingService {
   public getAllDatesOperations(operations: OperationModel[]): Observable<string[]>{
     return of(operations).pipe(
       map(ops =>{
-        let dates!: string[];
+        let months: string[] = [];
         for(let i=0; i < ops.length; i++){
-          dates.push(ops[i].dateTimestamp ? new Date(ops[i].dateTimestamp).toLocaleDateString() : '');
+          if (ops[i].date) {
+            let date = new Date(ops[i].date);
+            let month = date.toLocaleString('default', { month: 'long' });
+            months.push(month);
+          }
         }
-        return dates;
+        return months;
       })
     )
   }

@@ -27,7 +27,6 @@ export class UserComponent {
             dateTimestamp: 0
         }, '')
     ]);
-
     cards$ = this._cards.asObservable();
     operations$ = this._operations.asObservable();
 
@@ -85,6 +84,7 @@ export class UserComponent {
             }
             else{
                 this._operations.next(data);
+                console.log(this._operations);
             }
         })
     }

@@ -1,1 +1,10 @@
-<p>{{data[0].name}}</p>
+<tui-axes
+    class="axes"
+    [axisXLabels]="labelsX"
+    [axisYLabels]="labelsY"
+>
+    <tui-bar-chart
+        [max]="10000"
+        [value]="values"
+    ></tui-bar-chart>
+</tui-axes>
