@@ -1,0 +1,14 @@
+.transaction-container__list__item{
+    display: flex;
+    justify-content: space-between;
+    .transaction-container__list__item__container__descreption{
+        margin-top: 10px;
+    }
+    .transaction-container__list__item__text{
+        margin-top: 18px;
+        color: rgb(113, 142, 191);
+        font-size: 16px;
+        font-weight: 400;
+        text-align: left;
+    }
+}
