@@ -1,0 +1,18 @@
+.category-container__list__item{
+    display: flex;
+    justify-content: space-between;
+    .category-container__list__item__name{
+        color: rgb(177, 177, 177);
+        font-size: 16px;
+        font-weight: 500;
+        text-align: left;
+        margin-top: 15px;
+    }
+    .category-container__list__item__amount{
+        color: rgb(113, 142, 191);
+        font-size: 16px;
+        font-weight: 400;
+        text-align: right;
+        margin-top: 15px;
+    }
+}

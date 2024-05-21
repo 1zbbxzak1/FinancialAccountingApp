@@ -43,6 +43,10 @@ import {TuiAxesModule, TuiBarChartModule, TuiBarSetModule} from "@taiga-ui/addon
 import {LastOperationsComponent} from "./pages/main/components/last-operations/last-operations.component";
 import {DateFormatterPipe} from './pipes/date-formatter.pipe';
 import {CardSelectionService} from "./services/my-cards/card-selection.service";
+import { TransactionComponent } from './pages/user/components/transaction/transaction.component';
+import { OperationChartComponent } from './pages/user/components/operation-chart/operation-chart.component';
+import { CardOperationListComponent } from './pages/user/components/card-operation-list/card-operation-list.component';
+import { CategoryComponent } from './pages/user/components/category/category.component';
 
 @NgModule({
     declarations: [
@@ -65,6 +69,10 @@ import {CardSelectionService} from "./services/my-cards/card-selection.service";
         BalanceChartComponent,
         LastOperationsComponent,
         DateFormatterPipe,
+        TransactionComponent,
+        OperationChartComponent,
+        CardOperationListComponent,
+        CategoryComponent,
     ],
     imports: [
         NgOptimizedImage,
