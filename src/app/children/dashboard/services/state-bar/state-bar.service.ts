@@ -15,7 +15,7 @@ export class StateBarService {
 
     constructor(
         private readonly _router: Router,
-        private readonly _destroyRef: DestroyRef
+        private readonly _destroyRef: DestroyRef,
     ) {
         this.initStates();
         this._router.events.pipe(

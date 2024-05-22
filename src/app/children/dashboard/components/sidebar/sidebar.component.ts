@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component} from '@angular/core';
+import {ChangeDetectionStrategy, Component, HostListener, OnInit} from '@angular/core';
 import {StateBarService} from "../../services/state-bar/state-bar.service";
 
 @Component({
@@ -7,5 +7,19 @@ import {StateBarService} from "../../services/state-bar/state-bar.service";
     styleUrl: './styles/sidebar.component.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SidebarComponent extends StateBarService {
+export class SidebarComponent extends StateBarService implements OnInit {
+    protected isSidebarVisible: boolean = false;
+
+    @HostListener('window:resize', ['$event'])
+    onResize(): void {
+        this.checkWidth();
+    }
+
+    ngOnInit(): void {
+        this.checkWidth();
+    }
+
+    private checkWidth(): void {
+        this.isSidebarVisible = window.innerWidth > 1000;
+    }
 }
