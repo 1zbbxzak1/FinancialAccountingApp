@@ -30,3 +30,33 @@
         }
     }
 }
+
+@media(max-width: 1300px) {
+    .content-dashboard__result-list{
+        max-width: 700px;
+        flex-wrap: wrap;
+    }
+}
+
+@media(max-width: 760px){
+    .content-dashboard__result-list__item{
+        max-width: 205px;
+    }
+    .result-list__item__container__title{
+        font-size: 10px;
+    }
+    .result-list__item__container__balance{
+        font-size: 16px;
+    }
+}
+
+@media(max-width: 480px){
+    .content-dashboard__result-list__item{
+        max-width: 200px;
+    }
+    .result-list__item__container{
+        font-size: 10px;
+        font-weight: 400;
+    }
+    
+}

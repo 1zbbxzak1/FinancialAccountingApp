@@ -21,14 +21,15 @@ export class UserComponent {
     private _operations = new BehaviorSubject<OperationModel[]>([
         new OperationModel({
             cardId: '',
-            name: 'no operations',
+            name: 'Операций по этой карте еще не было',
             category: '',
             amount: 0,
             dateTimestamp: 0
         }, '')
     ]);
-    cards$ = this._cards.asObservable();
-    operations$ = this._operations.asObservable();
+    
+    protected cards$ = this._cards.asObservable();
+    protected operations$ = this._operations.asObservable();
 
     
     
@@ -55,7 +56,7 @@ export class UserComponent {
                     this._operations.next([
                         new OperationModel({
                             cardId: '',
-                            name: 'no operations',
+                            name: 'Операций по этой карте еще не было',
                             category: '',
                             amount: 0,
                             dateTimestamp: 0
@@ -76,7 +77,7 @@ export class UserComponent {
                 this._operations.next([
                     new OperationModel({
                         cardId: '',
-                        name: 'no operations',
+                        name: 'Операций по этой карте еще не было',
                         category: '',
                         amount: 0,
                         dateTimestamp: 0

@@ -1,9 +1,8 @@
 <section class="transaction-container__list__item" >
-    <img class="transaction-container__list__item__img" height="55" ngSrc="assets/img/profile-logo.svg" width="55">
+    <img class="transaction-container__list__item__img" height="55" src="{{imageUrl}}" width="55">
     <div class="transaction-container__list__item__container__descreption">
         <h3 class="container__descreption__title">{{transaction.name}}</h3>
-        <p class="container__descreption__date">{{transaction.dateTimestamp}}</p>
+        <p class="container__descreption__date">{{date}}</p>
     </div>
-    <p class="transaction-container__list__item__text"></p>
-    <p class="transaction-container__list__item__text amount">{{transaction.amount}}₽</p>
+    <p class="transaction-container__list__item__text amount" #amount>{{transaction.amount}}₽</p>
 </section>

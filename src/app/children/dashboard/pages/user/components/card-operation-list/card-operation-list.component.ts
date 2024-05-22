@@ -1,10 +1,10 @@
-import { Component, DestroyRef, Input, ChangeDetectionStrategy } from '@angular/core';
+import { Component, DestroyRef, Input, ChangeDetectionStrategy, OnInit } from '@angular/core';
 import { OperationModel } from '../../../../../../data/models/operation/operation.model';
 import { OperationAccountingService } from '../../../../services/operation/operation-accounting.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { CardModel } from '../../../../../../data/models/card/card.model';
 import { OperationManagerService } from '../../../../../../data/services/operation/operation.manager.service';
-import { forkJoin, of, switchMap } from 'rxjs';
+import { BehaviorSubject, forkJoin, of, switchMap } from 'rxjs';
 
 @Component({
   selector: 'app-card-operation-list',
@@ -16,6 +16,7 @@ export class CardOperationListComponent{
   private _card!: CardModel;
 
   @Input({required: true})
+
   set card(card: CardModel) {
     this._card = card;
     this.updateOperations();
@@ -24,19 +25,17 @@ export class CardOperationListComponent{
   get card(): CardModel {
     return this._card;
   }
-  
   private _userId:string = localStorage.getItem('uid')!;
-  protected operations:OperationModel[] = [
-    new OperationModel({
-      cardId: '',
-      name: 'no operations',
-      category: '',
-      amount: 0,
-      dateTimestamp: 0
-    }, '')];
 
-  protected expenses!:number;
-  protected income!: number;
+  private _expenses = new BehaviorSubject<number>(0);
+  private _income = new BehaviorSubject<number>(0);
+  private _economy = new BehaviorSubject<number>(0); 
+
+  protected expenses$ = this._expenses.asObservable();
+  protected income$ = this._income.asObservable();
+  protected economy$ = this._economy.asObservable(); 
+
+
 
   constructor(
     private _operationAccountingService: OperationAccountingService,
@@ -50,28 +49,20 @@ export class CardOperationListComponent{
       takeUntilDestroyed(this._destroyRef),
       switchMap((data: OperationModel[]) => {
         if(data.length === 0){
-          this.operations = [
-            new OperationModel({
-              cardId: '',
-              name: 'no operations',
-              category: '',
-              amount: 0,
-              dateTimestamp: 0
-            }, '')];
             return of({expenses: 0, income: 0});
         }
         else{
-          this.operations = data;
           return forkJoin({
-            expenses: this._operationAccountingService.getExpenses(this.operations),
-            income: this._operationAccountingService.getIncome(this.operations)
+            expenses: this._operationAccountingService.getExpenses(data),
+            income: this._operationAccountingService.getIncome(data)
           });
         }
       })
     )
     .subscribe(({expenses, income}) => {
-      this.expenses = expenses;
-      this.income = income;
+      this._expenses.next(expenses);
+      this._income.next(income);
+      this._economy.next(this._card.balance + income);
     });
   }
 }

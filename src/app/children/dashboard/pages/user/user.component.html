@@ -5,7 +5,9 @@
             <app-header></app-header>
             <div class="content-dashboard">
                 <div class="content-dashboard-header"></div>
+                
                 <app-card-operation-list *ngIf="selectedCard" [card]="selectedCard"></app-card-operation-list>
+                
                 <section class="content-dashboard__middle" >
                     <div class="content-dashboard__middle__transaction-container">
                         <h2 class="transaction-container__title">Последняя транзакция</h2>

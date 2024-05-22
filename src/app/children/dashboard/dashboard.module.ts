@@ -49,6 +49,7 @@ import { CardOperationListComponent } from './pages/user/components/card-operati
 import { CategoryComponent } from './pages/user/components/category/category.component';
 import { OperationAccountingService } from "./services/operation/operation-accounting.service";
 import {DynamicsComponent} from "./pages/main/components/dynamics/dynamics.component";
+
 import {WeeklyActivityComponent} from "./pages/main/components/weekly-activity/weekly-activity.component";
 import {ExpenseStatisticsComponent} from "./pages/main/components/expense-statistics/expense-statistics.component";
 
@@ -62,8 +63,6 @@ import {ExpenseStatisticsComponent} from "./pages/main/components/expense-statis
 
         MainComponent,
         LastOperationsComponent,
-        WeeklyActivityComponent,
-        ExpenseStatisticsComponent,
         DynamicsComponent,
 
         UserComponent,
@@ -82,6 +81,13 @@ import {ExpenseStatisticsComponent} from "./pages/main/components/expense-statis
         OperationChartComponent,
         CardOperationListComponent,
         CategoryComponent,
+
+        MainComponent,
+        LastOperationsComponent,
+        WeeklyActivityComponent,
+        ExpenseStatisticsComponent,
+        DynamicsComponent,
+
     ],
     imports: [
         AppRoutingModule,
