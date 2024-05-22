@@ -15,10 +15,11 @@
 
                     </section>
 
-                <section class="third-main-section">
-
-                </section>
-            </div>
+                    <section class="third-main-section">
+                        <app-dynamics></app-dynamics>
+                    </section>
+                </div>
+            </tui-scrollbar>
             <app-tabbar *ngIf="Capacitor.isNativePlatform() || window.innerWidth <= 1000"></app-tabbar>
         </div>
 

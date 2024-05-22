@@ -62,6 +62,9 @@ import {ExpenseStatisticsComponent} from "./pages/main/components/expense-statis
 
         MainComponent,
         LastOperationsComponent,
+        WeeklyActivityComponent,
+        ExpenseStatisticsComponent,
+        DynamicsComponent,
 
         UserComponent,
         HistoryComponent,
