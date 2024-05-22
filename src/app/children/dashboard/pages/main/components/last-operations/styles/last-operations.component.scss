@@ -90,5 +90,8 @@
     }
 }
 
-
-
+@media (max-width: 675px) {
+    .last__operations__title {
+        width: 100%;
+    }
+}

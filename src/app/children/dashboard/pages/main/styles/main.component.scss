@@ -6,6 +6,11 @@
     margin-top: 24px;
 }
 
+.box {
+    position: relative;
+    z-index: 0;
+}
+
 @media (max-width: 1000px) {
     .first-main-section {
         flex-direction: column;

@@ -1,6 +1,6 @@
 import {NgModule} from "@angular/core";
 import {MainComponent} from "./pages/main/main.component";
-import {CommonModule, CurrencyPipe, NgForOf, NgIf, NgOptimizedImage} from "@angular/common";
+import {CommonModule, CurrencyPipe, NgOptimizedImage} from "@angular/common";
 import {CardComponent} from "./components/card/card.component";
 import {UserComponent} from './pages/user/user.component';
 import {HistoryComponent} from './pages/history/history.component';
@@ -12,7 +12,7 @@ import {
     TuiFormatNumberPipeModule,
     TuiHintModule,
     TuiHostedDropdownModule,
-    TuiRootModule
+    TuiRootModule, TuiScrollbarModule
 } from "@taiga-ui/core";
 import {
     TuiAccordionModule,
@@ -48,13 +48,21 @@ import { OperationChartComponent } from './pages/user/components/operation-chart
 import { CardOperationListComponent } from './pages/user/components/card-operation-list/card-operation-list.component';
 import { CategoryComponent } from './pages/user/components/category/category.component';
 import { OperationAccountingService } from "./services/operation/operation-accounting.service";
+import {DynamicsComponent} from "./pages/main/components/dynamics/dynamics.component";
+import {WeeklyActivityComponent} from "./pages/main/components/weekly-activity/weekly-activity.component";
+import {ExpenseStatisticsComponent} from "./pages/main/components/expense-statistics/expense-statistics.component";
 
 @NgModule({
     declarations: [
+        DateFormatterPipe,
         SidebarComponent,
+        TabbarComponent,
         HeaderComponent,
         CardComponent,
+
         MainComponent,
+        LastOperationsComponent,
+
         UserComponent,
         HistoryComponent,
         CardsComponent,
@@ -65,19 +73,21 @@ import { OperationAccountingService } from "./services/operation/operation-accou
         SecurityComponent,
         NavigationComponent,
         CheckDownloadDirective,
-        TabbarComponent,
         MyCardsComponent,
         BalanceChartComponent,
-        LastOperationsComponent,
-        DateFormatterPipe,
         TransactionComponent,
         OperationChartComponent,
         CardOperationListComponent,
         CategoryComponent,
     ],
     imports: [
+        AppRoutingModule,
+        CommonModule,
+        ReactiveFormsModule,
         NgOptimizedImage,
-        NgIf,
+        CurrencyPipe,
+        FormsModule,
+
         TuiRootModule,
         TuiAccordionModule,
         TuiHostedDropdownModule,
@@ -85,17 +95,8 @@ import { OperationAccountingService } from "./services/operation/operation-accou
         TuiDataListModule,
         TuiDataListDropdownManagerModule,
         TuiTabBarModule,
-        NgForOf,
-
         TuiTabsModule,
         TuiToggleModule,
-        ReactiveFormsModule,
-        AppRoutingModule,
-        CommonModule,
-        TuiRootModule,
-        TuiButtonModule,
-        ReactiveFormsModule,
-        NgOptimizedImage,
         TuiCarouselModule,
         TuiIslandModule,
         TuiBarSetModule,
@@ -104,9 +105,8 @@ import { OperationAccountingService } from "./services/operation/operation-accou
         TuiSelectModule,
         TuiDataListWrapperModule,
         TuiBarChartModule,
-        FormsModule,
         TuiHintModule,
-        CurrencyPipe,
+        TuiScrollbarModule,
     ],
     exports: [
         CardComponent,
@@ -115,7 +115,7 @@ import { OperationAccountingService } from "./services/operation/operation-accou
     providers: [
         StateBarService,
         CardSelectionService,
-        OperationAccountingService
+        OperationAccountingService,
     ]
 })
 export class DashboardModule {
