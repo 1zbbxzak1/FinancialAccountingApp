@@ -12,7 +12,7 @@
                     <div class="content-dashboard__middle__transaction-container">
                         <h2 class="transaction-container__title">Последняя транзакция</h2>
                         <div class="transaction-container__list" >
-                            <app-transaction *ngFor="let transaction of operations$ | async" [transaction]="transaction"></app-transaction>
+                            <app-transaction *ngFor="let transaction of operations$ | async | slice: -3" [transaction]="transaction"></app-transaction>
                         </div> 
                     </div>
                     <div class="content-dashboard__middle__card-container">
@@ -34,14 +34,6 @@
                                                 tuiOption
                                                 (click)="showInfoAboutCard(card)"
                                             >{{card.name}}</button>
-                                        </tui-opt-group>
-                                        <tui-opt-group>
-                                            <button
-                                                tuiOption
-                                                (click)="close()"
-                                            >
-                                                Готово
-                                            </button>
                                         </tui-opt-group>
                                     </tui-data-list>
                                 </ng-template>
@@ -72,7 +64,7 @@
                     <div class="content-dashboard__footer__category-container">
                         <h2 class="category-container__title">Категории</h2>
                         <div class="category-container__list">
-                            <app-category  *ngFor="let operation of operations$ | async" [category]="operation.category"></app-category>
+                            <app-category  *ngFor="let operation of operations$ | async | slice: -4" [category]="operation.category"></app-category>
                         </div>
                     </div>
                 </section>
