@@ -12,7 +12,8 @@ import {
     TuiFormatNumberPipeModule,
     TuiHintModule,
     TuiHostedDropdownModule,
-    TuiRootModule, TuiScrollbarModule
+    TuiRootModule,
+    TuiScrollbarModule
 } from "@taiga-ui/core";
 import {
     TuiAccordionModule,
@@ -43,15 +44,16 @@ import {TuiAxesModule, TuiBarChartModule, TuiBarSetModule} from "@taiga-ui/addon
 import {LastOperationsComponent} from "./pages/main/components/last-operations/last-operations.component";
 import {DateFormatterPipe} from './pipes/date-formatter.pipe';
 import {CardSelectionService} from "./services/my-cards/card-selection.service";
-import { TransactionComponent } from './pages/user/components/transaction/transaction.component';
-import { OperationChartComponent } from './pages/user/components/operation-chart/operation-chart.component';
-import { CardOperationListComponent } from './pages/user/components/card-operation-list/card-operation-list.component';
-import { CategoryComponent } from './pages/user/components/category/category.component';
-import { OperationAccountingService } from "./services/operation/operation-accounting.service";
+import {TransactionComponent} from './pages/user/components/transaction/transaction.component';
+import {OperationChartComponent} from './pages/user/components/operation-chart/operation-chart.component';
+import {CardOperationListComponent} from './pages/user/components/card-operation-list/card-operation-list.component';
+import {CategoryComponent} from './pages/user/components/category/category.component';
+import {OperationAccountingService} from "./services/operation/operation-accounting.service";
 import {DynamicsComponent} from "./pages/main/components/dynamics/dynamics.component";
 
 import {WeeklyActivityComponent} from "./pages/main/components/weekly-activity/weekly-activity.component";
 import {ExpenseStatisticsComponent} from "./pages/main/components/expense-statistics/expense-statistics.component";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 @NgModule({
     declarations: [
@@ -63,6 +65,7 @@ import {ExpenseStatisticsComponent} from "./pages/main/components/expense-statis
 
         MainComponent,
         LastOperationsComponent,
+        WeeklyActivityComponent,
         DynamicsComponent,
 
         UserComponent,
@@ -81,13 +84,6 @@ import {ExpenseStatisticsComponent} from "./pages/main/components/expense-statis
         OperationChartComponent,
         CardOperationListComponent,
         CategoryComponent,
-
-        MainComponent,
-        LastOperationsComponent,
-        WeeklyActivityComponent,
-        ExpenseStatisticsComponent,
-        DynamicsComponent,
-
     ],
     imports: [
         AppRoutingModule,
@@ -97,6 +93,7 @@ import {ExpenseStatisticsComponent} from "./pages/main/components/expense-statis
         CurrencyPipe,
         FormsModule,
 
+        BrowserAnimationsModule,
         TuiRootModule,
         TuiAccordionModule,
         TuiHostedDropdownModule,
