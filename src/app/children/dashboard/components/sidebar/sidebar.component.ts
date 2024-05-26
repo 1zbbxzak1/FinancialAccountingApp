@@ -20,6 +20,6 @@ export class SidebarComponent extends StateBarService implements OnInit {
     }
 
     private checkWidth(): void {
-        this.isSidebarVisible = window.innerWidth > 1000;
+        this.isSidebarVisible = window.innerWidth > 1200;
     }
 }
