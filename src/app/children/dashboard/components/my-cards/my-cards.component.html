@@ -1,36 +1,50 @@
-
-<h2 class="my-cards-title">Мои карты</h2>
-<div
-    tuiCarouselButtons
-    class="my-cards-carousel-main-container"
->
-    <button
-        icon="tuiIconChevronLeftLarge"
-        title="Previous"
-        tuiIconButton
-        type="button"
-        (click)="carousel.prev()"
-        class="my-cards-btn my-cards-previous-btn"
-    ></button>
-    <tui-carousel
-        #carousel
-        class="my-cards-carousel"
-        [itemsCount]="itemsCount"
-        [draggable]="true"
-        [index]="indexSelectedCard"
+<tui-root>
+    <h2 class="my-cards-title">Мои карты</h2>
+    <div
+        class="my-cards-carousel-main-container"
+        tuiCarouselButtons
     >
-        <ng-container *ngFor="let card of cards" class="my-cards-carousel-list">
-            <tui-island *tuiItem class="my-cards-carousel-item-container">
-                <app-card [card]="card" (cardSelected)="deselectAllExcept($event)" class="my-cards-carousel-item"></app-card>
-            </tui-island>
-        </ng-container>
-    </tui-carousel>
-    <button
-        icon="tuiIconChevronRightLarge"
-        title="Next"
-        tuiIconButton
-        type="button"
-        (click)="carousel.next()"
-        class="my-cards-btn my-cards-next-btn"
-    ></button>
-</div>
+        <button
+            (click)="carousel.prev()"
+            class="my-cards-btn my-cards-previous-btn"
+            icon="tuiIconChevronLeftLarge"
+            title="Previous"
+            tuiIconButton
+            type="button"
+        ></button>
+        <tui-carousel
+            #carousel
+            [draggable]="true"
+            [index]="indexSelectedCard"
+            [itemsCount]="itemsCount"
+            class="my-cards-carousel"
+        >
+            <ng-container *ngFor="let card of cards" class="my-cards-carousel-list">
+                <tui-island *tuiItem class="my-cards-carousel-item-container">
+                    <app-card (cardSelected)="deselectAllExcept($event)" [card]="card"
+                              class="my-cards-carousel-item"></app-card>
+                </tui-island>
+            </ng-container>
+
+            <ng-container *ngIf="cards.length < 2">
+                <tui-island *tuiItem class="my-cards-carousel-item-container">
+                    <app-card-not-found></app-card-not-found>
+                </tui-island>
+            </ng-container>
+            <ng-container *ngIf="cards.length < 2">
+                <tui-island *tuiItem class="my-cards-carousel-item-container">
+                    <app-card-not-found></app-card-not-found>
+                </tui-island>
+            </ng-container>
+
+        </tui-carousel>
+        <button
+            (click)="carousel.next()"
+            class="my-cards-btn my-cards-next-btn"
+            icon="tuiIconChevronRightLarge"
+            title="Next"
+            tuiIconButton
+            type="button"
+        ></button>
+    </div>
+</tui-root>

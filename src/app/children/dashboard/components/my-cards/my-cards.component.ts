@@ -1,15 +1,24 @@
-import {ChangeDetectorRef, Component, DestroyRef, HostListener, inject, OnInit} from '@angular/core';
+import {
+    ChangeDetectionStrategy,
+    ChangeDetectorRef,
+    Component,
+    DestroyRef,
+    HostListener,
+    inject, QueryList, ViewChildren,
+} from '@angular/core';
 import {CardManagerService} from "../../../../data/services/card/card.manager.service";
 import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
 import {CardModel} from "../../../../data/models/card/card.model";
 import {CardSelectionService} from "../../services/my-cards/card-selection.service";
+import {CardComponent} from "../card/card.component";
 
 @Component({
     selector: 'app-my-cards',
     templateUrl: './my-cards.component.html',
-    styleUrl: './styles/my-cards.component.scss'
+    styleUrl: './styles/my-cards.component.scss',
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class MyCardsComponent implements OnInit {
+export class MyCardsComponent {
 
     public itemsCount: number = 2;
     public maxItemsCount: number = 2;
@@ -19,17 +28,22 @@ export class MyCardsComponent implements OnInit {
     private readonly _cardSelectionService: CardSelectionService  = inject(CardSelectionService);
     private readonly _destroyRef: DestroyRef = inject(DestroyRef);
     private readonly _changeDetectorRef: ChangeDetectorRef = inject(ChangeDetectorRef);
+    @ViewChildren(CardComponent) private _cardComponents!: QueryList<CardComponent>;
     private readonly _uid: string = localStorage.getItem('uid')!;
     private _selectedCardId: string | null = localStorage.getItem('selectedCardId');
 
-    ngOnInit(): void {
+    constructor() {
         this.updateItemsCount(window.innerWidth);
 
-        this._cardSelectionService.selectedCardId.subscribe(
+        this._cardSelectionService.selectedCardId
+            .pipe(
+                takeUntilDestroyed(this._destroyRef),
+            ).subscribe(
             (cardId: string | null): void => {
                 this._selectedCardId = cardId;
             }
         );
+
         this._cardManager.getAll(this._uid)
             .pipe(
                 takeUntilDestroyed(this._destroyRef),
@@ -45,37 +59,41 @@ export class MyCardsComponent implements OnInit {
                     this.selectCard(this.cards[0]);
                 }
 
-                this._changeDetectorRef.detectChanges();
+                this._changeDetectorRef.markForCheck();
             });
     }
 
     @HostListener('window:resize', ['$event'])
-    onResize(event: any): void {
+    private onResize(event: any): void {
         this.updateItemsCount(event.target.innerWidth);
     }
 
-    updateItemsCount(width: number): void {
+    private updateItemsCount(width: number): void {
         this.itemsCount = width < 600 ? 1 : this.maxItemsCount;
     }
 
-    deselectAllExcept(selectedCard: CardModel): void {
+    protected deselectAllExcept(selectedCard: CardModel): void {
         this.selectCard(selectedCard);
         this.cards.forEach((card: CardModel): void => {
             card.isSelected = card === selectedCard;
         });
+
+        this._cardComponents.forEach(
+            (cardComponent: CardComponent) => cardComponent.markForCheck()
+        );
     }
 
-    selectCard(selectedCard: CardModel): void {
+    private selectCard(selectedCard: CardModel): void {
         selectedCard.isSelected = true;
         this._cardSelectionService.setSelectedCardId(selectedCard.cardId);
     }
 
-    getCardById(cardId: string): CardModel {
+    private getCardById(cardId: string): CardModel {
         return this.cards.find((card: CardModel): boolean => card.cardId === cardId)!;
     }
 
-    setIndex(cardId: string): void {
+    private setIndex(cardId: string): void {
         const index: number = this.cards.findIndex((card: CardModel): boolean => card.cardId === cardId);
-        this.indexSelectedCard = (index === this.cards.length - 1) ? index - 1 : index;
+        this.indexSelectedCard = (this.itemsCount > 1 && index === this.cards.length - 1) ? index - 1 : index;
     }
 }
