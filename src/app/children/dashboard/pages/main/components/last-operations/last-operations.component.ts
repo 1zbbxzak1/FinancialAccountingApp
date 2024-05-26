@@ -24,7 +24,7 @@ export class LastOperationsComponent {
         private readonly _cardSelectionService: CardSelectionService,
     ) {
         this._cardSelectionService.selectedCardId.pipe(
-            switchMap((cardId) => {
+            switchMap((cardId: string | null) => {
                 if (cardId) {
                     return this._operationManagerService.getAll(this._uid, cardId);
                 } else {
@@ -33,7 +33,12 @@ export class LastOperationsComponent {
             }),
             takeUntilDestroyed(this._destroyRef)
         ).subscribe((operations: OperationModel[]): void => {
-            this.operations = operations.slice(-3);
+            if (window.innerWidth <= 1280 || window.innerWidth > 1570) {
+                this.operations = operations.slice(-3);
+            } else {
+                this.operations = operations.slice(-10);
+            }
+
             this.isOperations = this.operations.length > 0;
             this._changeDetectorRef.detectChanges();
         });

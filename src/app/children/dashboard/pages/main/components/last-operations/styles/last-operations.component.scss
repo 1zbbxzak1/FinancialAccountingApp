@@ -4,8 +4,6 @@
     color: #343c6a;
 
     margin-bottom: 20px;
-
-    width: 36vw;
 }
 
 .last__operations__card {
@@ -25,7 +23,7 @@
 
     .last__operations__list {
         display: flex;
-        min-width: 100%;
+        width: 100%;
 
         .last__operations__item {
             display: flex;
@@ -36,7 +34,7 @@
             font-size: 16px;
             color: #232323;
 
-            min-width: 100%;
+            width: 100%;
             margin-top: 12px;
             margin-bottom: 10px;
 
@@ -83,8 +81,10 @@
 
     .last__operations__not__found {
         font-weight: 600;
-        font-size: 19px;
+        font-size: 16px;
         color: rgba(113, 142, 191, 0.7);
+
+        padding: 40px;
 
         text-align: center;
     }
@@ -93,5 +93,9 @@
 @media (max-width: 675px) {
     .last__operations__title {
         width: 100%;
+    }
+
+    .last__operations__not__found {
+        padding: 10px;
     }
 }
