@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, ChangeDetectorRef, Component, DestroyRef, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, ChangeDetectorRef, Component, DestroyRef} from '@angular/core';
 import Chart from 'chart.js/auto';
 import {OperationModel} from "../../../../../../data/models/operation/operation.model";
 import {OperationManagerService} from "../../../../../../data/services/operation/operation.manager.service";
@@ -14,10 +14,10 @@ import {map, Observable, of, switchMap} from "rxjs";
     styleUrl: './styles/dynamics.master.scss',
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class DynamicsComponent implements OnInit {
+export class DynamicsComponent {
     private readonly _uid: string = localStorage.getItem('uid')!;
-    private balance: number = 0;
-    private chart: Chart | null = null;
+    private _balance: number = 0;
+    private _chart: Chart | null = null;
 
     constructor(
         private readonly _cardManagerService: CardManagerService,
@@ -26,16 +26,13 @@ export class DynamicsComponent implements OnInit {
         private readonly _changeDetectorRef: ChangeDetectorRef,
         private readonly _destroyRef: DestroyRef,
     ) {
-    }
-
-    ngOnInit(): void {
         this._cardSelectionService.selectedCardId.pipe(
             takeUntilDestroyed(this._destroyRef),
-            switchMap((cardId): Observable<[CardModel, OperationModel[]]> => {
+            switchMap((cardId: string | null): Observable<[CardModel, OperationModel[]]> => {
                 if (cardId) {
                     return this._cardManagerService.getById(this._uid, cardId).pipe(
                         switchMap((card: CardModel): Observable<[CardModel, OperationModel[]]> => {
-                            this.balance = card.balance;
+                            this._balance = card.balance;
                             return this._operationManagerService.getAll(this._uid, cardId).pipe(
                                 map((operations: OperationModel[]) => [card, operations])
                             );
@@ -45,18 +42,18 @@ export class DynamicsComponent implements OnInit {
                 return of<[CardModel, OperationModel[]]>([null as unknown as CardModel, []]);
             })
         ).subscribe(([card, operations]: [CardModel, OperationModel[]]): void => {
-            this.createChart(operations);
+            this.createLineChart(operations);
             this._changeDetectorRef.detectChanges();
         });
     }
 
-    private createChart(operations: OperationModel[]): void {
-        const ctx: HTMLCanvasElement = document.getElementById('myChart') as HTMLCanvasElement;
+    private createLineChart(operations: OperationModel[]): void {
+        const ctx: HTMLCanvasElement = document.getElementById('myLineChart') as HTMLCanvasElement;
 
         if (!ctx) return;
 
-        if (this.chart) {
-            this.chart.destroy();
+        if (this._chart) {
+            this._chart.destroy();
         }
 
         operations.sort((a: OperationModel, b: OperationModel) => a.dateTimestamp - b.dateTimestamp);
@@ -65,12 +62,12 @@ export class DynamicsComponent implements OnInit {
 
         const amounts: number[] = Object.values(monthlyData);
 
-        const context = ctx.getContext('2d');
+        const context: CanvasRenderingContext2D = ctx.getContext('2d')!;
         const gradient: CanvasGradient = context!.createLinearGradient(0, 0, 0, 400);
         gradient.addColorStop(0, 'rgba(45, 96, 255, 0.5)');
         gradient.addColorStop(1, 'rgba(45, 96, 255, 0)');
 
-        this.chart = new Chart(ctx, {
+        this._chart = new Chart(ctx, {
             type: 'line',
             data: {
                 labels: labels,
@@ -94,14 +91,14 @@ export class DynamicsComponent implements OnInit {
                     x: {
                         ticks: {
                             font: {
-                                size: 9
+                                size: 10
                             }
                         }
                     },
                     y: {
                         ticks: {
                             font: {
-                                size: 9
+                                size: 10
                             }
                         }
                     }
@@ -135,29 +132,32 @@ export class DynamicsComponent implements OnInit {
         labels: string[],
         monthlyAmounts: number[]
     } {
-        const monthlyData: { [key: string]: number } = {};
-        const labels: string[] = [];
-        const monthlyAmounts: number[] = [];
-        let cumulativeSum: number = this.balance;
+        const initialData = {
+            monthlyData: {} as { [key: string]: number },
+            labels: [] as string[],
+            monthlyAmounts: [] as number[],
+            cumulativeSum: this._balance
+        };
 
-        // заменить на .reduce
-
-        operations.forEach(operation => {
+        const result = operations.reduce((acc, operation: OperationModel) => {
             const monthKey: string = operation.date.toLocaleString('ru-RU', {year: 'numeric', month: 'long'});
             const monthLabel: string = operation.date.toLocaleString('ru-RU', {month: 'long'});
 
-            cumulativeSum += operation.amount;
+            acc.cumulativeSum += operation.amount;
 
-            if (!monthlyData[monthKey]) {
-                monthlyData[monthKey] = cumulativeSum;
-                labels.push(monthLabel);
-                monthlyAmounts.push(operation.amount);
+            if (!acc.monthlyData[monthKey]) {
+                acc.monthlyData[monthKey] = acc.cumulativeSum;
+                acc.labels.push(monthLabel);
+                acc.monthlyAmounts.push(operation.amount);
             } else {
-                monthlyData[monthKey] = cumulativeSum;
-                monthlyAmounts[monthlyAmounts.length - 1] += operation.amount;
+                acc.monthlyData[monthKey] = acc.cumulativeSum;
+                acc.monthlyAmounts[acc.monthlyAmounts.length - 1] += operation.amount;
             }
-        });
 
+            return acc;
+        }, initialData);
+
+        const {monthlyData, labels, monthlyAmounts} = result;
         return {monthlyData, labels, monthlyAmounts};
     }
 }
