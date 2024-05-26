@@ -66,6 +66,7 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
         MainComponent,
         LastOperationsComponent,
         WeeklyActivityComponent,
+        ExpenseStatisticsComponent,
         DynamicsComponent,
 
         UserComponent,
