@@ -54,6 +54,7 @@ import {DynamicsComponent} from "./pages/main/components/dynamics/dynamics.compo
 import {WeeklyActivityComponent} from "./pages/main/components/weekly-activity/weekly-activity.component";
 import {ExpenseStatisticsComponent} from "./pages/main/components/expense-statistics/expense-statistics.component";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {CardNotFoundComponent} from "./components/card-not-found/card-not-found.component";
 
 @NgModule({
     declarations: [
@@ -71,6 +72,7 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
         UserComponent,
         HistoryComponent,
+        CardNotFoundComponent,
         CardsComponent,
         PaymentsComponent,
         SettingsComponent,
