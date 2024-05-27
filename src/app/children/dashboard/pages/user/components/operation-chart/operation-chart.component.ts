@@ -3,49 +3,60 @@ import {tuiCeil} from '@taiga-ui/cdk';
 import { OperationModel } from '../../../../../../data/models/operation/operation.model';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { OperationAccountingService } from '../../../../services/operation/operation-accounting.service';
-import { switchMap } from 'rxjs';
+import { forkJoin, switchMap } from 'rxjs';
  
 @Component({
-  selector: 'app-operation-chart',
-  templateUrl: './operation-chart.component.html',
-  styleUrl: './styles/operation-chart.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'app-operation-chart',
+    templateUrl: './operation-chart.component.html',
+    styleUrl: './styles/operation-chart.component.scss',
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class OperationChartComponent {
-  private _operations!: OperationModel[];
-  
-  @Input({required:true}) 
-  set data(data: OperationModel[]){
-    this._operations = data;
-    this.updateChart();
-  }
-  get data(): OperationModel[] {
-    return this._operations;
-  }
 
-  protected values!:number[][];
+    private _operations!: OperationModel[];
+    
+    @Input({required:true}) 
 
-  protected labelsX:string[] = [];
-  readonly labelsY = ['0', '100 000'];
+    set data(data: OperationModel[]){
+        this._operations = data;
+        this._updateChart();
+    }
 
-  constructor(
-    private _operationAccountingService: OperationAccountingService,
-    private _destroyRef: DestroyRef,
-  ){}
+    get data(): OperationModel[] {
+        return this._operations;
+    }
 
-  updateChart(): void {
-    this._operationAccountingService.getOperationList(this.data)
-    .pipe(takeUntilDestroyed(this._destroyRef),
-    switchMap((data:number[][])=>{
-      this.values = data
-      return this._operationAccountingService.getAllDatesOperations(this.data);
-    }))
-    .subscribe((data:string[])=>{
-      this.labelsX = data;
-    })
-  }
+    protected values!: number[][];
+    protected labelsX: string[] = [];
+    protected labelsY: string[] = [];
 
-  getHeight(max: number): number {
-      return (max / tuiCeil(max, -3)) * 100;
-  }
+    constructor(
+      private _operationAccountingService: OperationAccountingService,
+      private _destroyRef: DestroyRef,
+    ){}
+
+    private _updateChart(): void {
+      this._operationAccountingService.getOperationList(this.data)
+      .pipe(
+          takeUntilDestroyed(this._destroyRef),
+          switchMap((value: number[][]) => {
+              this.values = value;
+              console.log(this.values);
+              return forkJoin({
+                  labelsX: this._operationAccountingService.getAllDatesOperations(this.data),
+                  labelsY: this._operationAccountingService.getMaxAmmount(this.data)
+              });
+          })
+      )
+      .subscribe(({labelsX, labelsY}) => {
+          let amountList: string[] = ['0'];
+          amountList.push(labelsY);
+          this.labelsX = labelsX;
+          this.labelsY = amountList;
+        });
+    }
+
+    protected getHeight(max: number): number {
+        return (max / tuiCeil(max, -3)) * 100;
+    }
 }

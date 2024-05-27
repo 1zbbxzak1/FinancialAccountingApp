@@ -30,9 +30,6 @@ export class UserComponent {
     
     protected cards$ = this._cards.asObservable();
     protected operations$ = this._operations.asObservable();
-
-    
-    
     protected selectedCard!: CardModel;
     protected open = false;
     

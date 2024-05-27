@@ -6,69 +6,80 @@ import { Observable, map, of } from 'rxjs';
 @Injectable()
 export class OperationAccountingService {
 
-  constructor() { }
+    constructor() { }
 
-  public getExpenses(operations: OperationModel[]): Observable<number> {
-    return of(operations).pipe(
-      map(ops => {
-        let expenses = 0;
-        for (let i = 0; i < ops.length; i++){
-          if(ops[i].amount > 0){
-            expenses += ops[i].amount;
-          }
-        }
-        return expenses;
-      })
-    );
-  }
+    public getExpenses(operations: OperationModel[]): Observable<number> {
+      return of(operations).pipe(
+        map(ops => {
+            let expenses = 0;
+            for (let i = 0; i < ops.length; i++){
+                if(ops[i].amount > 0){
+                    expenses += ops[i].amount;
+                }
+            }
+            return expenses;
+        })
+      );
+    }
 
 
-  public getIncome(operations: OperationModel[]): Observable<number> {
-    return of(operations).pipe(
-      map(ops => {
-        let income = 0;
-        for (let i = 0; i < ops.length; i++){
-          if(ops[i].amount < 0){
-            income += ops[i].amount;
-          }
-        }
-        return income;
-      })
-    );
-  }
+    public getIncome(operations: OperationModel[]): Observable<number> {
+      return of(operations).pipe(
+        map(ops => {
+            let income = 0;
+            for (let i = 0; i < ops.length; i++){
+                if(ops[i].amount < 0){
+                    income += ops[i].amount;
+                }
+            }
+            return income;
+        })
+      );
+    }
 
-  public getOperationList(operations: OperationModel[]): Observable<number[][]>{
-    return of(operations).pipe(
-      map(ops =>{
-        let value: number[][] = [[], []]; 
+    public getOperationList(operations: OperationModel[]): Observable<number[][]>{
+        return of(operations).pipe(
+          map(ops =>{
+              let value: number[][] = [[], []]; 
+              for(let j=0; j< ops.length; j++){
+                  if(ops[j].amount < 0){
+                      value[0].push(ops[j].amount); 
+                  } 
+                  else {
+                      value[1].push(ops[j].amount); 
+                  }
+              }
+              return value;
+          })
+        )
+    }
 
-        for(let j=0; j< ops.length; j++){
-          if(ops[j].amount < 0){
-            value[0].push(ops[j].amount); 
-          } else {
-            value[1].push(ops[j].amount); 
-          }
-        }
+    public getAllDatesOperations(operations: OperationModel[]): Observable<string[]>{
+      return of(operations).pipe(
+        map(ops =>{
+            let months: string[] = [];
+            for(let i=0; i < ops.length; i++){
+                if (ops[i].date) {
+                    let date = new Date(ops[i].date);
+                    let month = date.toLocaleString('default', { month: 'long' });
+                    months.push(month);
+                }
+            }
+            return months;
+        })
+      )
+    }
 
-        return value;
-      })
-    )
-  }
-
-  public getAllDatesOperations(operations: OperationModel[]): Observable<string[]>{
-    return of(operations).pipe(
-      map(ops =>{
-        let months: string[] = [];
-        for(let i=0; i < ops.length; i++){
-          if (ops[i].date) {
-            let date = new Date(ops[i].date);
-            let month = date.toLocaleString('default', { month: 'long' });
-            months.push(month);
-          }
-        }
-        return months;
-      })
-    )
-  }
-
+    public getMaxAmmount(operations: OperationModel[]): Observable<string>{
+        return of(operations).pipe(
+          map(ops=>{
+              let maxAmount:number = ops[0].amount;
+              for(let i=1;i<ops.length;i++){
+                  if(ops[i].amount > maxAmount)
+                    maxAmount = ops[i].amount;
+              }
+              return maxAmount.toString();
+          })
+        )
+    }
 }

@@ -51,11 +51,11 @@
                             <ul class="legend__list">
                                 <li class="legend__list__item">
                                     <div class="legend__list__item__color-box charged"></div>
-                                    <p class="legend__list__item__name-color-box">Списано</p>
+                                    <p class="legend__list__item__name-color-box">Зачислено</p>
                                 </li>
                                 <li class="legend__list__item">
                                     <div class="legend__list__item__color-box enrolled"></div>
-                                    <p class="legend__list__item__name-color-box ">Зачислено</p>
+                                    <p class="legend__list__item__name-color-box ">Списано</p>
                                 </li>
                             </ul>
                             <app-operation-chart *ngIf="operations$ | async as data" [data]="data"></app-operation-chart>

@@ -7,62 +7,62 @@ import { OperationManagerService } from '../../../../../../data/services/operati
 import { BehaviorSubject, forkJoin, of, switchMap } from 'rxjs';
 
 @Component({
-  selector: 'app-card-operation-list',
-  templateUrl: './card-operation-list.component.html',
-  styleUrl: './styles/card-operation-list.component.scss',
+    selector: 'app-card-operation-list',
+    templateUrl: './card-operation-list.component.html',
+    styleUrl: './styles/card-operation-list.component.scss',
 })
-export class CardOperationListComponent{
+export class CardOperationListComponent {
   
-  private _card!: CardModel;
+    private _card!: CardModel;
 
-  @Input({required: true})
+    @Input({required: true})
 
-  set card(card: CardModel) {
-    this._card = card;
-    this.updateOperations();
-  }
+    set card(card: CardModel) {
+        this._card = card;
+        this.updateOperations();
+    }
 
-  get card(): CardModel {
-    return this._card;
-  }
-  private _userId:string = localStorage.getItem('uid')!;
+    get card(): CardModel {
+        return this._card;
+    }
+    private _userId:string = localStorage.getItem('uid')!;
 
-  private _expenses = new BehaviorSubject<number>(0);
-  private _income = new BehaviorSubject<number>(0);
-  private _economy = new BehaviorSubject<number>(0); 
+    private _expenses = new BehaviorSubject<number>(0);
+    private _income = new BehaviorSubject<number>(0);
+    private _economy = new BehaviorSubject<number>(0); 
 
-  protected expenses$ = this._expenses.asObservable();
-  protected income$ = this._income.asObservable();
-  protected economy$ = this._economy.asObservable(); 
+    protected expenses$ = this._expenses.asObservable();
+    protected income$ = this._income.asObservable();
+    protected economy$ = this._economy.asObservable(); 
 
 
 
-  constructor(
-    private _operationAccountingService: OperationAccountingService,
-    private _destroyRef: DestroyRef,
-    private _operationManagerService: OperationManagerService
-  ){}
-  
-  protected updateOperations(): void {
-    this._operationManagerService.getAll(this._userId, this.card.cardId)
-    .pipe(
-      takeUntilDestroyed(this._destroyRef),
-      switchMap((data: OperationModel[]) => {
-        if(data.length === 0){
-            return of({expenses: 0, income: 0});
-        }
-        else{
-          return forkJoin({
-            expenses: this._operationAccountingService.getExpenses(data),
-            income: this._operationAccountingService.getIncome(data)
-          });
-        }
-      })
-    )
-    .subscribe(({expenses, income}) => {
-      this._expenses.next(expenses);
-      this._income.next(income);
-      this._economy.next(this._card.balance + income);
-    });
-  }
+    constructor(
+      private _operationAccountingService: OperationAccountingService,
+      private _destroyRef: DestroyRef,
+      private _operationManagerService: OperationManagerService
+    ){}
+    
+    protected updateOperations(): void {
+        this._operationManagerService.getAll(this._userId, this.card.cardId)
+        .pipe(
+          takeUntilDestroyed(this._destroyRef),
+          switchMap((data: OperationModel[]) => {
+            if(data.length === 0){
+                return of({expenses: 0, income: 0});
+            }
+            else{
+              return forkJoin({
+                expenses: this._operationAccountingService.getExpenses(data),
+                income: this._operationAccountingService.getIncome(data)
+              });
+            }
+          })
+        )
+        .subscribe(({expenses, income}) => {
+          this._expenses.next(expenses);
+          this._income.next(income);
+          this._economy.next(this._card.balance + income);
+        });
+    }
 }
