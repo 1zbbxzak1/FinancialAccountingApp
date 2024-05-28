@@ -13,32 +13,32 @@ import { TuiAlertService } from '@taiga-ui/core';
 })
 export class SecurityComponent {
 
-  protected userEmail!: string;
+    protected userEmail!: string;
 
     protected securityForm:FormGroup = new FormGroup({
       previousPassword: new FormControl('', [Validators.required, Validators.minLength(6), Validators.maxLength(15)]),
       newPassword: new FormControl('', [Validators.required, Validators.minLength(6), Validators.maxLength(15)])
     })
 
-  constructor(
+    constructor(
     private _userMAnagerService: UserManagerService,
     private _destroyRef: DestroyRef,
-    private readonly _alerts: TuiAlertService,
-  ){
-      const userId = localStorage.getItem('uid')!;
-      this._userMAnagerService.getUserInfo(userId)
-      .pipe(takeUntilDestroyed(this._destroyRef))
-      .subscribe((data:UserModel)=>
-      this.userEmail = data.email);
+    private readonly _alerts: TuiAlertService){
+
+        const userId = localStorage.getItem('uid')!;
+        this._userMAnagerService.getUserInfo(userId)
+        .pipe(takeUntilDestroyed(this._destroyRef))
+        .subscribe((data:UserModel)=>
+        this.userEmail = data.email);
     }
 
-    protected updatePassword(): void{
-      if(this.securityForm.get('previousPassword')?.value !== ""){
-        this._userMAnagerService.updatePassword(this.userEmail, this.securityForm.get('previousPassword')?.value, this.securityForm.get('newPassword')?.value)
-        .pipe(takeUntilDestroyed(this._destroyRef))
-        .subscribe(()=> this._alerts.open("Пароль обновлен")
-        .pipe(takeUntilDestroyed(this._destroyRef))
-        .subscribe());
+    protected updatePassword(): void {
+        if(this.securityForm.get('previousPassword')?.value !== ""){
+            this._userMAnagerService.updatePassword(this.userEmail, this.securityForm.get('previousPassword')?.value, this.securityForm.get('newPassword')?.value)
+            .pipe(takeUntilDestroyed(this._destroyRef))
+            .subscribe(()=> this._alerts.open("Пароль обновлен")
+            .pipe(takeUntilDestroyed(this._destroyRef))
+            .subscribe());
         }
     }
 }

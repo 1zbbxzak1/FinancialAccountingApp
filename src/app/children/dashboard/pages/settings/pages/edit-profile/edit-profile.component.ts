@@ -21,7 +21,7 @@ export class EditProfileComponent {
     protected userInfoForm: FormGroup = new FormGroup({
         name: new FormControl(''),
         surname: new FormControl(''),
-        email: new FormControl({value: '', disabled: true}),
+        email: new FormControl(''),
         dateOfBirthTimestamp: new FormControl(''),
         permanentAddress: new FormControl(''),
         presentAddress: new FormControl(''),
