@@ -26,9 +26,9 @@ export class TransactionComponent implements OnInit, AfterViewInit {
     
     @ViewChild('amount') amount!: ElementRef;
 
-    ngAfterViewInit(): void {
+    public ngAfterViewInit(): void {
 
-      const amountNumber = parseFloat(this.amount.nativeElement.innerText);
+      const amountNumber: number = parseFloat(this.amount.nativeElement.innerText);
         if (amountNumber >= 0) {
             this.amount.nativeElement.style.color = 'green'; 
         } 
@@ -37,7 +37,7 @@ export class TransactionComponent implements OnInit, AfterViewInit {
         }
     }
 
-    ngOnInit(): void {
+    public ngOnInit(): void {
         this.date = this._transaction.dateTimestamp ? new Date(this._transaction.dateTimestamp).toLocaleDateString() : '';
     }
 

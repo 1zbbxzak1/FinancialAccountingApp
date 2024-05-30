@@ -4,7 +4,7 @@ import { OperationAccountingService } from '../../../../services/operation/opera
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { CardModel } from '../../../../../../data/models/card/card.model';
 import { OperationManagerService } from '../../../../../../data/services/operation/operation.manager.service';
-import { BehaviorSubject, forkJoin, of, switchMap } from 'rxjs';
+import { BehaviorSubject, Observable, forkJoin, of, switchMap } from 'rxjs';
 
 @Component({
     selector: 'app-card-operation-list',
@@ -25,17 +25,16 @@ export class CardOperationListComponent {
     get card(): CardModel {
         return this._card;
     }
+    
     private _userId:string = localStorage.getItem('uid')!;
 
-    private _expenses = new BehaviorSubject<number>(0);
-    private _income = new BehaviorSubject<number>(0);
-    private _economy = new BehaviorSubject<number>(0); 
+    private _expenses: BehaviorSubject<number> = new BehaviorSubject<number>(0);
+    private _income: BehaviorSubject<number> = new BehaviorSubject<number>(0);
+    private _economy: BehaviorSubject<number> = new BehaviorSubject<number>(0); 
 
-    protected expenses$ = this._expenses.asObservable();
-    protected income$ = this._income.asObservable();
-    protected economy$ = this._economy.asObservable(); 
-
-
+    protected expenses$: Observable<number> = this._expenses.asObservable();
+    protected income$: Observable<number> = this._income.asObservable();
+    protected economy$: Observable<number> = this._economy.asObservable(); 
 
     constructor(
       private _operationAccountingService: OperationAccountingService,

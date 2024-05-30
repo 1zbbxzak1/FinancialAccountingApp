@@ -52,13 +52,13 @@ export class PreferencesComponent implements OnInit, AfterViewInit{
 
     protected updateInfoNotification(): void {
         if (this._user) {
-          const userForRequest: IUserRequestModel = UserModelToIUserRequestModel(this._user);
-          
-          this._userManagerService.updateUserInfo(this._userId, userForRequest)
-            .pipe(takeUntilDestroyed(this._destroyRef))
-            .subscribe(() => this._alert.open("Информация обновлена!")
+            const userForRequest: IUserRequestModel = UserModelToIUserRequestModel(this._user);
+            
+            this._userManagerService.updateUserInfo(this._userId, userForRequest)
               .pipe(takeUntilDestroyed(this._destroyRef))
-              .subscribe());
+              .subscribe(() => this._alert.open("Информация обновлена!")
+                .pipe(takeUntilDestroyed(this._destroyRef))
+                .subscribe());
         }
     }
 }

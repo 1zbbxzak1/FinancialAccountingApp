@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { translations } from '../../../../../../data/directions/category/ctegoryProvider.direction';
 
 @Component({
@@ -25,7 +25,7 @@ export class CategoryComponent{
 
     private _showPicture(): void{
         if(this.category){
-            const imageName = this._translations[this.category]?.en;
+            const imageName: string = this._translations[this.category]?.en;
             if (imageName !== '') {
               this.imageUrl = `assets/img/category-${imageName}.svg`;
             }

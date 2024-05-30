@@ -13,7 +13,6 @@ export const slideInAnimation = trigger('routeAnimations', [
             }),
         ]),
         query(':enter', [style({ opacity: 0 })]), 
-        query(':leave', animateChild()),
         group([
             query(':leave', [
                 animate(
@@ -27,7 +26,6 @@ export const slideInAnimation = trigger('routeAnimations', [
                     style({ opacity: 1 }) 
                 ),
             ]),
-            query('@*', animateChild()),
         ]),
     ]),
 ]);

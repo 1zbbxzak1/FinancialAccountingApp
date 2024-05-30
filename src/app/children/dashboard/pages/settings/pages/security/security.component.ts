@@ -25,7 +25,7 @@ export class SecurityComponent {
     private _destroyRef: DestroyRef,
     private readonly _alerts: TuiAlertService){
 
-        const userId = localStorage.getItem('uid')!;
+        const userId: string = localStorage.getItem('uid')!;
         this._userMAnagerService.getUserInfo(userId)
         .pipe(takeUntilDestroyed(this._destroyRef))
         .subscribe((data:UserModel)=>
@@ -33,12 +33,10 @@ export class SecurityComponent {
     }
 
     protected updatePassword(): void {
-        if(this.securityForm.get('previousPassword')?.value !== ""){
-            this._userMAnagerService.updatePassword(this.userEmail, this.securityForm.get('previousPassword')?.value, this.securityForm.get('newPassword')?.value)
-            .pipe(takeUntilDestroyed(this._destroyRef))
-            .subscribe(()=> this._alerts.open("Пароль обновлен")
-            .pipe(takeUntilDestroyed(this._destroyRef))
-            .subscribe());
-        }
+        this._userMAnagerService.updatePassword(this.userEmail, this.securityForm.get('previousPassword')?.value, this.securityForm.get('newPassword')?.value)
+        .pipe(takeUntilDestroyed(this._destroyRef))
+        .subscribe(()=> this._alerts.open("Пароль обновлен")
+        .pipe(takeUntilDestroyed(this._destroyRef))
+        .subscribe());
     }
 }

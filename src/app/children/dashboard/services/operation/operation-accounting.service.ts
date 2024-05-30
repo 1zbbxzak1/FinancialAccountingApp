@@ -11,7 +11,7 @@ export class OperationAccountingService {
     public getExpenses(operations: OperationModel[]): Observable<number> {
       return of(operations).pipe(
         map(ops => {
-            let expenses = 0;
+            let expenses: number = 0;
             for (let i = 0; i < ops.length; i++){
                 if(ops[i].amount > 0){
                     expenses += ops[i].amount;
@@ -26,7 +26,7 @@ export class OperationAccountingService {
     public getIncome(operations: OperationModel[]): Observable<number> {
       return of(operations).pipe(
         map(ops => {
-            let income = 0;
+            let income: number = 0;
             for (let i = 0; i < ops.length; i++){
                 if(ops[i].amount < 0){
                     income += ops[i].amount;
