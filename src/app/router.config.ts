@@ -61,14 +61,17 @@ export const routes: Routes = [
             {
                 path: "editProfile",
                 component: EditProfileComponent,
+                data: {animation: 'editProfile'}
             },
             {
                 path: "preferences",
                 component: PreferencesComponent,
+                data: {animation: 'preferences'}
             },
             {
                 path: "security",
                 component: SecurityComponent,
+                data: {animation: 'security'}
             }
         ]
     },

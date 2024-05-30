@@ -174,3 +174,20 @@
         font-size: 15px;
     }
 }
+
+//скелетоны
+.skeletone{
+    opacity: .7;
+    animation: skeleton-loading 1s linear infinite alternate;
+    height: 55px;
+    border-radius: 10px;
+}
+
+@keyframes skeleton-loading{
+    0%{
+        background-color: hsl(200, 20%, 70%);
+    }
+    100%{
+        background-color: hsl(200, 20%, 95%);
+    }
+}

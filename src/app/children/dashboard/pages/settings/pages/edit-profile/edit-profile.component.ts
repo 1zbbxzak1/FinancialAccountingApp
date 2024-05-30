@@ -77,10 +77,11 @@ export class EditProfileComponent {
 
     protected saveUpdate(): void
     {
-        const dateValue = new Date(this.userInfoForm.get('dateOfBirthTimestamp')?.value).getTime();
-        const user: UserModel = new UserModel(this.userInfoForm.value);
-        user.dateOfBirthTimestamp = dateValue;
+        const dateValues: string[] = (this.userInfoForm.get('dateOfBirthTimestamp')?.value).split(".");
+        let date: Date = new Date(+dateValues[2], +dateValues[1]-1, +dateValues[0]);
 
+        const user: UserModel = new UserModel(this.userInfoForm.value);
+        user.dateOfBirthTimestamp = date.getTime();
         const userForRequest:IUserRequestModel = UserModelToIUserRequestModel(user);
 
         this._userManagerService.updateUserInfo(this._userId, userForRequest)

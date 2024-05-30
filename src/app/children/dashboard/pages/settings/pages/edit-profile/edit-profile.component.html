@@ -3,7 +3,14 @@
         <div class="setting-filds">
             <form class="setting__form" [formGroup]="userInfoForm">
                 <div class="profile-photo__container">
-                    <img *ngIf="userInfoForm.get('photoURL')?.value" [src]="userInfoForm.get('photoURL')?.value" alt="Profile"  class="profile-photo__container__img">
+                    
+                    <ng-template #userPhoto>
+                        <img [src]="userInfoForm.get('photoURL')?.value" alt="Profile"  class="profile-photo__container__img">
+                    </ng-template>
+                    <ng-container *ngIf="userInfoForm.get('photoURL')?.value=='';else userPhoto">
+                        <div class="profile-photo__container__img skeletone"></div>
+                    </ng-container>
+
                     <img class="profile-photo__container__icon" alt="Карандаш" height="15" ngSrc="assets/img/Vector.svg" width="15">
                     <tui-hosted-dropdown tuiDropdownAlign="right" [content]="dropdown" [sided]="true" [(open)]="open">
                         <button size="s" tuiButton type="button" [pseudoActive]="open || null" class="profile-photo__container__button"></button>

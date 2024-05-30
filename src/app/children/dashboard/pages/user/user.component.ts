@@ -46,6 +46,7 @@ export class UserComponent {
         {
             this._cards.next(data);
             this.selectedCard = this._cards.getValue()[0];
+            this.selectedCard.isSelected = true;
             this._operationService.getAll(this._userId, this.selectedCard.cardId)
             .pipe(takeUntilDestroyed(this._destroyRef))
             .subscribe((data:OperationModel[])=>{
@@ -67,6 +68,7 @@ export class UserComponent {
     }
     protected showInfoAboutCard(card:CardModel):void{
         this.selectedCard = card;
+        this.selectedCard.isSelected = true;
         this._operationService.getAll(this._userId, this.selectedCard.cardId)
         .pipe(takeUntilDestroyed(this._destroyRef))
         .subscribe((data:OperationModel[])=>{
