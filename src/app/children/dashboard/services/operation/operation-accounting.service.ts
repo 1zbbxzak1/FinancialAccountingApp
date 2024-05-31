@@ -55,20 +55,21 @@ export class OperationAccountingService {
     }
 
     public getAllDatesOperations(operations: OperationModel[]): Observable<string[]>{
-      return of(operations).pipe(
-        map(ops =>{
-            let months: string[] = [];
-            for(let i=0; i < ops.length; i++){
-                if (ops[i].date) {
-                    let date = new Date(ops[i].date);
-                    let month = date.toLocaleString('default', { month: 'long' });
-                    months.push(month);
-                }
-            }
-            return months;
-        })
-      )
+        return of(operations).pipe(
+          map(ops =>{
+              let monthsSet: Set<string> = new Set();
+              for(let i=0; i < ops.length; i++){
+                  if (ops[i].date) {
+                      let date = new Date(ops[i].date);
+                      let month = date.toLocaleString('default', { month: 'long' });
+                      monthsSet.add(month);
+                  }
+              }
+              return Array.from(monthsSet);
+          })
+        )
     }
+      
 
     public getMaxAmmount(operations: OperationModel[]): Observable<string>{
         return of(operations).pipe(

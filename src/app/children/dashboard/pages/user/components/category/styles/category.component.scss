@@ -32,3 +32,9 @@
         background-color: hsl(200, 20%, 95%);
     }
 }
+
+@media(max-width: 400px){
+    .category-container__list__item{
+        max-width: 150px;
+    }
+}

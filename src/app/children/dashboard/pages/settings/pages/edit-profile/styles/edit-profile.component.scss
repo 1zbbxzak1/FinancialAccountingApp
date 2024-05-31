@@ -100,6 +100,9 @@
     }
 }
 @media(max-width: 760px){
+    .setting__edit-profile{
+        width: 50px;
+    }
     .setting__form{
         display: flex;
         flex-direction: column;
@@ -137,10 +140,13 @@
 }
 
 @media(max-width: 480px){
+    .setting__edit-profile{
+        width: 325px;
+    }
     .setting__form{
         display: flex;
         flex-direction: column;
-        width: 325px;
+        width: 300px;
         .setting__form__filds__container{
             display: flex;
             flex-direction: column;
