@@ -1,4 +1,4 @@
-import {inject} from '@angular/core';
+import {inject, Injectable} from '@angular/core';
 import {AuthService} from "./auth.service";
 import {catchError, map, Observable} from "rxjs";
 import {IAuthDataRequestModel} from "../../request-models/auth/IAuthData.request-model";
@@ -7,6 +7,7 @@ import {UserManagerService} from "../user/user.manager.service";
 import {CustomError} from "../../../global-error-handler/global-error-handler.service";
 
 
+@Injectable()
 export class IdentityService {
     private readonly _authService: AuthService = inject(AuthService);
     private readonly _userManager: UserManagerService = inject(UserManagerService);

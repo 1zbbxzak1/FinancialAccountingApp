@@ -1,12 +1,13 @@
-import {DestroyRef, inject} from '@angular/core';
-import {catchError, map, Observable, switchMap} from "rxjs";
+import {DestroyRef, inject, Injectable} from '@angular/core';
+import {catchError, Observable} from "rxjs";
 import {UserModel} from "../../models/user/user.model";
 import {UserService} from "./user.service";
 import {IUserRequestModel, UserModelToIUserRequestModel} from "../../request-models/user/IUser.request-model";
-import { userPhotoIsCorrect } from '../../../validators/user/user.validator';
 import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
 import {CustomError} from "../../../global-error-handler/global-error-handler.service";
 
+
+@Injectable()
 export class UserManagerService {
 
     private readonly _userService: UserService = inject(UserService);

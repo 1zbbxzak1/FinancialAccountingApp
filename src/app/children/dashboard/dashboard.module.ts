@@ -13,13 +13,15 @@ import {
     TuiHintModule,
     TuiHostedDropdownModule,
     TuiRootModule,
-    TuiScrollbarModule
+    TuiScrollbarModule,
+    TuiTextfieldControllerModule
 } from "@taiga-ui/core";
 import {
     TuiAccordionModule,
     TuiCarouselModule,
     TuiDataListDropdownManagerModule,
     TuiDataListWrapperModule,
+    TuiInputModule,
     TuiIslandModule,
     TuiSelectModule,
     TuiTabsModule,
@@ -55,6 +57,8 @@ import {WeeklyActivityComponent} from "./pages/main/components/weekly-activity/w
 import {ExpenseStatisticsComponent} from "./pages/main/components/expense-statistics/expense-statistics.component";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {CardNotFoundComponent} from "./components/card-not-found/card-not-found.component";
+import {CreateOperationComponent} from "./pages/history/components/create-operation/create-operation.component";
+import {RecentOperationsComponent} from "./pages/history/components/recent-operations/recent-operations.component";
 
 @NgModule({
     declarations: [
@@ -72,6 +76,9 @@ import {CardNotFoundComponent} from "./components/card-not-found/card-not-found.
 
         UserComponent,
         HistoryComponent,
+        CreateOperationComponent,
+        RecentOperationsComponent,
+
         CardNotFoundComponent,
         CardsComponent,
         PaymentsComponent,
@@ -116,6 +123,8 @@ import {CardNotFoundComponent} from "./components/card-not-found/card-not-found.
         TuiBarChartModule,
         TuiHintModule,
         TuiScrollbarModule,
+        TuiTextfieldControllerModule,
+        TuiInputModule,
     ],
     exports: [
         CardComponent,

@@ -1,0 +1,33 @@
+.pop-up {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+
+    .pop-up-title {
+        color: rgb(30, 145, 111);
+        font-size: 20px;
+        font-weight: 600;
+        line-height: 24px;
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+    .error-message {
+        color: red;
+        font-size: 12px;
+    }
+}
+
+.dropdown__item {
+    display: flex;
+    align-items: center;
+
+    .dropdown__item__img {
+        display: block;
+        margin-right: 5px;
+    }
+}
+
+
+
+

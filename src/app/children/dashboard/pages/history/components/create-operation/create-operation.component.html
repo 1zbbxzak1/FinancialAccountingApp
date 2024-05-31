@@ -1,0 +1,91 @@
+<form [formGroup]="formEditOperation" class="pop-up">
+    <div class="pop-up-title">Изменить операцию</div>
+    <div>
+        <div>
+            <tui-input formControlName="name">Название</tui-input>
+            <div *ngIf="isControlError('name')" class="error-message">
+                <div *ngIf="isControlRequired('name')">
+                    Обязательное поле.
+                </div>
+            </div>
+        </div>
+
+        <tui-select
+            [(ngModel)]="categoryItem"
+            [tuiTextfieldLabelOutside]="true"
+            [valueContent]="template"
+            class="tui-space_vertical-4"
+            formControlName="category"
+        >
+            Выберите категорию
+            <tui-data-list-wrapper
+                *tuiDataList
+                [itemContent]="template"
+                [items]="categories"
+            ></tui-data-list-wrapper>
+        </tui-select>
+
+        <div>
+            <tui-input class="tui-space_top-4" formControlName="amount">
+                Сумма
+                <input
+                    placeholder="-500"
+                    tuiTextfield
+                />
+            </tui-input>
+            <div *ngIf="isControlError('amount')" class="error-message">
+                <div *ngIf="isControlRequired('amount')">
+                    Обязательное поле.
+                </div>
+                <div *ngIf="isAmountInvalid('amount')">
+                    Некорректное значение.
+                </div>
+            </div>
+        </div>
+
+        <div>
+            <tui-input class="tui-space_top-4" formControlName="date">
+                Дата
+                <input
+                    placeholder="22.02.2022"
+                    tuiTextfield
+                />
+            </tui-input>
+            <div *ngIf="isControlError('date')" class="error-message">
+                <div *ngIf="isControlRequired('date')">
+                    Обязательное поле.
+                </div>
+                <div *ngIf="isDateInvalid('date')">
+                    Некорректное значение.
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <button (click)="createOperation()"
+            [disabled]="formEditOperation.invalid"
+            appearance="custom"
+            class="tui-space_top-10"
+            size="l"
+            tuiButton
+            type="button">
+        Сохранить
+    </button>
+</form>
+
+<ng-template
+    #template
+    let-category
+>
+    <div class="dropdown__item">
+        <img [ngSrc]="category.src"
+             alt="Категория"
+             class="dropdown__item__img"
+             height="40"
+             width="40">
+        <div class="dropdown__item__name" tuiTitle>
+            {{ category.name }}
+        </div>
+    </div>
+</ng-template>

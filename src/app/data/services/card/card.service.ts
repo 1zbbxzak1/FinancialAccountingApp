@@ -1,11 +1,12 @@
 import {ICardRequestModel} from "../../request-models/card/ICard.request-model";
-import {inject} from "@angular/core";
+import {inject, Injectable} from "@angular/core";
 import {AngularFirestore, DocumentChangeAction, DocumentReference,} from "@angular/fire/compat/firestore";
 import {from, map, Observable} from "rxjs";
 import {ICardResponseModel} from "../../response-models/card/ICard.response-model";
 import {CardModel} from "../../models/card/card.model";
 
 
+@Injectable()
 export class CardService {
 
     private readonly _firestore: AngularFirestore = inject(AngularFirestore);

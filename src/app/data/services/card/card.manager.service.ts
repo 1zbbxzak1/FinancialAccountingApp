@@ -1,5 +1,5 @@
 import {CardService} from "./card.service";
-import {inject} from "@angular/core";
+import {inject, Injectable} from "@angular/core";
 import {OperationManagerService} from "../operation/operation.manager.service";
 import {ICardRequestModel} from "../../request-models/card/ICard.request-model";
 import {catchError, forkJoin, map, Observable, switchMap, take} from "rxjs";
@@ -8,7 +8,7 @@ import {CardWithOperationsModel} from "../../models/card/cardWithOperations.mode
 import {OperationModel} from "../../models/operation/operation.model";
 import {CustomError} from "../../../global-error-handler/global-error-handler.service";
 
-
+@Injectable()
 export class CardManagerService {
 
     private readonly _cardService: CardService = inject(CardService);
@@ -50,7 +50,7 @@ export class CardManagerService {
     public getAllWithOperations(uid: string): Observable<CardWithOperationsModel[]> {
         return this.getAll(uid).pipe(
             switchMap((cards: CardModel[]): Observable<CardWithOperationsModel[]> => {
-                return  forkJoin(cards.map(
+                return forkJoin(cards.map(
                     (card: CardModel): Observable<CardWithOperationsModel> => {
                         return this._operationManager.getAll(uid, card.cardId).pipe(
                             take(1),
@@ -63,7 +63,6 @@ export class CardManagerService {
             })
         );
     }
-
 
 
     public delete(uid: string, cardId: string): Observable<void> {

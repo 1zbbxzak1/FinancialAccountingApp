@@ -1,10 +1,11 @@
 import {AngularFirestore, DocumentChangeAction, DocumentReference} from "@angular/fire/compat/firestore";
-import {inject} from "@angular/core";
+import {inject, Injectable} from "@angular/core";
 import {IPaymentRequestModel} from "../../request-models/payment/IPayment.request-model";
 import {from, map, Observable} from "rxjs";
 import {IPaymentResponseModel} from "../../response-models/payment/IPayment.response-model";
 import {PaymentModel} from "../../models/payment/payment.model";
 
+@Injectable()
 export class PaymentService {
 
     private readonly _firestore: AngularFirestore = inject(AngularFirestore);
