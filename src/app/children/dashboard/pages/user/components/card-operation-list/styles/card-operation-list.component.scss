@@ -5,6 +5,8 @@
     padding: 0;
     gap: 30px;
     margin-bottom: 23px;
+    width: 1140px;
+    margin-top: 34px;
     .content-dashboard__result-list__item{
         display: flex;
         gap: 15px;
@@ -51,6 +53,9 @@
 }
 
 @media(max-width: 480px){
+    .content-dashboard__result-list{
+        flex-direction: column;
+    }
     .content-dashboard__result-list__item{
         max-width: 200px;
     }

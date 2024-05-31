@@ -22,10 +22,10 @@
     }
 }
 
-@media(max-width: 480px){
+@media(max-width: 580px) {
     .transaction-container__list__item{
         display: flex;
-        width: 300px;
+        width: 250px;
         .transaction-container__list__item__container__descreption{
             margin-top: 10px;
             text-align: left;
@@ -41,3 +41,4 @@
         }
     }
 }
+
