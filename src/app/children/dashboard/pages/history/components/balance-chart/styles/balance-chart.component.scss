@@ -1,9 +1,26 @@
-.axes {
-    height: 18.75rem;
-    width: 37.5rem;
 
-    .chart {
-        --tui-chart-0: #526ED3FF;
-        --tui-chart-1: #526ED3FF;
+.balance-chart__container {
+
+
+    .title {
+        font-weight: 600;
+        font-size: 22px;
+        color: #343c6a;
+
+        margin-bottom: 20px;
     }
+
+    .balance-chart__canvas__container {
+        background-color: white;
+        border-radius: 20px;
+        padding: 10px;
+
+        display: flex;
+        justify-content: center;
+
+        height: 255px;
+
+    }
+
 }
+

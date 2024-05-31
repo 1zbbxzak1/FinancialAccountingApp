@@ -1,12 +1,14 @@
-import {inject} from '@angular/core';
+import {inject, Injectable} from '@angular/core';
 import {AngularFirestore} from "@angular/fire/compat/firestore";
-import {from, map, Observable, timer} from "rxjs";
+import {from, map, Observable} from "rxjs";
 import {IUserResponseModel} from "../../response-models/user/IUser.response-model";
 import {IUserRequestModel} from "../../request-models/user/IUser.request-model";
 import {UserModel} from "../../models/user/user.model";
 import {AngularFireAuth} from "@angular/fire/compat/auth";
 import {AngularFireStorage} from "@angular/fire/compat/storage";
 
+
+@Injectable()
 export class UserService {
 
     private readonly _firestore: AngularFirestore = inject(AngularFirestore);

@@ -1,9 +1,10 @@
-import {inject} from '@angular/core';
+import {inject, Injectable} from '@angular/core';
 import {AngularFireAuth} from '@angular/fire/compat/auth';
 import {from, map, Observable} from "rxjs";
 import {IAuthDataRequestModel} from "../../request-models/auth/IAuthData.request-model";
 
 
+@Injectable()
 export class AuthService {
     private readonly _firebaseAuth: AngularFireAuth = inject(AngularFireAuth);
 

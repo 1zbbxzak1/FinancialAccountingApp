@@ -1,10 +1,12 @@
 import {AngularFirestore, DocumentChangeAction, DocumentReference} from "@angular/fire/compat/firestore";
-import {inject} from "@angular/core";
+import {inject, Injectable} from "@angular/core";
 import {IOperationRequestModel} from "../../request-models/operation/IOperation.request-model";
 import {from, map, Observable} from "rxjs";
 import {IOperationResponseModel} from "../../response-models/operation/IOperation.response-model";
 import {OperationModel} from "../../models/operation/operation.model";
 
+
+@Injectable()
 export class OperationService {
 
     private readonly _firestore: AngularFirestore = inject(AngularFirestore);

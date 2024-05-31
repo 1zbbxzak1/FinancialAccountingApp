@@ -1,5 +1,6 @@
-import {ChangeDetectionStrategy, ChangeDetectorRef, Component, inject} from '@angular/core';
+import {ChangeDetectionStrategy, Component} from "@angular/core";
 import {Capacitor, CapacitorGlobal} from "@capacitor/core";
+
 
 @Component({
     selector: 'app-history',
@@ -11,9 +12,7 @@ export class HistoryComponent {
 
     protected readonly Capacitor: CapacitorGlobal = Capacitor;
     protected readonly window: Window = window;
-    private readonly _changeDetectorRef: ChangeDetectorRef = inject(ChangeDetectorRef);
 
     constructor() {
-        this._changeDetectorRef.markForCheck();
     }
 }

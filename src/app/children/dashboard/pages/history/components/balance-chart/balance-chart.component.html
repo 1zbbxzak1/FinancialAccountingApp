@@ -1,14 +1,7 @@
-<tui-axes
-    class="axes"
-    [axisXLabels]="labelsX"
-    [axisYLabels]="labelsY"
->
-    <tui-bar-chart
-        class="chart"
-        [size]="null"
-        [max]="10000"
-        [tuiHintAppearance]="appearance"
-        [tuiHintContent]="hint"
-        [value]="value"
-    ></tui-bar-chart>
-</tui-axes>
+<div class="balance-chart__container">
+    <h2 class="title">Баланс</h2>
+    <div class="balance-chart__canvas__container">
+        <canvas #barCanvas class="balance-chart__canvas"></canvas>
+    </div>
+
+</div>

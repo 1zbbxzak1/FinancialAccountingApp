@@ -1,4 +1,4 @@
-import {DestroyRef, inject} from "@angular/core";
+import {DestroyRef, inject, Injectable} from "@angular/core";
 import {PaymentService} from "./payment.service";
 import {IPaymentRequestModel} from "../../request-models/payment/IPayment.request-model";
 import {catchError, map, Observable} from "rxjs";
@@ -10,6 +10,7 @@ import {paymentType} from "../../directions/payment/paymentType.direction";
 import {dateTimestampProvider} from "rxjs/internal/scheduler/dateTimestampProvider";
 import {CustomError} from "../../../global-error-handler/global-error-handler.service";
 
+@Injectable()
 export class PaymentManagerService {
     private readonly _cardManager: CardManagerService = inject(CardManagerService);
     private readonly _paymentService: PaymentService = inject(PaymentService);
@@ -121,7 +122,7 @@ export class PaymentManagerService {
                 this.addToCardBalance(uid, cardId, sum);
                 break;
             default:
-                 break;
+                break;
         }
     }
 
