@@ -3,7 +3,7 @@ import Chart from "chart.js/auto";
 import {OperationManagerService} from "../../../../../../data/services/operation/operation.manager.service";
 import {CardSelectionService} from "../../../../services/my-cards/card-selection.service";
 import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
-import {map, Observable, of, switchMap} from "rxjs";
+import {Observable, of, switchMap} from "rxjs";
 import {OperationModel} from "../../../../../../data/models/operation/operation.model";
 
 @Component({
@@ -25,17 +25,16 @@ export class ExpenseStatisticsComponent {
             takeUntilDestroyed(this._destroyRef),
             switchMap((cardId: string | null): Observable<OperationModel[]> => {
                 if (cardId) {
-                    return this._operationManagerService.getAll(this._uid, cardId).pipe(
-                        map((operations: OperationModel[]) => operations)
-                    );
+                    return this._operationManagerService.getAll(this._uid, cardId);
                 }
-
-                return of<OperationModel[]>([null as unknown as OperationModel]);
+                return of<OperationModel[]>([]);
             })
-        ).subscribe((operations: OperationModel[]): void => {
-            this.createPieChart(operations);
-            this._changeDetectorRef.detectChanges();
-        });
+        )
+            .subscribe((operations: OperationModel[]): void => {
+                this.createPieChart(operations);
+                this._changeDetectorRef.detectChanges();
+            });
+
     }
 
     private createPieChart(operations: OperationModel[]): void {

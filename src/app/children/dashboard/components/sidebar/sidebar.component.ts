@@ -11,7 +11,7 @@ export class SidebarComponent extends StateBarService implements OnInit {
     protected isSidebarVisible: boolean = false;
 
     @HostListener('window:resize', ['$event'])
-    onResize(): void {
+    public onResize(): void {
         this.checkWidth();
     }
 

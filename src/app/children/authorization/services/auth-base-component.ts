@@ -72,14 +72,11 @@ export class AuthBaseComponent {
                 )
                 .subscribe(
                     (): void => {
-                        console.log('auth successfully');
                         this._dialogForm.markAsDirty();
 
                         this._router.navigate(["dashboard/main"]);
                     }
                 );
-        } else {
-            console.error('Email and password are required');
         }
     }
 }

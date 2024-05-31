@@ -23,7 +23,7 @@ export class WeeklyActivityComponent {
     ) {
         this._cardSelectionService.selectedCardId.pipe(
             takeUntilDestroyed(this._destroyRef),
-            switchMap((cardId): Observable<OperationModel[]> => {
+            switchMap((cardId: string | null): Observable<OperationModel[]> => {
                 if (cardId) {
                     return this._operationManagerService.getAll(this._uid, cardId).pipe(
                         map((operations: OperationModel[]) => operations)
@@ -32,10 +32,11 @@ export class WeeklyActivityComponent {
 
                 return of<OperationModel[]>([null as unknown as OperationModel]);
             })
-        ).subscribe((operations: OperationModel[]): void => {
-            this.createBarChart(operations);
-            this._changeDetectorRef.detectChanges();
-        });
+        )
+            .subscribe((operations: OperationModel[]): void => {
+                this.createBarChart(operations);
+                this._changeDetectorRef.detectChanges();
+            });
     }
 
     private createBarChart(operations: OperationModel[]): void {

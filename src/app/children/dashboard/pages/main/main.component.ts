@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {Capacitor, CapacitorGlobal} from "@capacitor/core";
 
 @Component({
@@ -8,16 +8,10 @@ import {Capacitor, CapacitorGlobal} from "@capacitor/core";
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 
-export class MainComponent implements OnInit {
+export class MainComponent {
     protected readonly Capacitor: CapacitorGlobal = Capacitor;
     protected readonly window: Window = window;
 
-    constructor(
-        private readonly _changeDetectorRef: ChangeDetectorRef,
-    ) {
-    }
-
-    ngOnInit(): void {
-        this._changeDetectorRef.detectChanges();
+    constructor() {
     }
 }

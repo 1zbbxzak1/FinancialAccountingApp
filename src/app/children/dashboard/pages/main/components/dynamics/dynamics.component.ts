@@ -6,7 +6,7 @@ import {CardSelectionService} from "../../../../services/my-cards/card-selection
 import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
 import {CardManagerService} from "../../../../../../data/services/card/card.manager.service";
 import {CardModel} from "../../../../../../data/models/card/card.model";
-import {map, Observable, of, switchMap} from "rxjs";
+import {Observable, of, switchMap} from "rxjs";
 
 @Component({
     selector: 'app-dynamics',
@@ -28,23 +28,22 @@ export class DynamicsComponent {
     ) {
         this._cardSelectionService.selectedCardId.pipe(
             takeUntilDestroyed(this._destroyRef),
-            switchMap((cardId: string | null): Observable<[CardModel, OperationModel[]]> => {
+            switchMap((cardId: string | null): Observable<OperationModel[]> => {
                 if (cardId) {
                     return this._cardManagerService.getById(this._uid, cardId).pipe(
-                        switchMap((card: CardModel): Observable<[CardModel, OperationModel[]]> => {
+                        switchMap((card: CardModel): Observable<OperationModel[]> => {
                             this._balance = card.balance;
-                            return this._operationManagerService.getAll(this._uid, cardId).pipe(
-                                map((operations: OperationModel[]) => [card, operations])
-                            );
+                            return this._operationManagerService.getAll(this._uid, cardId);
                         })
                     );
                 }
-                return of<[CardModel, OperationModel[]]>([null as unknown as CardModel, []]);
+                return of<OperationModel[]>([]);
             })
-        ).subscribe(([card, operations]: [CardModel, OperationModel[]]): void => {
-            this.createLineChart(operations);
-            this._changeDetectorRef.detectChanges();
-        });
+        )
+            .subscribe((operations: OperationModel[]): void => {
+                this.createLineChart(operations);
+                this._changeDetectorRef.detectChanges();
+            });
     }
 
     private createLineChart(operations: OperationModel[]): void {
