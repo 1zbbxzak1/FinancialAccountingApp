@@ -19,11 +19,14 @@ import {
 import {
     TuiAccordionModule,
     TuiCarouselModule,
+    TuiComboBoxModule,
     TuiDataListDropdownManagerModule,
     TuiDataListWrapperModule,
+    TuiInputDateModule,
     TuiInputModule,
     TuiIslandModule,
     TuiSelectModule,
+    TuiStringifyContentPipeModule,
     TuiTabsModule,
     TuiToggleModule
 } from "@taiga-ui/kit";
@@ -59,6 +62,8 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {CardNotFoundComponent} from "./components/card-not-found/card-not-found.component";
 import {CreateOperationComponent} from "./pages/history/components/create-operation/create-operation.component";
 import {RecentOperationsComponent} from "./pages/history/components/recent-operations/recent-operations.component";
+import {StatisticsCardsComponent} from './pages/cards/components/statistics-cards/statistics-cards.component';
+import {AddCardComponent} from './pages/cards/components/add-card/add-card.component';
 
 @NgModule({
     declarations: [
@@ -94,6 +99,8 @@ import {RecentOperationsComponent} from "./pages/history/components/recent-opera
         OperationChartComponent,
         CardOperationListComponent,
         CategoryComponent,
+        StatisticsCardsComponent,
+        AddCardComponent,
     ],
     imports: [
         AppRoutingModule,
@@ -125,6 +132,9 @@ import {RecentOperationsComponent} from "./pages/history/components/recent-opera
         TuiScrollbarModule,
         TuiTextfieldControllerModule,
         TuiInputModule,
+        TuiComboBoxModule,
+        TuiStringifyContentPipeModule,
+        TuiInputDateModule,
     ],
     exports: [
         CardComponent,

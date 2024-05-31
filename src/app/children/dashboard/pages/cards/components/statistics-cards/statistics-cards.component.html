@@ -1,0 +1,12 @@
+<p class="expense__statistics__title">Статистика расходов</p>
+<div class="expense__statistics__section">
+    <div class="pie__chart__container">
+        <div *ngIf="isNullOperations" class="last__operations__card__not__found">
+            <div class="last__operations__not__found">
+                Отсутствуют данные об ежемесячных платежах.<br/>
+                Возможно, пропущены платежи. Перейдите на вкладку "Платежи", чтобы проверить.
+            </div>
+        </div>
+        <canvas *ngIf="!isNullOperations" class="canvas" id="myPieChart"></canvas>
+    </div>
+</div>
