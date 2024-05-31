@@ -39,8 +39,11 @@
 }
 
 @media (min-width: 1280px) {
-    .first-main-section,
     .second-main-section {
         width: 100%;
+    }
+
+    .first-main-section {
+        width: 99%;
     }
 }
