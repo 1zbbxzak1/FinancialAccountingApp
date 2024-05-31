@@ -6,11 +6,10 @@ import {inject} from "@angular/core";
 import {HistoryComponent} from "./children/dashboard/pages/history/history.component";
 import {UserComponent} from "./children/dashboard/pages/user/user.component";
 import {CardsComponent} from "./children/dashboard/pages/cards/cards.component";
-import {PaymentsComponent} from "./children/dashboard/pages/payments/payments.component";
 import {SettingsComponent} from "./children/dashboard/pages/settings/settings.component";
-import { EditProfileComponent } from "./children/dashboard/pages/settings/pages/edit-profile/edit-profile.component";
-import { PreferencesComponent } from "./children/dashboard/pages/settings/pages/preferences/preferences.component";
-import { SecurityComponent } from "./children/dashboard/pages/settings/pages/security/security.component";
+import {EditProfileComponent} from "./children/dashboard/pages/settings/pages/edit-profile/edit-profile.component";
+import {PreferencesComponent} from "./children/dashboard/pages/settings/pages/preferences/preferences.component";
+import {SecurityComponent} from "./children/dashboard/pages/settings/pages/security/security.component";
 
 export const routes: Routes = [
     {
@@ -44,15 +43,10 @@ export const routes: Routes = [
         canActivate: [(router: ActivatedRouteSnapshot, state: RouterStateSnapshot) => inject(AuthGuard).canActivate(router, state)],
     },
     {
-        path: "dashboard/payments",
-        component: PaymentsComponent,
-        canActivate: [(router: ActivatedRouteSnapshot, state: RouterStateSnapshot) => inject(AuthGuard).canActivate(router, state)],
-    },
-    {
         path: "dashboard/settings",
         component: SettingsComponent,
         canActivate: [(router: ActivatedRouteSnapshot, state: RouterStateSnapshot) => inject(AuthGuard).canActivate(router, state)],
-        children:[
+        children: [
             {
                 path: "",
                 redirectTo: "editProfile",

@@ -1,4 +1,4 @@
-<nav class="sidebar" *ngIf="isSidebarVisible">
+<nav *ngIf="isSidebarVisible" class="sidebar">
     <ul class="sidebar-menu-list">
         <li>
             <div class="sidebar-header">
@@ -68,22 +68,6 @@
                     width="25"
                 >
                 <p class="sidebar-item">Карты</p>
-            </button>
-        </li>
-
-        <li class="sidebar-menu-list-item">
-            <button [class.active]="states['isPaymentsClicked']"
-                    class="sidebar-router"
-                    routerLink="/dashboard/payments"
-                    routerLinkActive
-            >
-                <img
-                    alt="Главная"
-                    height="25"
-                    ngSrc="{{ states['isPaymentsClicked'] ? 'assets/img/articles_icon_active.svg' : 'assets/img/articles_icon.svg' }}"
-                    width="25"
-                >
-                <p class="sidebar-item">Платежи</p>
             </button>
         </li>
     </ul>
