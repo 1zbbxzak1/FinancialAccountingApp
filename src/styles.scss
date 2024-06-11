@@ -1,0 +1,27 @@
+/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
+
+@import '@taiga-ui/core/styles/taiga-ui-local.scss';
+// This goes into global, non-encapsulated styles
+[tuiWrapper][data-appearance='custom'] {
+    background: rgb(30, 145, 111);
+    color: #fff;
+
+    .wrapper-hover {
+        background: rgb(30, 145, 111);
+    }
+
+    .wrapper-active {
+        background: rgb(30, 145, 111);
+    }
+
+    .wrapper-disabled {
+        background: #eaecee;
+    }
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Montserrat';
+}

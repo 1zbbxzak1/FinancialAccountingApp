@@ -1,0 +1,74 @@
+<nav *ngIf="isSidebarVisible" class="sidebar">
+    <ul class="sidebar-menu-list">
+        <li>
+            <div class="sidebar-header">
+                <img alt="Логотип" class="img-logo" height="35" ngSrc="assets/img/logo.svg" width="34">
+                <p class="sidebar-title">Finance</p>
+            </div>
+        </li>
+
+        <li class="sidebar-menu-list-item">
+            <button [class.active]="states['isHomeClicked']"
+                    class="sidebar-router"
+                    routerLink="/dashboard/main"
+                    routerLinkActive
+            >
+                <img
+                    alt="Главная"
+                    height="25"
+                    ngSrc="{{ states['isHomeClicked'] ? 'assets/img/home_icon_active.svg' : 'assets/img/home_icon.svg' }}"
+                    width="25"
+                >
+                <p class="sidebar-item">Главная</p>
+            </button>
+        </li>
+
+        <li class="sidebar-menu-list-item">
+            <button [class.active]="states['isHistoryClicked']"
+                    class="sidebar-router"
+                    routerLink="/dashboard/history"
+                    routerLinkActive
+            >
+                <img
+                    alt="Главная"
+                    height="25"
+                    ngSrc="{{ states['isHistoryClicked'] ? 'assets/img/history_icon_active.svg' : 'assets/img/history_icon.svg' }}"
+                    width="25"
+                >
+                <p class="sidebar-item">История</p>
+            </button>
+        </li>
+
+        <li class="sidebar-menu-list-item">
+            <button [class.active]="states['isUserClicked']"
+                    class="sidebar-router"
+                    routerLink="/dashboard/user"
+                    routerLinkActive
+            >
+                <img
+                    alt="Главная"
+                    height="25"
+                    ngSrc="{{ states['isUserClicked'] ? 'assets/img/user_icon_active.svg' : 'assets/img/user_icon.svg' }}"
+                    width="25"
+                >
+                <p class="sidebar-item">Счета</p>
+            </button>
+        </li>
+
+        <li class="sidebar-menu-list-item">
+            <button [class.active]="states['isCardsClicked']"
+                    class="sidebar-router"
+                    routerLink="/dashboard/cards"
+                    routerLinkActive
+            >
+                <img
+                    alt="Главная"
+                    height="25"
+                    ngSrc="{{ states['isCardsClicked'] ? 'assets/img/cards_icon_active.svg' : 'assets/img/cards_icon.svg' }}"
+                    width="25"
+                >
+                <p class="sidebar-item">Карты</p>
+            </button>
+        </li>
+    </ul>
+</nav>

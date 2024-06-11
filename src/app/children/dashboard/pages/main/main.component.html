@@ -1,0 +1,31 @@
+<div class="main-content-dashboard">
+    <div class="main-content-dashboard-second">
+        <app-sidebar *ngIf="!Capacitor.isNativePlatform()"></app-sidebar>
+        <div class="main-content-dashboard-full">
+            <app-header></app-header>
+            <div class="content-dashboard">
+                <section class="first-main-section">
+                    <app-my-cards></app-my-cards>
+                    <app-last-operations
+                        *ngIf="window.innerWidth > 1570 || window.innerWidth <= 1280"></app-last-operations>
+                </section>
+
+                <section class="second-main-section">
+                    <app-last-operations
+                        *ngIf="window.innerWidth > 1280 && window.innerWidth < 1571"></app-last-operations>
+                    <div class="line-chart-container">
+                        <app-weekly-activity></app-weekly-activity>
+                        <app-expense-statistics></app-expense-statistics>
+                    </div>
+                </section>
+                <section class="third-main-section">
+                    <app-dynamics></app-dynamics>
+                </section>
+
+                <app-tabbar *ngIf="Capacitor.isNativePlatform() || window.innerWidth <= 1200"></app-tabbar>
+            </div>
+        </div>
+    </div>
+</div>
+
+

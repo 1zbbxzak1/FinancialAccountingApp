@@ -1,0 +1,39 @@
+<tui-root>
+    <nav
+        class="tabs"
+        tuiTabBar
+    >
+        <button icon="{{ states['isUserClicked'] ? 'assets/img/user_icon_active.svg' : 'assets/img/user_icon.svg' }}"
+                routerLink="/dashboard/user"
+                routerLinkActive
+                tuiTabBarItem
+        >
+            Счета
+        </button>
+
+        <button icon="{{ states['isHomeClicked'] ? 'assets/img/home_icon_active.svg' : 'assets/img/home_icon.svg' }}"
+                routerLink="/dashboard/main"
+                routerLinkActive
+                tuiTabBarItem
+        >
+            Главная
+        </button>
+
+        <button icon="{{ states['isCardsClicked'] ? 'assets/img/cards_icon_active.svg' : 'assets/img/cards_icon.svg' }}"
+                routerLink="/dashboard/cards"
+                routerLinkActive
+                tuiTabBarItem
+        >
+            Карты
+        </button>
+
+        <button
+            icon="{{ states['isHistoryClicked'] ? 'assets/img/history_icon_active.svg' : 'assets/img/history_icon.svg' }}"
+            routerLink="/dashboard/history"
+            routerLinkActive
+            tuiTabBarItem
+        >
+            История
+        </button>
+    </nav>
+</tui-root>

@@ -1,0 +1,172 @@
+.navigation {
+    display: flex;
+    text-align: center;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 auto;
+    padding: 30px 6vw 30px 18vw;
+    flex-wrap: wrap;
+    position: fixed;
+    width: 77%;
+    background-color: #FFFFFF;
+    z-index: 1000;
+}
+
+.menu-list {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0;
+    margin: 0 auto;
+    list-style: none;
+}
+
+.menu-list-item {
+    margin-right: 40px;
+}
+
+.menu-list-item:last-child {
+    margin-right: 0;
+}
+
+// Навигация ссылки
+
+a {
+    text-decoration: none;
+    color: #555555;
+}
+
+.link {
+    position: relative;
+}
+
+.link::after {
+    position: absolute;
+    content: '';
+    bottom: 0;
+    display: block;
+    height: 1px;
+    background: #555555;
+    width: 0;
+    transition: 0.3s;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.link:hover:after {
+    width: 100%;
+}
+
+// Навигация кнопки
+
+.navigation-container {
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    flex-wrap: wrap;
+    width: auto;
+    max-width: 50%;
+    margin: 0 auto;
+}
+
+.authorization-btn,
+.registration-btn {
+    padding: 10px;
+    border-radius: 10px;
+    font-size: 14px;
+}
+
+.authorization-btn {
+    margin-right: 10px;
+    border: 1px solid rgb(30, 145, 111);
+    background: transparent;
+}
+
+.registration-btn {
+    background: rgb(30, 145, 111);
+    border: 1px solid rgb(30, 145, 111);
+    color: white;
+}
+
+.mobile-menu {
+    display: flex;
+    margin-left: auto;
+    background: none;
+    border: none;
+    height: 100%;
+}
+
+.mobile-menu-close {
+    display: flex;
+    margin-left: auto;
+    background: none;
+    border: none;
+    margin-right: 10px;
+    margin-top: 10px;
+}
+
+.mobile-menu-list {
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    margin-left: 20px;
+    margin-top: 50px;
+}
+
+.mobile-menu-list-item {
+    margin-bottom: 20px;
+}
+
+.mobile-menu-list-item:last-child {
+    margin-bottom: 0;
+}
+
+.mobile-a {
+    font-size: 20px;
+    color: #6acfc8;
+}
+
+.mobile-navigation-container {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    padding-left: 20px;
+    margin-top: 50px;
+}
+
+.mobile-authorization-btn {
+    padding: 10px;
+    border-radius: 10px;
+    font-size: 14px;
+    border: 1px solid rgb(106, 207, 200);
+    background: transparent;
+    max-width: 80px;
+    margin-bottom: 10px;
+    margin-top: auto;
+}
+
+.mobile-registration-btn {
+    padding: 10px;
+    border-radius: 10px;
+    font-size: 14px;
+    background: rgb(106, 207, 200);
+    border: 1px solid rgb(106, 207, 200);
+    color: white;
+    max-width: 220px;
+}
+
+.hidden-auth {
+    display: none;
+}
+
+@media screen and (min-width: 1100px) {
+    .mobile-menu {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 1100px) {
+    .menu-list,
+    .navigation-container {
+        display: none;
+    }
+}

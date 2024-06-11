@@ -1,0 +1,24 @@
+.card__not__found__container {
+    width: 350px;
+    height: 235px;
+    border-radius: 25px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .card__not__found__content {
+        font-weight: 600;
+        font-size: 19px;
+        color: rgba(113, 142, 191, 0.7);
+
+        text-align: center;
+    }
+}
+
+@media (max-width: 800px) {
+    .card__not__found__container {
+        width: 265px;
+        height: 170px;
+    }
+}

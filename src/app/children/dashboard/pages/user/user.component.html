@@ -1,0 +1,83 @@
+<div class="main-content-dashboard">
+    <div class="main-content-dashboard-second">
+        <app-sidebar *ngIf="!Capacitor.isNativePlatform()"></app-sidebar>
+        <div class="main-content-dashboard-full">
+            <app-header></app-header>
+            <div class="content-dashboard">
+                <div class="content-dashboard-header"></div>
+
+                <app-card-operation-list [card]="selectedCard"></app-card-operation-list>
+
+                <section class="content-dashboard__middle">
+                    <div class="content-dashboard__middle__transaction-container">
+                        <h2 class="transaction-container__title">Последняя транзакция</h2>
+                        <div class="transaction-container__list">
+                            <app-transaction *ngFor="let transaction of operations$ | async | slice: -3"
+                                             [transaction]="transaction"></app-transaction>
+                        </div>
+                    </div>
+                    <div class="content-dashboard__middle__card-container">
+                        <ul class="card-container__title-list">
+                            <li class="card-container__title-list__item">
+                                Моя карта
+                            </li>
+                            <li class="card-container__title-list__item">
+                                <tui-hosted-dropdown [(open)]="open" [content]="dropdown" [sided]="true"
+                                                     tuiDropdownAlign="right">
+                                    <button [pseudoActive]="open || null" class="profile-photo__container__button"
+                                            size="s" tuiButton
+                                            type="button">Увидеть все
+                                    </button>
+                                </tui-hosted-dropdown>
+                                <ng-template
+                                    #dropdown
+                                    let-close="close"
+                                >
+                                    <tui-data-list>
+                                        <tui-opt-group *ngFor="let card of cards$ | async">
+                                            <button
+                                                (click)="showInfoAboutCard(card)"
+                                                tuiOption
+                                            >{{ card.name }}
+                                            </button>
+                                        </tui-opt-group>
+                                    </tui-data-list>
+                                </ng-template>
+
+                            </li>
+                        </ul>
+                        <app-card [card]="selectedCard"></app-card>
+                    </div>
+                </section>
+
+                <section class="content-dashboard__footer">
+                    <div class="content-dashboard__footer__operation-container">
+                        <h2 class="operation-container__title">Обзор списаний и начислений</h2>
+                        <div class="legend">
+                            <ul class="legend__list">
+                                <li class="legend__list__item">
+                                    <div class="legend__list__item__color-box charged"></div>
+                                    <p class="legend__list__item__name-color-box">Зачислено</p>
+                                </li>
+                                <li class="legend__list__item">
+                                    <div class="legend__list__item__color-box enrolled"></div>
+                                    <p class="legend__list__item__name-color-box ">Списано</p>
+                                </li>
+                            </ul>
+                            <app-operation-chart *ngIf="operations$ | async as data"
+                                                 [data]="data"></app-operation-chart>
+                        </div>
+                    </div>
+                    <div class="content-dashboard__footer__category-container">
+                        <h2 class="category-container__title">Категории</h2>
+                        <div class="category-container__list">
+                            <app-category *ngFor="let operation of operations$ | async | slice: -4"
+                                          [category]="operation.category"></app-category>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            <app-tabbar *ngIf="Capacitor.isNativePlatform() || window.innerWidth <= 1200"></app-tabbar>
+        </div>
+    </div>
+</div>

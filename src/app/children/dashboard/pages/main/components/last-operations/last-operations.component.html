@@ -1,0 +1,23 @@
+<div class="last__operations__title">Недавние операции</div>
+
+<div *ngIf="isOperations" class="last__operations__card">
+    <div *ngFor="let operation of operations" class="last__operations__list">
+        <div class="last__operations__item">
+            <img [ngSrc]="getImagePath(operation.category)" alt="категория" class="last__operations__img"
+                 height="55" width="55">
+            <div>
+                <p class="last__operations__name">{{ operation.name }}</p>
+                <p class="last__operations__date">{{ operation.date | dateFormatter }}</p>
+            </div>
+            <p [ngClass]="operation.amount < 0 ? 'last__operations__amount__negative' : 'last__operations__amount__positive'">
+                {{ operation.amount | currency:'RUB':'symbol-narrow' }}</p>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="!isOperations" class="last__operations__card__not__found">
+    <div class="last__operations__not__found">
+        Пока нет операций по карте.<br/>
+        Добавьте их в разделе "История".
+    </div>
+</div>

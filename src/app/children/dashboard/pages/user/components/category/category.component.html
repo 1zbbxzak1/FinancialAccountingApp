@@ -1,0 +1,13 @@
+<ng-template #content>
+    <div class="category-container__list__item">
+        <img alt="Изображение категории" class="category-container__list__item__img" height="60" src="{{imageUrl}}" width="60">
+        <h2 class="category-container__list__item__name">{{category}}</h2>
+    </div>
+</ng-template>
+
+<ng-container *ngIf="!category;else content">
+    <div class="category-container__list__item skeletone">
+        <div class="category-container__list__item__img skeletone" height="60" width="60"></div>
+        <h2 class="category-container__list__item__name skeletone"></h2>
+    </div>
+</ng-container>

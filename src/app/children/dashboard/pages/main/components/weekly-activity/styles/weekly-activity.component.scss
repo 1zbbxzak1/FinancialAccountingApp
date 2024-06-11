@@ -1,0 +1,39 @@
+.weekly__activity__title {
+    font-weight: 600;
+    font-size: 22px;
+    color: #343c6a;
+
+    margin-top: 24px;
+    margin-bottom: 20px;
+}
+
+.weekly__activity__section {
+    width: 100.6%;
+
+    padding-left: 8px;
+    padding-right: 8px;
+    padding-top: 10px;
+
+    border-radius: 25px;
+    border: 1px solid rgb(223, 234, 242);
+    background: #fff;
+
+    .bar__chart__container {
+        max-width: 100.6%;
+        height: 300px;
+
+        margin-bottom: 30px;
+    }
+
+    .canvas {
+        width: 100.6% !important;
+    }
+}
+
+@media (max-width: 1280px) {
+    .weekly__activity__section {
+        width: 95%;
+    }
+}
+
+

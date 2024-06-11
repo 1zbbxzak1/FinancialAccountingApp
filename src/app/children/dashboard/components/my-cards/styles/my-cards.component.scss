@@ -1,0 +1,36 @@
+.my-cards-title {
+    font-weight: 600;
+    font-size: 22px;
+    color: #343c6a;
+
+    margin-bottom: 20px;
+}
+
+.my-cards-carousel-main-container {
+    display: flex;
+    align-items: center;
+
+    .my-cards-carousel {
+        background: transparent;
+        width: 780px;
+
+
+        .my-cards-carousel-item-container {
+            margin: 0;
+            padding: 0;
+            width: fit-content;
+        }
+    }
+}
+
+@media (max-width: 1200px) {
+    .my-cards-carousel-main-container {
+        .my-cards-carousel {
+            --tui-carousel-padding: '0';
+        }
+
+        .my-cards-btn {
+            display: none;
+        }
+    }
+}

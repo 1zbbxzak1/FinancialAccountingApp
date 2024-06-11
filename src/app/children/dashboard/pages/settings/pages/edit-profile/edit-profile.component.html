@@ -1,0 +1,82 @@
+<tui-root>
+    <section class="setting__edit-profile">
+        <div class="setting-filds">
+            <form class="setting__form" [formGroup]="userInfoForm">
+                <div class="profile-photo__container">
+                    
+                    <ng-template #userPhoto>
+                        <img [src]="userInfoForm.get('photoURL')?.value" alt="Profile"  class="profile-photo__container__img">
+                    </ng-template>
+                    <ng-container *ngIf="userInfoForm.get('photoURL')?.value=='';else userPhoto">
+                        <div class="profile-photo__container__img skeletone"></div>
+                    </ng-container>
+
+                    <img class="profile-photo__container__icon" alt="Карандаш" height="15" ngSrc="assets/img/Vector.svg" width="15">
+                    <tui-hosted-dropdown tuiDropdownAlign="right" [content]="dropdown" [sided]="true" [(open)]="open">
+                        <button size="s" tuiButton type="button" [pseudoActive]="open || null" class="profile-photo__container__button"></button>
+                    </tui-hosted-dropdown>
+                    <ng-template
+                        #dropdown
+                        let-close="close"
+                    >
+                        <tui-data-list>
+                            <tui-opt-group>
+                                <input
+                                    #inputFile
+                                    type="file"
+                                    id="text"
+                                    tuiOption
+                                    accept="image/jpg"
+                                    (click)="onClick()" appCheckDownload (fileLoaded)="onFileLoaded($event)"
+                                >
+                            </tui-opt-group>
+                            <tui-opt-group>
+                                <button
+                                    tuiOption
+                                    (click)="close()"
+                                >
+                                    Готово
+                                </button>
+                            </tui-opt-group>
+                        </tui-data-list>
+                    </ng-template>
+                </div>
+
+                <div class="setting__form__filds__container">
+                    <label for="name">Ваше имя</label>
+                    <input type="text" id="name" name="name" class="setting__form__input"
+                    [formControlName]="'name'">
+
+                    <label for="email">Почта</label>
+                    <input type="email" id="email" name="email" class="setting__form__input"
+                    [formControlName]="'email'" readonly>
+
+                    <label for="birthday">Дата рождения</label>
+                    <input type="datetime" id="birthday" name="birthday" class="setting__form__input"
+                    [formControlName]="'dateOfBirthTimestamp'">
+
+                    <label for="residence">Адрес по прописке</label>
+                    <input type="text" id="residence" name="residence" class="setting__form__input"
+                    [formControlName]="'permanentAddress'">
+
+                    <label for="login">Фамилия</label>
+                    <input type="text" id="login" name="login" class="setting__form__input"
+                    [formControlName]="'surname'">
+
+                    <label for="address">Адрес проживания</label>
+                    <input type="text" id="address" name="address" class="setting__form__input"
+                    [formControlName]="'presentAddress'">
+
+                    <label for="city">Город</label>
+                    <input type="text" id="city" name="city" class="setting__form__input"
+                    [formControlName]="'city'">
+
+                    <label for="citizenship">Гражданство</label>
+                    <input type="text" id="citizenship" name="citizenship" class="setting__form__input"
+                    [formControlName]="'country'">
+                </div>
+            </form>
+        </div>
+        <button class="save__button__settings" (click)="saveUpdate()">Сохранить</button>
+    </section>
+</tui-root>

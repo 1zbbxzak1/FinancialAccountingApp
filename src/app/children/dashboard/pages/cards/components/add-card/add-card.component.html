@@ -1,0 +1,64 @@
+<tui-root>
+    <div class="add__card__section">
+        <p class="desc">
+            Кредитная карта обычно означает пластиковую карту, выпущенную зарегистрированными коммерческими банками,
+            назначенную Владельцу карты, с кредитным лимитом, которая может быть использована для покупки товаров и
+            услуг в кредит или получения авансов наличными.
+        </p>
+        <form [formGroup]="formCard" class="form-grid">
+            <div class="form-group">
+                <p class="add-title">Название</p>
+                <tui-input [tuiTextfieldCleaner]="true"
+                           [tuiTextfieldLabelOutside]="true" formControlName="name">
+                    Название
+                </tui-input>
+            </div>
+
+            <div class="form-group">
+                <p class="add-title">Начальный баланс</p>
+                <tui-input [tuiTextfieldCleaner]="true" [tuiTextfieldLabelOutside]="true"
+                           formControlName="balance">
+                    23000
+                </tui-input>
+            </div>
+
+            <div class="form-group">
+                <p class="add-title">Платежная система</p>
+                <tui-combo-box
+                    [stringify]="stringify"
+                    [tuiTextfieldLabelOutside]="true"
+                    formControlName="provider"
+                >
+                    mir
+                    <tui-data-list-wrapper
+                        *tuiDataList
+                        [itemContent]="stringify | tuiStringifyContent"
+                        [items]="providers"
+                    ></tui-data-list-wrapper>
+                </tui-combo-box>
+            </div>
+
+            <div class="form-group">
+                <p class="add-title">Дата создания</p>
+                <tui-input formControlName="date">
+                    Дата
+                    <input
+                        placeholder="18.07.2017"
+                        tuiTextfield
+                    />
+                </tui-input>
+            </div>
+            <div class="form-group">
+                <button (click)="onSubmit()"
+                        [disabled]="formCard.invalid"
+                        appearance="custom"
+                        class="tui-space_top-4 tui-space_bottom-6"
+                        size="l"
+                        tuiButton
+                        type="button">
+                    Создать
+                </button>
+            </div>
+        </form>
+    </div>
+</tui-root>

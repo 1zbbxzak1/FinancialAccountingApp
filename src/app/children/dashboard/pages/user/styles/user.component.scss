@@ -1,0 +1,147 @@
+//Middle-section
+.content-dashboard__middle{
+    display: flex;
+    gap: 40px;
+    margin-bottom: 23px;
+    .transaction-container__title{
+        color: rgb(51, 59, 105);
+        font-size: 22px;
+        font-weight: 600;
+        text-align: left;
+        margin-bottom: 21px;
+    }
+    .transaction-container__list{
+        list-style: none;
+        padding: 0;
+        width: 730px;
+        border-radius: 25px;
+        background: rgb(255, 255, 255);
+        padding: 25px;
+        padding-bottom: 40px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+    .card-container__title-list{
+        list-style: none;
+        padding: 0;
+        display: flex;
+        width: 350px;
+        justify-content: space-between;
+        .card-container__title-list__item{
+            color: rgb(51, 59, 105);
+            font-size: 22px;
+            font-weight: 600;
+            text-align: left;
+            margin-bottom: 21px;
+        }
+    }
+}
+
+//Footer-section
+.content-dashboard__footer{
+    margin-bottom: 20px;
+    .operation-container__title{
+        color: rgb(51, 59, 105);
+        font-size: 22px;
+        font-weight: 600;
+        text-align: left;
+        margin-bottom: 21px;
+    }
+    display: flex;
+    gap: 30px;
+    .legend{
+        border-radius: 25px;
+        background: rgb(255, 255, 255);
+        padding: 30px;
+        width: 730px;
+        margin-bottom: 40px;
+        .legend__list{
+            list-style: none;
+            padding: 0;
+            display: flex;
+            gap: 15px;
+            margin-bottom: 26px;
+            .legend__list__item{
+                display: flex;
+                gap: 10px;
+                .legend__list__item__color-box{
+                    border-radius: 5px;
+                    box-shadow: inset 0px 0px 15px 0px rgba(17, 52, 133, 0.5);
+                    background: #526ed3;
+                    width: 15px;
+                    height: 15px;
+                }
+                .enrolled{
+                    background: #ea97c4;
+                }
+                .legend__list__item__name-color-box{
+                    margin-top: -3px;
+                }
+            }
+        }
+    }
+
+    .content-dashboard__footer__category-container{
+        .category-container__title{
+            color: rgb(51, 59, 105);
+            font-size: 22px;
+            font-weight: 600;
+            text-align: left;
+            margin-bottom: 21px;
+        }
+        .category-container__list{
+            border-radius: 25px;
+            background: rgb(255, 255, 255);
+            padding: 25px 30px 25px 31px;
+            display: flex;
+            flex-direction: column;
+            gap: 21px;
+            width: 310px;
+        }
+    }
+}
+
+//Адаптив
+@media(max-width: 1300px){
+    .content-dashboard__middle__transaction-container{
+        width: 650px;
+        .transaction-container__list{
+            width: 92%;
+        }
+    }
+    .content-dashboard__footer{
+        flex-direction: column;
+    }
+
+    
+}
+
+@media(max-width: 760px){
+    .content-dashboard__middle{
+        flex-wrap: wrap;
+        height: 100%;
+    }
+    .content-dashboard__footer{
+        display: flex;
+        flex-direction: column;
+    }
+    .legend{
+        max-width: 74%;
+    }
+}
+
+@media(max-width: 580px){
+    .transaction-container__list{
+        max-width: 325px;
+    }
+    .legend{
+        max-width: 80%;
+    }
+}
+
+@media(max-width: 400px){
+    .category-container__list{
+        max-width: 150px;
+    }
+}

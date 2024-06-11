@@ -1,0 +1,206 @@
+<tui-root>
+    <app-header></app-header>
+
+    <main class="main">
+        <a id="main"></a>
+        <section class="first-section">
+            <h1 class="first-section-main-title">Деньги любят <span>счет</span></h1>
+            <img alt="Рамка" class="first-section-frame" height="124" ngSrc="assets/img/frame_count.svg"
+                 width="290">
+            <ul class="first-section-description-list">
+                <li class="first-section-description-list-item">Учет доходов и расходов, планирование бюджета, контроль
+                    финансового состояния.
+                </li>
+                <li class="first-section-description-list-item">Ваш финансовый навигатор в браузере и смартфоне.</li>
+                <li class="first-section-description-list-item">Это больше, чем просто online бухгалтерия.</li>
+            </ul>
+            <button (click)="openDialogRegistration(registration, 's')" class="first-section-start-btn">Начните сейчас
+            </button>
+            <img alt="Статистика" class="first-section-statistic-photo" height="474"
+                 ngSrc="assets/img/statistic.png"
+                 width="613">
+        </section>
+
+        <a id="clients"></a>
+        <section class="second-section">
+            <h1 class="second-section-title">Кому подойдет сервис?</h1>
+            <ul class="second-section-cards">
+                <li class="second-section-card">
+                    <div class="second-section-card-title-container">
+                        <h2 class="second-section-card-title">Семья</h2>
+                        <img alt="Семья" class="second-section-card-img" height="38"
+                             ngSrc="assets/img/family.svg" width="38">
+                    </div>
+                    <p class="second-section-card-desc second-section-card-desc-bold"><b>Лучший контроль над
+                        финансами:</b>
+                    </p>
+                    <p class="second-section-card-desc">
+                        Помогает семье принимать более
+                        осознанные финансовые решения с
+                        помощью семейного аккаунта</p>
+
+
+                    <p class="second-section-card-desc second-section-card-desc-bold"><b>Планирование и управление:</b>
+                    </p>
+                    <p class="second-section-card-desc">
+                        В случае наличия ипотеки, финансовых
+                        кризисов, неожиданных крупных
+                        расходов позволяет адаптироваться и
+                        принимать твердые решения</p>
+
+
+                    <p class="second-section-card-desc second-section-card-desc-bold"><b>Оптимизация расходов</b></p>
+                    <p class="second-section-card-desc">
+                        Помогает сократить расходы или оптимизировать бюджет</p>
+                </li>
+                <li class="second-section-card">
+                    <div class="second-section-card-title-container">
+                        <h2 class="second-section-card-title">Предприниматель</h2>
+                        <img alt="Предприниматель" class="second-section-card-img" height="38"
+                             ngSrc="assets/img/businessman.svg" width="38">
+                    </div>
+                    <p class="second-section-card-desc second-section-card-desc-bold"><b>Более точный и аккуратный
+                        учет:</b>
+                    </p>
+                    <p class="second-section-card-desc">Помогает предпринимателю автоматически
+                        отслеживать и записывать все финансовые
+                        транзакции, упрощает учет финансов и
+                        сокращает вероятность ошибок</p>
+
+
+                    <p class="second-section-card-desc second-section-card-desc-bold"><b>Анализ финансовых данных:</b>
+                    </p>
+
+                    <p class="second-section-card-desc">Помогает понять структуру бизнес финансов
+                        и выявить на какие категории расходов
+                        тратится большая часть средств</p>
+
+
+                    <p class="second-section-card-desc second-section-card-desc-bold"><b>Управление бюджетом:</b></p>
+
+                    <p class="second-section-card-desc">Предупреждает о потенциальных
+                        перерасходах или отсутствии средств,
+                        помогает своевременно и эффективно
+                        управлять финансами</p>
+                </li>
+
+                <li class="second-section-card">
+                    <div class="second-section-card-title-container">
+                        <h2 class="second-section-card-title">Самозанятый</h2>
+                        <img alt="Самозанятый" class="second-section-card-img" height="38"
+                             ngSrc="assets/img/self-employed.svg" width="38">
+                    </div>
+                    <p class="second-section-card-desc second-section-card-desc-bold"><b>Учет доходов и расходов:</b>
+                    </p>
+                    <p class="second-section-card-desc">
+                        Помогает самозанятому отслеживать все
+                        доходы и расходы, включая формирование
+                        чеков, и избежать ошибок при подготовке
+                        налоговых деклараций</p>
+
+
+                    <p class="second-section-card-desc second-section-card-desc-bold"><b>Оптимизация финансового
+                        плана:</b>
+                    </p>
+                    <p class="second-section-card-desc">
+                        Определяет какие расходы могут быть
+                        оптимизированы или сокращены для
+                        увеличения прибыли и снижения налоговых
+                        обязательств</p>
+
+
+                    <p class="second-section-card-desc second-section-card-desc-bold"><b>Планирование налоговых
+                        платежей:</b></p>
+                    <p class="second-section-card-desc">
+                        Предоставляет аналитику для расчетов
+                        налоговых платежей на будущие периоды,
+                        финансовых обязательств и помогает
+                        избежать неожиданных выплат</p>
+                </li>
+            </ul>
+        </section>
+
+        <a id="possibilities"></a>
+        <section class="third-section">
+            <h1 class="third-section-title">
+                Широкие возможности –
+                <br/>реальная польза
+            </h1>
+
+            <ul class="third-section-cards">
+                <li class="third-section-card">
+                    <img alt="Рекомендации" class="third-section-card-img" height="35"
+                         ngSrc="assets/img/recommendations.svg" width="35">
+                    <div class="third-section-card-content">
+                        <h3 class="third-section-card-title">Рекомендации</h3>
+                        <p class="third-section-card-desc">
+                            Подскажут эффективное решение в текущей финансовой ситуации с помощью уникальной системы
+                            тахометров финансового состояния и советов.
+                        </p>
+                    </div>
+                </li>
+
+                <li class="third-section-card">
+                    <img alt="Рекомендации" class="third-section-card-img" height="35"
+                         ngSrc="assets/img/budget.svg"
+                         width="35">
+                    <div class="third-section-card-content">
+                        <h3 class="third-section-card-title">Бюджет</h3>
+                        <p class="third-section-card-desc">
+                            Позволяет планировать доходы и расходы, долги и кредиты, чтобы хватало денег в будущем с
+                            помощью
+                            прогнозов и мастера планирования.
+                        </p>
+                    </div>
+                </li>
+
+                <li class="third-section-card">
+                    <img alt="Рекомендации" class="third-section-card-img" height="35"
+                         ngSrc="assets/img/calendar.svg"
+                         width="35">
+                    <div class="third-section-card-content">
+                        <h3 class="third-section-card-title">Календарь</h3>
+                        <p class="third-section-card-desc">
+                            Обеспечивает своевременность внесения повторяющихся платежей. Помогает избежать штрафов и
+                            комиссий за просрочки по платежам.
+                        </p>
+                    </div>
+                </li>
+
+                <li class="third-section-card">
+                    <img alt="Рекомендации" class="third-section-card-img" height="35"
+                         ngSrc="assets/img/purposes.svg"
+                         width="35">
+                    <div class="third-section-card-content">
+                        <h3 class="third-section-card-title">Планирование целей</h3>
+                        <p class="third-section-card-desc">
+                            Мотивирует в накоплении денег на желаемую покупку, помогает достичь цели быстрее.
+                        </p>
+                    </div>
+                </li>
+
+                <li class="third-section-card">
+                    <img alt="Рекомендации" class="third-section-card-img" height="35"
+                         ngSrc="assets/img/charts.svg"
+                         width="35">
+                    <div class="third-section-card-content">
+                        <h3 class="third-section-card-title">Графики</h3>
+                        <p class="third-section-card-desc">
+                            Наглядно представляют сложную информацию в доступной форме, облегчают принятие важных
+                            финансовых
+                            решений
+                        </p>
+                    </div>
+                </li>
+            </ul>
+        </section>
+
+        <ng-template #registration>
+            <app-registration></app-registration>
+        </ng-template>
+    </main>
+
+    <app-footer></app-footer>
+
+    <app-registration class="hidden-auth"></app-registration>
+</tui-root>

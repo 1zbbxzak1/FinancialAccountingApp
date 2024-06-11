@@ -1,0 +1,18 @@
+<div class="main-content-dashboard">
+    <div class="main-content-dashboard-second">
+        <app-sidebar *ngIf="!Capacitor.isNativePlatform()"></app-sidebar>
+        <div class="main-content-dashboard-full">
+            <app-header></app-header>
+            <div class="content-dashboard">
+                <div [@routeAnimations]="getRouteAnimationData()" class="main-contentt">
+                    <div class="content-dashboard-header">
+                        <app-navigation></app-navigation>
+                    </div>
+                    <router-outlet></router-outlet>
+                </div>
+            </div>
+            <app-tabbar *ngIf="Capacitor.isNativePlatform() || window.innerWidth <= 1200"></app-tabbar>
+        </div>
+    </div>
+</div>
+

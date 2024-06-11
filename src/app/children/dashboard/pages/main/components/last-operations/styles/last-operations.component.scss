@@ -1,0 +1,101 @@
+.last__operations__title {
+    font-weight: 600;
+    font-size: 22px;
+    color: #343c6a;
+
+    margin-bottom: 20px;
+}
+
+.last__operations__card {
+    min-height: 235px;
+    border-radius: 25px;
+    background: white;
+
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: start;
+
+    padding-left: 35px;
+    padding-right: 35px;
+
+    border: 1px solid rgb(223, 234, 242);
+
+    .last__operations__list {
+        display: flex;
+        width: 100%;
+
+        .last__operations__item {
+            display: flex;
+            align-items: center;
+            justify-content: start;
+
+            font-weight: 500;
+            font-size: 16px;
+            color: #232323;
+
+            width: 100%;
+            margin-top: 12px;
+            margin-bottom: 10px;
+
+            .last__operations__img {
+                margin-right: 15px;
+            }
+
+            .last__operations__date {
+                font-weight: 400;
+                font-size: 15px;
+                color: #718ebf;
+            }
+
+            .last__operations__amount__negative {
+                font-weight: 500;
+                font-size: 16px;
+                text-align: right;
+                color: #ff4b4a;
+
+                margin-left: auto;
+            }
+
+            .last__operations__amount__positive {
+                font-weight: 500;
+                font-size: 16px;
+                text-align: right;
+                color: #41d4a8;
+
+                margin-left: auto;
+            }
+        }
+    }
+}
+
+.last__operations__card__not__found {
+    height: 235px;
+    border-radius: 25px;
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid rgb(223, 234, 242);
+
+    .last__operations__not__found {
+        font-weight: 600;
+        font-size: 16px;
+        color: rgba(113, 142, 191, 0.7);
+
+        padding: 40px;
+
+        text-align: center;
+    }
+}
+
+@media (max-width: 675px) {
+    .last__operations__title {
+        width: 100%;
+    }
+
+    .last__operations__not__found {
+        padding: 10px;
+    }
+}

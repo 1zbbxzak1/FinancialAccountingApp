@@ -1,0 +1,65 @@
+<ng-template #contentOperationList>
+    <ul class="content-dashboard__result-list">
+        <li class="content-dashboard__result-list__item">
+            <img alt="иконка транзакции" height="70" ngSrc="assets/img/card-balance.svg" width="70">
+            <div class="result-list__item__container">
+                <h2 class="result-list__item__container__title">Мой Баланс</h2>
+                <p class="result-list__item__container__balance" >{{card.balance}}₽</p>
+            </div>
+        </li>
+        <li class="content-dashboard__result-list__item">
+            <img alt="иконка транзакции" height="70" ngSrc="assets/img/card-expensess.svg" width="70">
+            <div class="result-list__item__container">
+                <h2 class="result-list__item__container__title">Доход</h2>
+                <p class="result-list__item__container__balance">{{expenses$|async}}₽</p>
+            </div>
+        </li>
+        <li class="content-dashboard__result-list__item">
+            <img alt="иконка транзакции" height="70" ngSrc="assets/img/card-income.svg" width="70">
+            <div class="result-list__item__container">
+                <h2 class="result-list__item__container__title">Расход</h2>
+                <p class="result-list__item__container__balance">{{income$|async}}₽</p>
+            </div>
+        </li>
+        <li class="content-dashboard__result-list__item">
+            <img alt="иконка транзакции" height="70" ngSrc="assets/img/card-economy.svg" width="70">
+            <div class="result-list__item__container">
+                <h2 class="result-list__item__container__title">Экономия</h2>
+                <p class="result-list__item__container__balance">{{economy$|async}}₽</p>
+            </div>
+        </li>
+    </ul>
+</ng-template>
+
+<ng-container *ngIf="!card;else contentOperationList">
+    <ul class="content-dashboard__result-list">
+        <li class="content-dashboard__result-list__item skeletone">
+            <div height="70" width="70" class="skeletone"></div>
+            <div class="result-list__item__container skeletone">
+                <h2 class="result-list__item__container__title skeletone"></h2>
+                <p class="result-list__item__container__balance skeletone" ></p>
+            </div>
+        </li>
+        <li class="content-dashboard__result-list__item skeletone">
+            <div height="70" width="70" class="img_skeletone"></div>
+            <div class="result-list__item__container skeletone">
+                <h2 class="result-list__item__container__title skeletone"></h2>
+                <p class="result-list__item__container__balance skeletone" ></p>
+            </div>
+        </li>
+        <li class="content-dashboard__result-list__item skeletone">
+            <div height="70" width="70" class="img_skeletone"></div>
+            <div class="result-list__item__container skeletone">
+                <h2 class="result-list__item__container__title skeletone"></h2>
+                <p class="result-list__item__container__balance skeletone" ></p>
+            </div>
+        </li>
+        <li class="content-dashboard__result-list__item skeletone">
+            <div height="70" width="70" class="img_skeletone"></div>
+            <div class="result-list__item__container skeletone">
+                <h2 class="result-list__item__container__title skeletone"></h2>
+                <p class="result-list__item__container__balance skeletone" ></p>
+            </div>
+        </li>
+    </ul>
+</ng-container>        

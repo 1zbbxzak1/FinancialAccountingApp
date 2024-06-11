@@ -1,0 +1,20 @@
+<tui-root>
+    <section class="settings__security__section">
+        <div class="security__change-password__container">
+            <h1 class="security__change-password__title">
+                Изменить пароль
+            </h1>
+            <form class="security__change-password__form" [formGroup]="securityForm">
+                <div class="current_password container">
+                    <label for="current-password">Текущий пароль</label>
+                    <input type="password" id="current-password" name="current-password" [formControlName]="'previousPassword'">
+                </div>
+                <div class="new_password container">
+                    <label for="new-password">Новый пароль</label>
+                    <input type="password" id="new-password" name="new-password" [formControlName]="'newPassword'">
+                </div>
+            </form>
+        </div>
+        <button class="save__button__settings" (click)="updatePassword()">Сохранить</button>
+    </section>
+</tui-root>

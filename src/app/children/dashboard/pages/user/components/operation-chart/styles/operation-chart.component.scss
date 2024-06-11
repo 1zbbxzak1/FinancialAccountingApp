@@ -1,0 +1,20 @@
+.axes {
+    height: 18.75rem;
+    width: 37.5rem;
+}
+
+@media(max-width: 760px){
+    .axes {
+        width: 30rem;
+    }
+}
+
+@media(max-width: 580px){
+    .chart {
+        max-width: 30%;
+    }
+    .axes{
+        max-width: 100px;
+    }
+}
+

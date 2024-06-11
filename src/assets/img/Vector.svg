@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="15.000000"
+   height="15.000000"
+   viewBox="0 0 15 15"
+   fill="none"
+   version="1.1"
+   id="svg7"
+   sodipodi:docname="Vector.svg"
+   inkscape:version="1.2 (dc2aeda, 2022-05-15)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview9"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     showgrid="false"
+     inkscape:zoom="15.733333"
+     inkscape:cx="7.5"
+     inkscape:cy="7.5"
+     inkscape:window-width="1440"
+     inkscape:window-height="456"
+     inkscape:window-x="0"
+     inkscape:window-y="25"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="svg7" />
+  <desc
+     id="desc2">
+			Created with Pixso.
+	</desc>
+  <defs
+     id="defs4" />
+  <path
+     id="Vector"
+     d="m 12.79333,4.6791777 -1.012381,1.1212221 c -0.104988,0.1162749 -0.269968,0.1162749 -0.374956,0 L 8.9687778,3.1011614 c -0.104988,-0.1162749 -0.104988,-0.2989926 0,-0.4152675 l 1.012382,-1.121222 c 0.4124522,-0.4567942 1.0798742,-0.4567942 1.4923252,0 l 1.319845,1.4617413 c 0.412452,0.4567942 0.412452,1.1959703 0,1.6527645 z M 8.0988798,3.6493144 2.3320535,10.036128 1.8671079,12.992832 c -0.067492,0.398656 0.247471,0.747481 0.607429,0.681038 L 5.1442248,13.150633 10.911051,6.7638202 c 0.104988,-0.1162748 0.104988,-0.2989925 0,-0.4152674 L 8.4738358,3.6493144 c -0.104988,-0.1162749 -0.269968,-0.1162749 -0.374956,0 z M 4.5817906,9.4879747 c -0.119986,-0.1328856 -0.119986,-0.3488247 0,-0.4817103 L 7.9638958,5.2605521 c 0.119986,-0.1328856 0.314963,-0.1328856 0.434949,0 0.119986,0.1328856 0.119986,0.3488246 0,0.4817102 L 5.0167397,9.4879747 c -0.1199859,0.132886 -0.3149631,0.132886 -0.4349491,0 z M 3.7868835,11.539396 h 1.0573764 v 0.880367 l -1.4173343,0.274076 -0.6824202,-0.755787 0.2474711,-1.56971 h 0.794907 z"
+     fill="#ffffff"
+     fill-opacity="1"
+     fill-rule="nonzero"
+     style="fill:#ffff;fill-opacity:1;stroke-width:0.789195" />
+</svg>

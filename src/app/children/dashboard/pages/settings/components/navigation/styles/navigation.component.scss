@@ -1,0 +1,11 @@
+tui-tabs {
+    --tui-primary: rgb(22, 219, 204);
+}
+
+@media(max-width: 480px){
+    tui-tabs{
+        display: flex;
+        width: 325px;
+        font-size: 9px;
+    }
+}

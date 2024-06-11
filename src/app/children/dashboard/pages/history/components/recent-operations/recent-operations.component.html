@@ -1,0 +1,101 @@
+<div class="recent__operations__main__container">
+    <h2 class="title">Недавние операции</h2>
+    <div class="table__extension">
+        <ul class="table__filters__list">
+            <li
+                (click)="setActiveFilter('all')"
+                [ngClass]="{'table__filters__item__active': activeFilter === 'all'}"
+                class="table__filters__item"
+            >
+                Все операции
+            </li>
+            <li
+                (click)="setActiveFilter('income')"
+                [ngClass]="{'table__filters__item__active': activeFilter === 'income'}"
+                class="table__filters__item"
+            >
+                Зачисления
+            </li>
+            <li
+                (click)="setActiveFilter('expense')"
+                [ngClass]="{'table__filters__item__active': activeFilter === 'expense'}"
+                class="table__filters__item"
+            >
+                Расходы
+            </li>
+        </ul>
+        <button
+            (click)="openDialogCreateOperation(createOperation, 's')"
+            class="add__operation__btn"
+        >
+            Добавить операцию
+        </button>
+    </div>
+
+    <div *ngIf="visibleOperations.length > 0">
+        <div class="all__operations__table">
+            <table class="table">
+                <thead class="table__head">
+                <tr class="table__titles">
+                    <th class="col__title col__desc col__title__desc">Название</th>
+                    <th class="col__title col__category col__title__category">Категория</th>
+                    <th class="col__title col__date col__title__date">Дата</th>
+                    <th class="col__title col__amount col__title__amount">Сумма</th>
+                    <th class="col__title col__btn col__title__create__btn"></th>
+                </tr>
+                </thead>
+                <tbody class="table__body">
+                <tr *ngFor="let operation of visibleOperations" class="table__item">
+                    <td class="col__item col__desc col__item__desc">
+                        <div class="col__item__desc__content">
+                            <img
+                                [ngSrc]="'assets/img/' + (operation.amount >= 0 ? 'income' : 'expense') + '_operation.svg' "
+                                alt="Тип операция"
+                                class="img col__item__desc__img"
+                                height="30"
+                                width="30">
+                            <p class="col__value col__item__desc__value">{{ operation.name }}</p>
+                        </div>
+                    </td>
+                    <td class="col__item col__category col__item__category">
+                        <p class="col__value col__item__category__value">{{ operation.category }}</p>
+                    </td>
+                    <td class="col__item col__date col__item__date">
+                        <p class="col__value col__item__date__value">{{ operation.date | dateFormatter }}</p>
+                    </td>
+                    <td [ngClass]="{'col__item__amount__negative': operation.amount < 0, 'col__item__amount__positive': operation.amount >= 0}"
+                        class="col__item col__amount col__item__amount">
+                        <p class="col__value col__item__amount_value">{{ operation.amount + ' ₽' }}</p>
+                    </td>
+                    <td class="col__item col__btn col__item__btn">
+                        <button (click)="deleteOperation(operation)"
+                                appearance="destructive"
+                                class="delete__btn"
+                                icon="tuiIconTrash"
+                                size="s"
+                                tuiIconButton
+                        ></button>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div *ngIf="visibleOperations.length <= 0">
+        <div class="recent__operations__not__found__container">
+            <div class="recent__operations__not__found__content">
+                <img alt="Операций не найдено" height="100"
+                     ngSrc="assets/img/operations_not_found.svg"
+                     width="100">
+                <p>Добавьте операции</p>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<ng-template #createOperation let-observer>
+    <app-create-operation [observer]="observer"></app-create-operation>
+</ng-template>
+<app-create-operation class="hidden__dialog"></app-create-operation>

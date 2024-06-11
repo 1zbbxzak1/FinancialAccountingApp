@@ -1,0 +1,199 @@
+.setting__edit-profile{
+    margin-left: 31px;
+    margin-top: 52px;
+}
+.setting-filds{
+    display: flex;
+    gap: 55px;
+}
+
+.profile-photo__container{
+    position: relative;
+    
+    .profile-photo__container__icon{
+        position: absolute;
+        top: 87px;
+        left: 108px;
+        z-index: 2;
+    }
+    .profile-photo__container__button{
+        position: absolute;
+        top: 80px;
+        left: 100px;
+        width: 30px;
+        height: 30px;
+        border-radius: 30px;
+        border: none;
+        z-index: 1;
+        --tui-primary: rgb(0, 120, 74);
+        --tui-primary-hover: rgb(22, 219, 204);
+        --tui-primary-active: rgb(22, 219, 204);
+    }
+    .profile-photo__container__img{
+        border-radius: 130px;
+        height: 130px;
+        width: 130px;
+    }
+}
+
+.setting__form{
+    display: grid;
+    grid-template-columns: 130px 895px;
+    gap: 55px;
+    .setting__form__filds__container{
+        display: flex;
+        height: 460px; 
+        flex-direction: column;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-bottom: 30px;
+    }
+    .setting__form__input{
+        width: 40%; // 415px
+        box-sizing: border-box;
+        border: 1px solid rgb(223, 234, 242);
+        border-radius: 15px;
+        background: rgb(255, 255, 255);
+        height: 50px;
+        padding: 20px;
+        margin-bottom: 22px;
+    }
+    .setting__form__input:focus{
+        outline: 2px solid rgb(22, 219, 204);
+    }
+    #email{
+        background: rgb(238, 245, 250);
+    }
+}
+.save__button__settings{
+    height: 50px;
+    width: 190px;
+    font-size: 18px;
+    font-weight: 500;
+    color: white;
+    border-radius: 15px;
+    border: none;
+    background: rgb(0, 120, 74);
+    box-shadow: 0 5px 15px 0 rgb(0, 120, 74);
+    transition: 0.5s;
+    margin-left: 80%; //890px
+    margin-top: auto;
+}
+.save__button__settings:hover {
+    transform: translate(0,-3px);
+    box-shadow: 0 20px 40px 0 rgb(0, 120, 74);
+}
+.save__button__settings:active{
+    background: rgb(22, 219, 204);
+}
+
+//Адаптив
+@media(max-width: 1300px){
+    .setting__form__filds__container{
+        display: flex;
+        width: 800px;
+        height: 920px; 
+        flex-direction: column;
+        flex-wrap: nowrap;
+        gap: 10px;
+        margin-bottom: 30px;
+    }
+}
+@media(max-width: 760px){
+    .setting__edit-profile{
+        width: 50px;
+    }
+    .setting__form{
+        display: flex;
+        flex-direction: column;
+        width: 483px;
+        .setting__form__filds__container{
+            display: flex;
+            flex-direction: column;
+            flex-wrap: nowrap;
+            height: auto;
+            margin-left: 20px;
+        }
+        .setting__form__input{
+            width: 529px;
+        }
+        .profile-photo__container{
+            margin-left: 200px;
+            margin-bottom: 30px;
+            .profile-photo__container__img{
+                height: 200px;
+                width: 200px;
+            }
+            .profile-photo__container__icon{
+                top: 147px;
+                left: 168px;
+            }
+            .profile-photo__container__button{
+                top: 140px;
+                left: 160px;
+            }
+        }
+    }
+    .save__button__settings{
+        margin-left: 190px;
+    }
+}
+
+@media(max-width: 480px){
+    .setting__edit-profile{
+        width: 325px;
+    }
+    .setting__form{
+        display: flex;
+        flex-direction: column;
+        width: 300px;
+        .setting__form__filds__container{
+            display: flex;
+            flex-direction: column;
+            flex-wrap: nowrap;
+            height: auto;
+            margin-left: 10px;
+        }
+        .setting__form__input{
+            width: 280px;
+        }
+        .profile-photo__container{
+            margin-left: 45px;
+            margin-bottom: 30px;
+            .profile-photo__container__img{
+                height: 200px;
+                width: 200px;
+            }
+            .profile-photo__container__icon{
+                top: 147px;
+                left: 168px;
+            }
+            .profile-photo__container__button{
+                top: 140px;
+                left: 160px;
+            }
+        }
+    }
+    .save__button__settings{
+        width: 285px;
+        margin-left: 10px;
+        font-size: 15px;
+    }
+}
+
+//скелетоны
+.skeletone{
+    opacity: .7;
+    animation: skeleton-loading 1s linear infinite alternate;
+    height: 55px;
+    border-radius: 10px;
+}
+
+@keyframes skeleton-loading{
+    0%{
+        background-color: hsl(200, 20%, 70%);
+    }
+    100%{
+        background-color: hsl(200, 20%, 95%);
+    }
+}

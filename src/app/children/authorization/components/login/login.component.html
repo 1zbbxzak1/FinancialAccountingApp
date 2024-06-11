@@ -1,0 +1,39 @@
+<form [formGroup]="formAuth" class="pop-up">
+    <div class="pop-up-title">
+        Сервис учета финансов
+    </div>
+    <div>
+        <tui-input formControlName="email">
+            Email
+        </tui-input>
+        <div *ngIf="isControlError('email')" class="error-message">
+            <div *ngIf="isControlRequired('email')">
+                Email обязателен.
+            </div>
+            <div *ngIf="isEmailInvalid('email')">
+                Некорректный email.
+            </div>
+        </div>
+    </div>
+    <div>
+        <tui-input-password class="tui-space_top-4" formControlName="password" tuiTextfieldSize="l">
+            Пароль
+        </tui-input-password>
+        <div *ngIf="isControlError('password')" class="error-message">
+            <div *ngIf="isControlRequired('password')">
+                Пароль обязателен.
+            </div>
+            <div *ngIf="isPasswordInvalid('password')">
+                Пароль должен быть длиннее 6 символов.
+            </div>
+        </div>
+    </div>
+
+    <button (click)="userLogin()" [disabled]="formAuth.invalid"
+            appearance="custom"
+            class="tui-space_top-10" size="l" tuiButton
+            type="button">
+        Войти
+    </button>
+</form>
+

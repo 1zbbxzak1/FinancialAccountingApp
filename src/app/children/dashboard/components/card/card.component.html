@@ -1,0 +1,32 @@
+<section class="card placeholder-card placeholder-blur" [class.selected]="card.isSelected" (click)="toggleSelection()">
+    <header class="card-header">
+        <ul class="header-list">
+            <li class="list-item list-item-title">Баланс</li>
+            <li class="list-item list-item-value balance">{{ card.balance }}₽</li>
+        </ul>
+        <img class="img chip-icon-img"
+             [ngSrc]="'assets/img/children/dashboard/components/card/' + (card.isSelected ? 'selected' : 'no-selected') + '/chip/chip_card.svg'"
+             alt="Чип"
+             height="35"
+             width="35">
+
+    </header>
+    <div class="card-content">
+        <ul class="content-list content-list-card-name">
+            <li class="list-item list-item-title">Название</li>
+            <li class="list-item list-item-value name">{{ card.name }}</li>
+        </ul>
+        <ul class="content-list content-list-date-created">
+            <li class="list-item  list-item-title">Дата создания</li>
+            <li class="list-item list-item-value date">{{ card.dateCreated.toLocaleDateString() }}</li>
+        </ul>
+    </div>
+    <footer class="card-footer">
+        <p class="footer-title">Платежная система</p>
+        <img class="img payment-system-img"
+             [ngSrc]="'assets/img/children/dashboard/components/card/' + (card.isSelected ? 'selected' : 'no-selected') + '/providers/' + card.provider + '.svg'"
+             alt="Платежная система"
+             width="60"
+             height="40">
+    </footer>
+</section>

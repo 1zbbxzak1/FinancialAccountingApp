@@ -1,0 +1,134 @@
+@mixin label_font{
+    font-size: 16px;
+    font-weight: 400;
+}
+.settings__preferences__section{
+    margin-left: 30px;
+    margin-top: 52px;
+}   
+
+.setting__preferences__container{
+    display: flex;
+    gap: 30px;
+    margin-bottom: 27px;
+
+    .container{
+        display:flex;
+        flex-direction: column;
+        gap: 10px;
+
+        label{
+            @include label-font;
+        }
+
+        input{
+            width: 510px;
+            height: 50px;
+            box-sizing: border-box;
+            border: 1px solid rgb(223, 234, 242);
+            border-radius: 15px;
+            background: rgb(255, 255, 255);
+            padding: 20px;
+        }
+        input:focus{
+            outline: 2px solid rgb(22, 219, 204);
+        }
+    }
+    
+}
+
+.prefepences__notifications__title{
+    font-size: 17px;
+    font-weight: 500;
+    margin-bottom: 20px;
+}
+
+.prefepences__notifications__form{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    label{
+        @include label-font;
+
+        tui-toggle{
+            --tui-primary-text: #fff;
+            --tui-primary: rgb(22, 219, 204);
+            --tui-primary-hover: rgb(22, 219, 204);
+            --tui-primary-active: rgb(22, 219, 204);
+            margin-right: 23px;
+        }
+    }
+}
+.save__button__settings{
+    height: 50px;
+    width: 190px;
+    color: white;
+    border-radius: 15px;
+    border: none;
+    background: rgb(0, 120, 74);
+    margin-left: 890px;
+    margin-top: auto;
+}
+.save__button__settings{
+    height: 50px;
+    width: 190px;
+    font-size: 18px;
+    font-weight: 500;
+    color: white;
+    border-radius: 15px;
+    border: none;
+    background: rgb(0, 120, 74);
+    box-shadow: 0 5px 15px 0 rgb(0, 120, 74);
+    transition: 0.5s;
+    margin-left: 80%;
+    margin-top: auto;
+}
+.save__button__settings:hover {
+    transform: translate(0,-3px);
+    box-shadow: 0 20px 40px 0 rgb(0, 120, 74);
+}
+.save__button__settings:active{
+    background: rgb(22, 219, 204);
+}
+
+//Адптив
+@media(max-width: 1300px){
+    #currency, #timezone{
+        width: 460px;
+    }
+}
+
+@media(max-width: 760px){
+    .settings__preferences__section{
+        width: 483px;
+        .setting__preferences__container{
+            display: flex;
+            flex-direction: column;
+            flex-wrap: nowrap;
+        }
+    }
+    .prefepences__notifications{
+        margin-bottom: 30px;
+    }
+    .save__button__settings{
+        margin-left: 190px;
+    }
+}
+
+@media(max-width: 480px){
+    .settings__preferences__section{
+        width: 325px;
+        #currency, #timezone{
+            width: 285px;
+        }
+        label{
+            font-size: 13px;
+        }
+    }    
+    .save__button__settings{
+        width: 285px;
+        margin-left: 10px;
+        font-size: 15px;
+    }
+}

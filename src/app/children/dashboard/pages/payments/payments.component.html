@@ -1,0 +1,15 @@
+<div class="main-content-dashboard">
+    <div class="main-content-dashboard-second">
+        <app-sidebar *ngIf="!Capacitor.isNativePlatform()"></app-sidebar>
+        <div class="main-content-dashboard-full">
+            <app-header></app-header>
+            <div class="content-dashboard">
+                <div class="content-dashboard-header">
+                    <p class="content-dashboard-title">Мои карты</p>
+
+                </div>
+            </div>
+            <app-tabbar *ngIf="Capacitor.isNativePlatform() || window.innerWidth <= 1200"></app-tabbar>
+        </div>
+    </div>
+</div>

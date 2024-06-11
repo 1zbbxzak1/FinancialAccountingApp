@@ -1,0 +1,50 @@
+.add__card__section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-self: center;
+    padding: 20px;
+    height: 100%;
+
+    margin-bottom: 20px;
+
+    border-radius: 25px;
+    border: 1px solid rgb(223, 234, 242);
+    background: #FFFFFF;
+
+    .desc {
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 215%;
+        color: #718ebf;
+        grid-column: 1 / -1;
+        margin-bottom: 20px;
+    }
+
+    .form-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+        width: 100%;
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            align-items: start;
+
+            .add-title {
+                font-weight: 400;
+                font-size: 16px;
+                color: #232323;
+
+                margin-bottom: 16px;
+            }
+
+            tui-input,
+            tui-combo-box {
+                width: 100%;
+            }
+        }
+    }
+}

@@ -1,0 +1,152 @@
+.main-footer {
+  margin: 0;
+  padding: 65px 80px 0;
+  background: linear-gradient(220.41deg, rgb(30, 145, 111) 12.773%,rgb(0, 141, 100) 39.014%,rgb(0, 193, 135) 76.868%);
+}
+
+.footer-container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.main-footer .logo {
+  color: rgb(255, 255, 255);
+  font-size: 32px;
+  font-weight: 600;
+  line-height: 39px;
+  text-align: left;
+  margin-bottom: 20px;
+}
+
+.footer-desc {
+  max-width: 217px;
+  color: rgb(255, 255, 255);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 17px;
+  text-align: left;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 10px 0 45px;
+}
+
+.footer-navigation-topics {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-size: 14px;
+  line-height: 16px;
+  text-align: left;
+}
+
+.footer-navigation-topic h2 {
+  margin-top: 0;
+  margin-bottom: 20px;
+  font-size: 14px;
+  line-height: 18px;
+  text-transform: uppercase;
+}
+
+.footer-navigation {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-navigation-item {
+  margin-bottom: 12px;
+}
+
+.footer-navigation-item:last-child {
+  margin-bottom: 0;
+}
+
+.footer-navigation-item a {
+  color: rgb(255, 255, 255);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 17px;
+  text-align: left;
+  text-decoration: none;
+}
+
+.footer-navigation-item p {
+  color: rgb(255, 255, 255);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 17px;
+  text-align: left;
+  text-decoration: none;
+}
+
+.footer-navigation-item a:hover {
+  color: rgb(85, 85, 85);
+}
+
+.footer-navigation-item a:active {
+  color: rgb(85, 85, 85);
+}
+
+.policy {
+  color: rgb(255, 255, 255);
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 15px;
+  text-align: center;
+  padding-bottom: 15px;
+  padding-left: 40px;
+  padding-right: 40px;
+}
+
+.copyright {
+  padding-bottom: 30px;
+}
+
+.copyright p {
+  color: rgb(255, 255, 255);
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 24px;
+  text-align: center;
+}
+
+
+
+// Адаптация под устройства шириной экрана до 760px
+@media (max-width: 760px) {
+  .policy {
+    display: none;
+  }
+
+  .footer-navigation-topics {
+    margin-bottom: 20px;
+  }
+
+  .copyright p {
+    text-align: left;
+  }
+}
+
+
+
+// Адаптация под устройства шириной экрана до 480px
+@media(max-width: 480px) {
+  .main-footer {
+    padding: 40px;
+  }
+
+  .logo h2 {
+    font-size: 32px;
+  }
+
+  .footer-desc {
+    font-size: 14px;
+  }
+
+  .copyright p {
+    font-size: 16px;
+  }
+}

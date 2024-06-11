@@ -1,0 +1,19 @@
+<div class="main-content-dashboard">
+    <div class="main-content-dashboard-second">
+        <app-sidebar *ngIf="!Capacitor.isNativePlatform()"></app-sidebar>
+        <div class="main-content-dashboard-full">
+            <app-header></app-header>
+            <div class="content-dashboard">
+                <section class="first-main-section">
+                    <app-my-cards></app-my-cards>
+                    <app-statistics-cards></app-statistics-cards>
+                </section>
+
+                <div class="second-main-section">
+                    <app-add-card></app-add-card>
+                </div>
+            </div>
+            <app-tabbar *ngIf="Capacitor.isNativePlatform() || window.innerWidth <= 1200"></app-tabbar>
+        </div>
+    </div>
+</div>

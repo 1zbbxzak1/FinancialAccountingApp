@@ -1,0 +1,92 @@
+@mixin main-display{
+    display:flex;
+    flex-direction: column;
+}
+.settings__security__section{
+    margin-left: 31px;
+    margin-top: 52px;
+}
+
+.security__change-password__container{
+    @include main-display;
+    gap: 17px;
+    .security__change-password__title{
+        font-size: 17px;
+        font-weight: 500;
+    }
+    .security__change-password__form{
+        @include main-display;
+        gap: 22px;
+        .container{
+            @include main-display;
+            gap: 10px;
+            input{
+                padding: 20px;
+                width: 510px;
+                height: 50px;
+                box-sizing: border-box;
+                border: 1px solid rgb(223, 234, 242);
+                border-radius: 15px;
+                font-size: 28px;
+                font-weight: 400;
+                background: rgb(255, 255, 255);
+            }
+            input:focus{
+                outline: 2px solid rgb(22, 219, 204);
+            }
+            input.ng-touched.ng-invalid{
+                border: solid 1px rgb(137, 21, 21);
+            }
+            label{
+                font-size: 16px;
+                font-weight: 400;
+            }
+        }
+    }
+}
+.save__button__settings{
+    height: 50px;
+    width: 190px;
+    font-size: 18px;
+    font-weight: 500;
+    color: white;
+    border-radius: 15px;
+    border: none;
+    background: rgb(0, 120, 74);
+    box-shadow: 0 5px 15px 0 rgb(0, 120, 74);
+    transition: 0.5s;
+    margin-left: 80%;
+    margin-top: auto;
+}
+.save__button__settings:hover {
+    transform: translate(0,-3px);
+    box-shadow: 0 20px 40px 0 rgb(0, 120, 74);
+}
+.save__button__settings:active{
+    background: rgb(22, 219, 204);
+}
+
+//Адаптив
+@media(max-width: 1300px){
+    
+}
+
+@media(max-width: 760px){
+    .security__change-password__container{
+        margin-bottom: 30px;
+    }
+    .save__button__settings{
+        margin-left: 190px;
+    }
+}
+
+@media(max-width: 480px){
+    #current-password, #new-password{
+        width: 285px;
+    }
+    .save__button__settings{
+        width: 285px;
+        margin-left: 10px;
+        font-size: 15px;
+    }
+}

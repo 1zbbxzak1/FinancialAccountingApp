@@ -1,0 +1,18 @@
+<div class="main-content-dashboard">
+    <div class="main-content-dashboard-second">
+        <app-sidebar *ngIf="!Capacitor.isNativePlatform()"></app-sidebar>
+        <div class="main-content-dashboard-full">
+            <app-header></app-header>
+            <div class="content-dashboard">
+                <section class="history__cards__section">
+                    <app-my-cards class="history__my__cards"></app-my-cards>
+                    <app-balance-chart class="history__balance__chart"></app-balance-chart>
+                </section>
+                <section>
+                    <app-recent-operations class="history-recent-operations"></app-recent-operations>
+                </section>
+            </div>
+            <app-tabbar *ngIf="Capacitor.isNativePlatform() || window.innerWidth <= 1200"></app-tabbar>
+        </div>
+    </div>
+</div>

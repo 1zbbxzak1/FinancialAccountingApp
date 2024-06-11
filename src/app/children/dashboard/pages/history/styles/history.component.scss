@@ -1,0 +1,30 @@
+.history__cards__section {
+    margin-top: 25px;
+    margin-bottom: 22px;
+    display: flex;
+
+    .history__my__cards {
+        margin-right: 30px;
+        z-index: 0;
+    }
+
+    .history__balance__chart {
+        flex-grow: 1;
+    }
+}
+
+
+@media (max-width: 1700px) {
+    .history__cards__section {
+        flex-direction: column;
+
+        .history__my__cards {
+            margin-right: 0;
+            margin-bottom: 22px;
+        }
+
+        .history__balance__chart {
+            width: 100%;
+        }
+    }
+}

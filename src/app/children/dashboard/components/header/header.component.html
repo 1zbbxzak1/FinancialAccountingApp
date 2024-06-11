@@ -1,0 +1,45 @@
+<tui-root>
+    <header class="dashboard-header">
+        <div class="dashboard-header-menu-list">
+            <div class="dashboard-header-menu-list-item">
+                <div class="dashboard-header-second">
+                    <p class="dashboard-header-title">{{ findState() }}</p>
+                </div>
+            </div>
+
+            <tui-hosted-dropdown
+                #dropdown
+                *ngIf="!Capacitor.isNativePlatform() && window.innerWidth > 1001"
+                [(open)]="dropdownOpen"
+                [content]="content"
+            >
+                <button (click)="dropdown.open || null" class="dashboard-header-item">
+                    <img alt="Профиль" height="45" ngSrc="assets/img/profile-logo.svg" width="50">
+                </button>
+            </tui-hosted-dropdown>
+            <ng-template
+                #content
+            >
+                <tui-data-list
+                    *ngIf="!Capacitor.isNativePlatform() && window.innerWidth > 1001"
+                    [size]="size"
+                    tuiDataListDropdownManager
+                >
+                    <button (click)="navigateToSettings()" class="dashboard-header-submenu" tuiOption>
+                        <img alt="Настройки" height="24" ngSrc="assets/img/settings.svg" width="24">
+                        <p class="dashboard-header-submenu-title">Настройки</p>
+                    </button>
+                    <button (click)="logout()" class="dashboard-header-submenu" tuiOption>
+                        <img alt="Выйти" height="24" ngSrc="assets/img/logout.svg" width="24">
+                        <p class="dashboard-header-submenu-title">Выйти</p>
+                    </button>
+                </tui-data-list>
+            </ng-template>
+
+            <button (click)="navigateToSettings()" *ngIf="Capacitor.isNativePlatform() || window.innerWidth <= 1000"
+                    class="dashboard-header-item">
+                <img alt="Профиль" height="45" ngSrc="assets/img/profile-logo.svg" width="50">
+            </button>
+        </div>
+    </header>
+</tui-root>

@@ -1,0 +1,44 @@
+.transaction-container__list__item{
+    display: flex;
+    .transaction-container__list__item__container__descreption{
+        margin-top: 10px;
+        text-align: left;
+        margin-left: 180px;
+    }
+    .transaction-container__list__item__text{
+        margin-top: 18px;
+        color: rgb(113, 142, 191);
+        font-size: 16px;
+        font-weight: 400;
+        text-align: left;
+        margin-left: auto;
+    }
+}
+
+@media(max-width: 1300px) {
+    .transaction-container__list__item{
+        width: 550px;
+        
+    }
+}
+
+@media(max-width: 580px) {
+    .transaction-container__list__item{
+        display: flex;
+        width: 250px;
+        .transaction-container__list__item__container__descreption{
+            margin-top: 10px;
+            text-align: left;
+            margin-left: 50px;
+        }
+        .transaction-container__list__item__text{
+            margin-top: 18px;
+            color: rgb(113, 142, 191);
+            font-size: 16px;
+            font-weight: 400;
+            text-align: left;
+            margin-left: auto;
+        }
+    }
+}
+

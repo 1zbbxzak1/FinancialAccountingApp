@@ -1,0 +1,31 @@
+.dynamics__title {
+    font-weight: 600;
+    font-size: 22px;
+    color: #343c6a;
+
+    margin-top: 24px;
+    margin-bottom: 20px;
+}
+
+.line__chart__section {
+    width: 99.3%;
+    height: 300px;
+
+    padding: 20px 8px;
+
+    border-radius: 25px;
+    border: 1px solid rgb(223, 234, 242);
+    background: #fff;
+
+    margin-bottom: 30px;
+}
+
+.canvas {
+    width: 99.3% !important;
+}
+
+@media (max-width: 1280px) {
+    .line__chart__section {
+        width: 96%;
+    }
+}
