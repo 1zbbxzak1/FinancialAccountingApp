@@ -1,7 +1,7 @@
 # FinancialAccountingApp
 The cross-platform application, created in order to simplify the tracking of income and expenses, to control the financial condition, is suitable for families, entrepreneurs and self-employed.
 
-Developed for the Artsofte course «Application programming in Angular» 2024 (4th semester)
+_Developed for the Artsofte course «Application programming in Angular» 2024 (4th semester)_
 
 ## Contents
 
