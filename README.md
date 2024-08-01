@@ -1,7 +1,7 @@
 # FinancialAccountingApp
 The cross-platform application, created in order to simplify the tracking of income and expenses, to control the financial condition, is suitable for families, entrepreneurs and self-employed.
 
-## Содержание
+## Contents
 
 1. <a href = "#people">Developers</a>
 2. <a href = "#start">How to start a project?</a>
@@ -9,7 +9,7 @@ The cross-platform application, created in order to simplify the tracking of inc
 4. <a href = "#technical_assignment">SRS</a>
 
 <a name = people></a>
-## Разработчики
+## Developers
   1. [Alexandr Zverev](https://github.com/wefspy)
   2. [Arina Kataeva](https://github.com/arinakataeva007)
   3. [Julia Polyakova](https://github.com/1zbbxzak1)
