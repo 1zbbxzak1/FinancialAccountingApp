@@ -13,7 +13,7 @@ import {cardProvider} from "../../../../../../data/directions/card/cardProvider.
 })
 export class AddCardComponent {
     protected formCard: FormGroup = new FormGroup({
-        balance: new FormControl('', Validators.required),
+        balance: new FormControl("", Validators.required),
         name: new FormControl('', Validators.required),
         date: new FormControl('', [Validators.required]),
         provider: new FormControl('', Validators.required),
@@ -41,6 +41,7 @@ export class AddCardComponent {
     protected onSubmit(): void {
         if (this.formCard.valid) {
             const formValue = this.formCard.value;
+            const balance: number = parseInt(this.formCard.get('balance')?.value);
             const date: string = this.formCard.get('date')?.value;
 
             const [day, month, year] = date.split('.').map(Number);
@@ -48,6 +49,7 @@ export class AddCardComponent {
 
             const cardData: ICardRequestModel = {
                 ...formValue,
+                balance: balance,
                 dateCreatedTimestamp: dateTimestamp
             };
 

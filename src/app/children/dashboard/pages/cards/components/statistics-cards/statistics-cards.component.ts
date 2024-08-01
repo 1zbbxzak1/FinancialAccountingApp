@@ -9,7 +9,7 @@ import {CardSelectionService} from "../../../../services/my-cards/card-selection
 @Component({
     selector: 'app-statistics-cards',
     templateUrl: './statistics-cards.component.html',
-    styleUrl: './styles/statistics-cards.master.scss'
+    styleUrls: ['./styles/statistics-cards.master.scss']
 })
 export class StatisticsCardsComponent {
     protected isNullOperations: boolean = true;
@@ -32,9 +32,16 @@ export class StatisticsCardsComponent {
             })
         )
             .subscribe((operations: OperationModel[]): void => {
+                this.updateIsNullOperations(operations);
                 this.createDoughnutChart(operations);
                 this._changeDetectorRef.detectChanges();
             });
+
+        console.log(this.isNullOperations);
+    }
+
+    private updateIsNullOperations(operations: OperationModel[]): void {
+        this.isNullOperations = operations.length === 0;
     }
 
     private createDoughnutChart(operations: OperationModel[]): void {
@@ -52,12 +59,6 @@ export class StatisticsCardsComponent {
             expenditurePercentages,
             totalExpenditures
         } = this.aggregateCategoryExpendituresForLastDayOfMonth(operations);
-
-        if (operations.length === 0 || labels.length === 0) {
-            this.isNullOperations;
-        } else {
-            !this.isNullOperations;
-        }
 
         this._chart = new Chart(ctx, {
             type: 'doughnut',

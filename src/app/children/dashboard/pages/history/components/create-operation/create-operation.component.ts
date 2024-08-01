@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, ChangeDetectorRef, Component, DestroyRef, Input} from '@angular/core';
+import {ChangeDetectionStrategy, ChangeDetectorRef, Component, DestroyRef} from '@angular/core';
 import {PolymorpheusContent} from "@tinkoff/ng-polymorpheus";
 import {TuiDialogFormService} from "@taiga-ui/kit";
 import {TuiDialogContext, TuiDialogService, TuiDialogSize} from "@taiga-ui/core";
@@ -10,7 +10,7 @@ import {OperationValidator} from "../../../../../../validators/operation/operati
 import {IOperationRequestModel} from "../../../../../../data/request-models/operation/IOperation.request-model";
 import {CardManagerService} from "../../../../../../data/services/card/card.manager.service";
 import {ICardRequestModel, ToICardRequestModel} from "../../../../../../data/request-models/card/ICard.request-model";
-import {Observer, switchMap, take, tap} from "rxjs";
+import {switchMap, take, tap} from "rxjs";
 import {CardModel} from "../../../../../../data/models/card/card.model";
 import {OperationControlValidator} from "../../../../../../validators/operation/operation.control.validator";
 
@@ -26,7 +26,6 @@ interface Category {
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CreateOperationComponent {
-    @Input() observer?: Observer<never>;
     protected categoryItem: Category | null = null;
     protected open: boolean = false;
     protected readonly categories: readonly Category[] = [
@@ -129,10 +128,6 @@ export class CreateOperationComponent {
                     }),
                     switchMap((card: CardModel) => {
                         const request: ICardRequestModel = ToICardRequestModel(card);
-                        if (this.observer) {
-                            this._changeDetectorRef.detectChanges();
-                            this.observer.complete();
-                        }
                         return this._cardManager.update(this._uid, operation.cardId, request);
                     })
                 );
